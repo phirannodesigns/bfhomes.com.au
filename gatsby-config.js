@@ -9,6 +9,9 @@ dotenv.config({
 const { title, siteUrl } = config;
 
 module.exports = {
+  siteMetadata: {
+    siteUrl,
+  },
   plugins: [
     'gatsby-plugin-netlify',
     'gatsby-plugin-image',
