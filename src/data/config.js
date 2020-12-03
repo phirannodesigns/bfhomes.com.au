@@ -1,3 +1,5 @@
+const { FaFacebookF, FaInstagram } = require('react-icons/fa');
+
 module.exports = {
   title: 'Bruen Family Homes',
   description: '',
@@ -11,6 +13,18 @@ module.exports = {
   officeHours: '',
   siteUrl: 'https://www.rmaircraft.com.au',
   ogImage: '../../static/og-image.jpg',
+  socialLinks: [
+    {
+      label: 'Facebook',
+      url: 'https://www.facebook.com',
+      icon: FaFacebookF,
+    },
+    {
+      label: 'Instagram',
+      url: 'https://www.instagram.com',
+      icon: FaInstagram,
+    },
+  ],
   siteNavigation: [
     {
       label: 'About Us',
