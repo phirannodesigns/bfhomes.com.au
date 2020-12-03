@@ -1,12 +1,6 @@
-/**
- * Layout component that queries for data
- * with Gatsby's useStaticQuery component
- *
- * See: https://www.gatsbyjs.org/docs/use-static-query/
- */
-
 import * as React from "react";
 import { Nav } from "./nav";
+import { MobileMenu } from "./mobile-menu";
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -18,6 +12,7 @@ function Layout({ children }: LayoutProps) {
       <Nav />
       <main className="flex-1">{children}</main>
       {/* <Footer /> */}
+      <MobileMenu />
     </div>
   );
 }
