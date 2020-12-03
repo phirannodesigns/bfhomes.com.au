@@ -1,32 +1,37 @@
 module.exports = {
   plugins: [
+    'gatsby-plugin-image',
+    'gatsby-plugin-postcss',
+    'gatsby-plugin-react-helmet',
+    'gatsby-plugin-sharp',
+    'gatsby-plugin-sitemap',
+    'gatsby-transformer-sharp',
     {
-      resolve: "gatsby-source-sanity",
+      resolve: 'gatsby-plugin-google-analytics',
       options: {
-        projectId: "",
-        dataset: "",
+        trackingId: 'G-BMMPZY29ZL',
       },
     },
-    "gatsby-plugin-postcss",
     {
-      resolve: "gatsby-plugin-google-analytics",
+      resolve: 'gatsby-plugin-manifest',
       options: {
-        trackingId: "",
+        icon: 'src/images/favicon.jpg',
       },
     },
-    "gatsby-plugin-image",
-    "gatsby-plugin-react-helmet",
-    "gatsby-plugin-sitemap",
-    "gatsby-plugin-manifest",
-    "gatsby-plugin-sharp",
-    "gatsby-transformer-sharp",
     {
-      resolve: "gatsby-source-filesystem",
+      resolve: 'gatsby-source-filesystem',
       options: {
-        name: "images",
-        path: "./src/images/",
+        name: 'images',
+        path: './src/images/',
       },
-      __key: "images",
+      __key: 'images',
     },
+    // {
+    //   resolve: 'gatsby-source-sanity',
+    //   options: {
+    //     projectId: '1edouzcx',
+    //     dataset: 'production',
+    //   },
+    // },
   ],
 };
