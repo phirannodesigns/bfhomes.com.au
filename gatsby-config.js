@@ -59,12 +59,12 @@ module.exports = {
       },
       __key: 'images',
     },
-    // {
-    //   resolve: 'gatsby-source-sanity',
-    //   options: {
-    //     projectId: '1edouzcx',
-    //     dataset: 'production',
-    //   },
-    // },
+    {
+      resolve: 'gatsby-source-sanity',
+      options: {
+        projectId: '1edouzcx',
+        dataset: 'production',
+      },
+    },
   ],
 };

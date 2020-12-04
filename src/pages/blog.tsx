@@ -1,8 +1,9 @@
-import React, { useState, useMemo } from 'react';
-import PropTypes from 'prop-types';
-import { graphql } from 'gatsby';
+import React, { useState, useMemo } from "react";
+import PropTypes from "prop-types";
+import { graphql } from "gatsby";
+import GatsbyImage from "gatsby-image";
 
-import { Layout, SEO } from '../components';
+import { Layout, SEO } from "../components";
 
 function LatestNewsPage({
   data: {
@@ -12,7 +13,7 @@ function LatestNewsPage({
   /**
    * Filter posts from search input
    */
-  const [searchQuery, setSearchQuery] = useState('');
+  const [searchQuery, setSearchQuery] = useState("");
   const [posts, setPosts] = useState(nodes);
 
   // Filter search results from search results
@@ -34,7 +35,7 @@ function LatestNewsPage({
   const [categories, setCategories] = useState([]);
 
   // State for filtering posts from select menu
-  const [filter, setFilter] = useState('All');
+  const [filter, setFilter] = useState("All");
 
   // Get unique categories
   useMemo(() => {
@@ -50,7 +51,7 @@ function LatestNewsPage({
   // Filter by tag
   const filtered = useMemo(
     () =>
-      filter === 'All'
+      filter === "All"
         ? posts
         : posts.filter((post) => {
             return post.categories.some(({ title }) => title === filter);
@@ -110,12 +111,21 @@ function LatestNewsPage({
           </div>
         </div>
         <div className="grid w-full grid-cols-1 gap-12 sm:grid-cols-2 mt-28 sm:mt-40 lg:grid lg:grid-cols-3 lg:gap-12">
-          {searchQuery !== '' && !posts.length ? (
+          {searchQuery !== "" && !posts.length ? (
             <p className="text-center">
               No results found! Please try a different search.
             </p>
           ) : (
-            filtered.map((post) => <h1>Hi there</h1>)
+            <ul>
+              {filtered.map((post) => {
+                return (
+                  <li key={post.id}>
+                    <h3>{post.title}</h3>
+                    <GatsbyImage fluid={post.mainImage.asset.fluid} alt="" />
+                  </li>
+                );
+              })}
+            </ul>
           )}
         </div>
       </article>
@@ -124,7 +134,7 @@ function LatestNewsPage({
 }
 
 LatestNewsPage.propTypes = {
-  data: PropTypes.object,
+  data: PropTypes.object.isRequired,
 };
 
 export const graphqlQuery = graphql`
