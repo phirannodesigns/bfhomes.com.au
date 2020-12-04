@@ -43,7 +43,7 @@ function Nav() {
         <button
           type="button"
           onClick={() => setIsOpen(true)}
-          className="p-1 text-xl text-brand-teal"
+          className="p-1 text-xl text-brand-teal lg:hidden"
         >
           <HiMenu className="w-6 h-6 text-white" />
         </button>
