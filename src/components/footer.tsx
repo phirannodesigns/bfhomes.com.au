@@ -7,8 +7,8 @@ import { SiteLogo } from "./vectors/logos";
 function Footer() {
   return (
     <footer className="font-medium text-white bg-brand-blue">
-      <div className="grid w-full max-w-screen-xl gap-4 px-4 pt-32 pb-12 mx-auto lg:grid-cols-3 sm:px-6 lg:px-8">
-        <div className="max-w-xs transform -translate-y-20">
+      <div className="grid w-full max-w-screen-xl gap-12 px-4 pt-32 pb-12 mx-auto lg:grid-cols-3 sm:px-6 lg:px-8">
+        <div className="w-full max-w-xs mx-auto transform -translate-y-12 lg:-translate-y-20">
           <Link to="/">
             <span className="sr-only">{config.title}</span>
             <SiteLogo />
