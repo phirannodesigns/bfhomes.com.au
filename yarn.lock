@@ -12919,6 +12919,13 @@ table@^5.2.3:
     slice-ansi "^2.1.0"
     string-width "^3.0.0"
 
+tailwindcss-line-clamp@^1.0.5:
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/tailwindcss-line-clamp/-/tailwindcss-line-clamp-1.0.5.tgz#67053ede8e14f4065e920c7afcaf5d9377d91b11"
+  integrity sha512-tLqJAarIrz9Hgs3P3d98i329PN3vEYADabONPUJ1lccoJz/47Z8Vfhol9XfgjB1sQRZ+A4kdWIfwNJDHdnN1DQ==
+  dependencies:
+    lodash "^4.17.15"
+
 tailwindcss@^2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/tailwindcss/-/tailwindcss-2.0.1.tgz#8d336917819341d1018208e8b3ed8cbc46e6b643"
