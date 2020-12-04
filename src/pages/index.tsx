@@ -54,7 +54,7 @@ const services = [
 
 function Services({ imageData }) {
   return (
-    <ul className="grid w-full max-w-5xl gap-12 mx-auto transform lg:grid-cols-3 -translate-y-1/3">
+    <ul className="grid w-full gap-12 px-4 mx-auto transform -translate-y-12 sm:px-6 lg:px-8 lg:grid-cols-3 lg:-translate-y-1/3">
       {services.map((service) => (
         <li key={service.slug}>
           <GatsbyImage image={imageData} alt="" className="shadow-lg" />
