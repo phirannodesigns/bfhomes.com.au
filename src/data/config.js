@@ -5,12 +5,9 @@ module.exports = {
   description: '',
   author: '',
   phone: '0428 148 486',
-  email: '',
-  address: {
-    line1: '',
-    line2: '',
-  },
-  officeHours: '',
+  email: 'brucorp@hotmail.com',
+  address: 'Port Macquarie, NSW 2444',
+  officeHours: 'Monday to Friday 9am–5pm',
   siteUrl: 'https://www.rmaircraft.com.au',
   ogImage: '../../static/og-image.jpg',
   socialLinks: [

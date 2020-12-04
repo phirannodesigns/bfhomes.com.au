@@ -1,3 +1,3 @@
-export * from './layout';
-export * from './seo';
-// export * from './blog-post';
+export * from "./contact-section";
+export * from "./layout";
+export * from "./seo";

@@ -4,7 +4,7 @@ import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import { HiArrowRight } from "react-icons/hi";
 import { IoStar, IoStarOutline } from "react-icons/io5";
 
-import { Layout, SEO } from "../components";
+import { Layout, SEO, ContactSection } from "../components";
 
 function IndexPage({ data }) {
   const newHomes = getImage(data.newHomes);
@@ -18,6 +18,7 @@ function IndexPage({ data }) {
       <WhoAreWe />
       <Feedback />
       <LatestNews imageData={newHomes} />
+      <ContactSection />
     </Layout>
   );
 }
@@ -131,7 +132,7 @@ function HowCanWeHelp({ imageData }) {
           <p className="mt-8">
             <Link
               to="/"
-              className="inline-flex items-center px-6 py-4 space-x-3 font-medium leading-none uppercase border text-brand-teal border-brand-teal"
+              className="inline-flex items-center px-6 py-4 space-x-3 font-medium leading-none tracking-wider uppercase border text-brand-teal border-brand-teal"
             >
               <span>Learn more</span>
               <HiArrowRight className="text-lg" />
@@ -163,9 +164,9 @@ function WhoAreWe() {
         <p className="mt-4">
           <Link
             to="/"
-            className="inline-flex items-center space-x-3 px-4 py-2.5 text-sm font-medium uppercase border text-white border-white"
+            className="inline-flex tracking-wider items-center space-x-3 px-4 py-2.5 text-sm font-medium uppercase border text-white border-white"
           >
-            <span>Find out more about us</span>
+            <span className="whitespace-nowrap">Find out more about us</span>
             <HiArrowRight className="text-lg" />
           </Link>
         </p>
