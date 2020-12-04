@@ -1,5 +1,6 @@
 const defaultTheme = require('tailwindcss/defaultTheme');
 const aspectRatio = require('@tailwindcss/aspect-ratio');
+const forms = require('@tailwindcss/forms');
 const lineClamp = require('tailwindcss-line-clamp');
 const typography = require('@tailwindcss/typography');
 
@@ -30,6 +31,8 @@ module.exports = {
   plugins: [
     // https://github.com/tailwindlabs/tailwindcss-aspect-ratio#readme
     aspectRatio,
+    // https://github.com/tailwindlabs/tailwindcss-forms#readme
+    forms,
     // https://github.com/JamesHRowe/tailwindcss-line-clamp#readme
     lineClamp,
     // See https://github.com/tailwindlabs/tailwindcss-typography for details
