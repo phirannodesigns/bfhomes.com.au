@@ -4,7 +4,13 @@ import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import { HiArrowRight } from "react-icons/hi";
 import { IoStar, IoStarOutline } from "react-icons/io5";
 
-import { Layout, SEO, ContactSection } from "../components";
+import {
+  Layout,
+  SEO,
+  BGImageRight,
+  BGImageLeft,
+  ContactSection,
+} from "../components";
 
 function IndexPage({ data }) {
   const newHomes = getImage(data.newHomes);
@@ -14,8 +20,10 @@ function IndexPage({ data }) {
       <SEO title="Home" />
       <Hero imageData={newHomes} />
       <Services imageData={newHomes} />
-      <HowCanWeHelp imageData={howCanWeHelp} />
+      <BGImageRight>
+        <HowCanWeHelp imageData={howCanWeHelp} />
       <WhoAreWe />
+      </BGImageRight>
       <Feedback />
       <LatestNews imageData={newHomes} />
       <ContactSection />
@@ -76,7 +84,7 @@ function Services({ imageData }) {
 function HowCanWeHelp({ imageData }) {
   return (
     <article className="text-white bg-brand-blue">
-      <div className="grid w-full max-w-screen-xl gap-4 px-4 py-20 mx-auto sm:px-6 lg:px-8 lg:grid-cols-2">
+      <div className="relative z-10 grid w-full max-w-screen-xl gap-4 px-4 py-20 mx-auto sm:px-6 lg:px-8 lg:grid-cols-2">
         <div>
           <h2 className="inline-block text-3xl font-bold uppercase border-b-2 border-white">
             How Can We Help?
@@ -259,33 +267,35 @@ const articles = [
 function LatestNews({ imageData }) {
   return (
     <article className="text-white bg-brand-blue">
-      <div className="w-full max-w-screen-xl px-4 py-20 mx-auto sm:px-6 lg:px-8">
-        <div>
-          <h2 className="inline-block text-3xl font-bold uppercase border-b-2 border-white">
-            Check Out Our Latest News
-          </h2>
-          <ul className="grid gap-10 mt-10 lg:grid-cols-3">
-            {articles.map((article) => (
-              <li key={article.date}>
-                <GatsbyImage image={imageData} alt="" className="shadow-lg" />
-                <h3 className="flex items-center mt-5 space-x-2 text-2xl font-bold uppercase text-brand-teal">
-                  <span>{article.heading}</span>
-                  <HiArrowRight aria-hidden className="text-lg" />
-                </h3>
-                <div className="font-medium prose text-white">
-                  <p className="clamp-3">{article.copy}</p>
-                </div>
-                <div className="mt-1 font-medium text-brand-teal">
-                  <time>{article.date}</time>
-                  <span className="mx-3">|</span>
-                  {/* // TODO: Make this link work when articles have URL */}
-                  <a href="#">Share</a>
-                </div>
-              </li>
-            ))}
-          </ul>
+      <BGImageLeft>
+        <div className="relative z-10 w-full max-w-screen-xl px-4 py-20 mx-auto sm:px-6 lg:px-8">
+          <div>
+            <h2 className="inline-block text-3xl font-bold uppercase border-b-2 border-white">
+              Check Out Our Latest News
+            </h2>
+            <ul className="grid gap-10 mt-10 lg:grid-cols-3">
+              {articles.map((article) => (
+                <li key={article.date}>
+                  <GatsbyImage image={imageData} alt="" className="shadow-lg" />
+                  <h3 className="flex items-center mt-5 space-x-2 text-2xl font-bold uppercase text-brand-teal">
+                    <span>{article.heading}</span>
+                    <HiArrowRight aria-hidden className="text-lg" />
+                  </h3>
+                  <div className="font-medium prose text-white">
+                    <p className="clamp-3">{article.copy}</p>
+                  </div>
+                  <div className="mt-1 font-medium text-brand-teal">
+                    <time>{article.date}</time>
+                    <span className="mx-3">|</span>
+                    {/* // TODO: Make this link work when articles have URL */}
+                    <a href="#">Share</a>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
-      </div>
+      </BGImageLeft>
     </article>
   );
 }
