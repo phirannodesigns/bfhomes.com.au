@@ -15,6 +15,7 @@ import {
 function IndexPage({ data }) {
   const newHomes = getImage(data.newHomes);
   const howCanWeHelp = getImage(data.howCanWeHelp);
+  const whoAreWe = getImage(data.whoAreWe);
   return (
     <Layout>
       <SEO title="Home" />
@@ -22,7 +23,7 @@ function IndexPage({ data }) {
       <Services imageData={newHomes} />
       <BGImageRight>
         <HowCanWeHelp imageData={howCanWeHelp} />
-      <WhoAreWe />
+        <WhoAreWe imageData={whoAreWe} />
       </BGImageRight>
       <Feedback />
       <LatestNews imageData={newHomes} />
@@ -161,10 +162,13 @@ function HowCanWeHelp({ imageData }) {
   );
 }
 
-function WhoAreWe() {
+function WhoAreWe({ imageData }) {
   return (
-    <article className="text-white bg-gray-900">
-      <div className="w-full max-w-screen-xl px-4 py-40 mx-auto sm:px-6 lg:px-8">
+    <article className="relative text-white bg-gray-900">
+      <div className="absolute inset-0 flex">
+        <GatsbyImage image={imageData} alt="" className="flex-1" />
+      </div>
+      <div className="relative z-10 w-full max-w-screen-xl px-4 py-40 mx-auto sm:px-6 lg:px-8">
         <h2 className="inline-block text-2xl font-bold uppercase border-b-2 border-white">
           Who Are We?
         </h2>
@@ -310,6 +314,11 @@ export const query = graphql`
     howCanWeHelp: file(relativePath: { eq: "how-can-we-help.jpg" }) {
       childImageSharp {
         gatsbyImageData(layout: FLUID, maxWidth: 400, maxHeight: 600)
+      }
+    }
+    whoAreWe: file(relativePath: { eq: "who-are-we.jpg" }) {
+      childImageSharp {
+        gatsbyImageData(layout: FLUID, maxWidth: 1920, maxHeight: 820)
       }
     }
   }
