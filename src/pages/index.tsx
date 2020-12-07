@@ -88,9 +88,7 @@ function HowCanWeHelp({ imageData }) {
     <article className="text-white bg-brand-blue">
       <div className="relative z-10 grid w-full max-w-screen-xl gap-4 px-4 py-20 mx-auto sm:px-6 lg:px-8 lg:grid-cols-2">
         <div>
-          <h2 className="inline-block text-3xl font-bold uppercase border-b-2 border-white">
-            How Can We Help?
-          </h2>
+          <h2 className="border-white heading-2">How Can We Help?</h2>
           <div className="mt-5 prose text-white">
             <p>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
@@ -275,7 +273,7 @@ function LatestNews({ imageData }) {
       <BGImageLeft>
         <div className="relative z-10 w-full max-w-screen-xl px-4 py-20 mx-auto sm:px-6 lg:px-8">
           <div>
-            <h2 className="inline-block text-3xl font-bold uppercase border-b-2 border-white">
+            <h2 className="border-white heading-2">
               Check Out Our Latest News
             </h2>
             <ul className="grid gap-10 mt-10 lg:grid-cols-3">

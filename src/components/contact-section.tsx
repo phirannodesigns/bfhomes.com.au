@@ -12,7 +12,7 @@ function ContactSection() {
       <div className="w-full max-w-screen-xl px-4 py-20 mx-auto sm:px-6 lg:px-8">
         <div className="grid items-center gap-x-4 gap-y-12 lg:grid-cols-2">
           <div className="w-full max-w-2xl mx-auto">
-            <h2 className="inline-block text-3xl font-bold uppercase border-b-2 border-brand-teal text-brand-teal">
+            <h2 className="heading-2 border-brand-teal text-brand-teal">
               Contact Us
             </h2>
             <NetlifyForm
