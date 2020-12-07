@@ -32,6 +32,7 @@ function IndexPage({ data }) {
   );
 }
 
+// TODO Replace hero image with video
 function Hero({ imageData }) {
   return <GatsbyImage image={imageData} alt="" />;
 }
