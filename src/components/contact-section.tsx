@@ -6,8 +6,7 @@ import config from "../data/config";
 
 function ContactSection() {
   const { handleSubmit, register, errors } = useForm({ mode: "onBlur" });
-  const [_isSubmitting, setIsSubmitting] = React.useState(false);
-  const isSubmitting = true;
+  const [isSubmitting, setIsSubmitting] = React.useState(false);
   return (
     <article>
       <div className="w-full max-w-screen-xl px-4 py-20 mx-auto sm:px-6 lg:px-8">
