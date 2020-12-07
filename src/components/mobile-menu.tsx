@@ -6,11 +6,16 @@ import { HiPhone, HiX } from "react-icons/hi";
 
 import config from "../data/config";
 import { SiteLogo } from "./vectors/logos";
-import { useMenuContext } from "../utils/hooks";
+import { useMenuContext, useOnClickOutside } from "../utils/hooks";
 
 function MobileMenu() {
   const { pathname } = useLocation();
+  const ref = React.useRef();
   const { isOpen, setIsOpen } = useMenuContext();
+  function handleClose() {
+    setIsOpen(false);
+  }
+  useOnClickOutside(ref, handleClose);
   return (
     <AnimatePresence>
       {isOpen && (
@@ -27,10 +32,13 @@ function MobileMenu() {
             transition={{ bounceDamping: 9 }}
             className="flex justify-end flex-1 ml-14"
           >
-            <div className="relative flex flex-col flex-1 w-full max-w-xs bg-gray-800">
+            <div
+              ref={ref}
+              className="relative flex flex-col flex-1 w-full max-w-xs bg-brand-blue"
+            >
               <div className="absolute top-0 left-0 pt-2 -ml-12">
                 <button
-                  onClick={() => setIsOpen(false)}
+                  onClick={handleClose}
                   className="flex items-center justify-center w-10 h-10 ml-1 rounded-full focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
                 >
                   <span className="sr-only">Close sidebar</span>
@@ -46,13 +54,14 @@ function MobileMenu() {
                     <Link
                       key={slug}
                       to={slug}
+                      onClick={handleClose}
                       className={`
                       ${
                         pathname === slug
-                          ? " bg-gray-900 text-white"
-                          : "text-gray-300 hover:bg-gray-700 hover:text-white"
+                          ? " bg-gray-800 text-white"
+                          : "text-gray-300 hover:text-white"
                       }
-                      flex items-center px-2 py-2 text-base font-medium uppercase rounded-md hover:bg-gray-700 hover:text-white`}
+                      flex items-center px-2 py-2 text-base font-medium uppercase rounded-md hover:text-white hover:bg-white hover:bg-opacity-10`}
                     >
                       {label}
                     </Link>
@@ -65,7 +74,7 @@ function MobileMenu() {
                   className="flex-1 flex-shrink-0 block group"
                 >
                   <div className="flex items-center">
-                    <div className="flex items-center justify-center w-10 h-10 bg-gray-900 rounded-full">
+                    <div className="flex items-center justify-center w-10 h-10 text-white bg-gray-900 rounded-full">
                       <HiPhone />
                     </div>
                     <div className="ml-3">

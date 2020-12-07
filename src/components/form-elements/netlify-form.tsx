@@ -1,6 +1,5 @@
 import * as React from "react";
 import { navigate } from "gatsby";
-import { FieldValues } from "react-hook-form";
 
 interface NetlifyFormProps {
   action?: string;

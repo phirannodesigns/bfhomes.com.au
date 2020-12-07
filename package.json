@@ -5,10 +5,14 @@
   "description": "Bruen Family Homes",
   "author": "Luke Bennett",
   "scripts": {
-    "develop": "gatsby develop",
-    "start": "gatsby develop",
-    "build": "gatsby build",
-    "clean": "gatsby clean"
+    "build": "GATSBY_EXPERIMENTAL_PAGE_BUILD_ON_DATA_CHANGES=true gatsby build --log-pages",
+    "build:serve": "yarn build && yarn serve",
+    "clean": "gatsby clean",
+    "develop": "gatsby develop --host=0.0.0.0 --open",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "start": "yarn develop",
+    "serve": "gatsby serve --host=0.0.0.0 --open"
   },
   "license": "0BSD",
   "dependencies": {
