@@ -12,7 +12,7 @@ function ContactPage({ data }) {
   const howCanWeHelp = getImage(data.howCanWeHelp);
   return (
     <Layout>
-      <SEO title="Home" />
+      <SEO title="Contact Us" />
       <Hero imageData={newHomes} />
       <ContactInfo imageData={howCanWeHelp} />
       <ContactForm />
