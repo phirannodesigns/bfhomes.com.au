@@ -49,7 +49,7 @@ function ContactSection() {
                 label="Message"
                 register={register}
                 errors={errors}
-                className="w-full"
+                className="block w-full"
               />
               <div>
                 <button
