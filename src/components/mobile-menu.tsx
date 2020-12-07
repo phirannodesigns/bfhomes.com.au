@@ -6,11 +6,16 @@ import { HiPhone, HiX } from "react-icons/hi";
 
 import config from "../data/config";
 import { SiteLogo } from "./vectors/logos";
-import { useMenuContext } from "../utils/hooks";
+import { useMenuContext, useOnClickOutside } from "../utils/hooks";
 
 function MobileMenu() {
   const { pathname } = useLocation();
+  const ref = React.useRef();
   const { isOpen, setIsOpen } = useMenuContext();
+  function handleClose() {
+    setIsOpen(false);
+  }
+  useOnClickOutside(ref, handleClose);
   return (
     <AnimatePresence>
       {isOpen && (
@@ -27,10 +32,13 @@ function MobileMenu() {
             transition={{ bounceDamping: 9 }}
             className="flex justify-end flex-1 ml-14"
           >
-            <div className="relative flex flex-col flex-1 w-full max-w-xs bg-gray-800">
+            <div
+              ref={ref}
+              className="relative flex flex-col flex-1 w-full max-w-xs bg-gray-800"
+            >
               <div className="absolute top-0 left-0 pt-2 -ml-12">
                 <button
-                  onClick={() => setIsOpen(false)}
+                  onClick={handleClose}
                   className="flex items-center justify-center w-10 h-10 ml-1 rounded-full focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
                 >
                   <span className="sr-only">Close sidebar</span>
