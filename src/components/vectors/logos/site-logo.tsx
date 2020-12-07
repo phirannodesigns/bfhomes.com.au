@@ -3,6 +3,7 @@ import * as React from "react";
 function SiteLogo(props) {
   return (
     <svg
+      fill="#fff"
       fillRule="evenodd"
       strokeLinejoin="round"
       strokeMiterlimit={2}
