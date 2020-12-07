@@ -1,11 +1,11 @@
 import * as React from "react";
 import { graphql } from "gatsby";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
-
-import { Layout, SEO, BGImageRight } from "../components";
-import config from "../data/config";
-import { Input, NetlifyForm, Textarea } from "../components/form-elements";
 import { useForm } from "react-hook-form";
+
+import config from "../data/config";
+import { Layout, SEO, BGImageRight } from "../components";
+import { Input, NetlifyForm, Textarea } from "../components/form-elements";
 
 function ContactPage({ data }) {
   const newHomes = getImage(data.newHomes);
