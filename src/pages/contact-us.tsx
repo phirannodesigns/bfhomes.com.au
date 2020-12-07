@@ -83,6 +83,7 @@ function ContactInfo({ imageData }) {
                           href={socialLink.url}
                           className="inline-flex items-center justify-center w-8 h-8 transition duration-150 ease-in-out bg-white rounded-full text-brand-blue hover:bg-opacity-75 focus:bg-opacity-75"
                         >
+                          <span className="sr-only">{socialLink.label}</span>
                           <socialLink.icon className="text-xl" />
                         </a>
                       </li>

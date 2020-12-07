@@ -144,6 +144,7 @@ function ContactSection() {
                       href={socialLink.url}
                       className="inline-flex items-center justify-center w-10 h-10 text-white rounded-full bg-brand-blue"
                     >
+                      <span className="sr-only">{socialLink.label}</span>
                       <socialLink.icon className="text-2xl" />
                     </a>
                   </li>

@@ -14,6 +14,7 @@ function Nav() {
     <nav className="sticky top-0 z-20 font-medium bg-brand-blue">
       <div className="flex items-center w-full max-w-screen-xl px-4 py-5 mx-auto space-x-6 lg:items-stretch sm:px-6 lg:px-8">
         <Link to="/">
+          <span className="sr-only">{config.title}</span>
           <SiteLogo className="h-16 lg:h-24" />
         </Link>
         <div className="flex flex-col items-end justify-between flex-1">
@@ -26,6 +27,7 @@ function Nav() {
                     href={socialLink.url}
                     className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-brand-teal text-brand-blue"
                   >
+                    <span className="sr-only">{socialLink.label}</span>
                     <socialLink.icon />
                   </a>
                 </li>
