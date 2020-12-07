@@ -1,12 +1,14 @@
 import * as React from "react";
 import { Link } from "gatsby";
-
-import { SiteLogo } from "./vectors/logos";
-import config from "../data/config";
+import { useLocation } from "@reach/router";
 import { HiMenu } from "react-icons/hi";
+
+import config from "../data/config";
+import { SiteLogo } from "./vectors/logos";
 import { useMenuContext } from "../utils/hooks";
 
 function Nav() {
+  const { pathname } = useLocation();
   const { setIsOpen } = useMenuContext();
   return (
     <nav className="sticky top-0 z-20 font-medium bg-brand-blue">
@@ -30,10 +32,15 @@ function Nav() {
               ))}
             </ul>
           </div>
-          <ul className="hidden space-x-12 text-white lg:flex">
+          <ul className="hidden space-x-12 lg:flex">
             {config.siteNavigation.map((navItem) => (
               <li key={navItem.slug}>
-                <Link to={navItem.slug} className="uppercase">
+                <Link
+                  to={navItem.slug}
+                  className={`
+                ${pathname === navItem.slug ? "text-brand-teal" : "text-white"}
+                uppercase`}
+                >
                   {navItem.label}
                 </Link>
               </li>
