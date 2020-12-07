@@ -34,7 +34,7 @@ function MobileMenu() {
           >
             <div
               ref={ref}
-              className="relative flex flex-col flex-1 w-full max-w-xs bg-gray-800"
+              className="relative flex flex-col flex-1 w-full max-w-xs bg-brand-blue"
             >
               <div className="absolute top-0 left-0 pt-2 -ml-12">
                 <button
@@ -54,13 +54,14 @@ function MobileMenu() {
                     <Link
                       key={slug}
                       to={slug}
+                      onClick={handleClose}
                       className={`
                       ${
                         pathname === slug
-                          ? " bg-gray-900 text-white"
-                          : "text-gray-300 hover:bg-gray-700 hover:text-white"
+                          ? " bg-gray-800 text-white"
+                          : "text-gray-300 hover:text-white"
                       }
-                      flex items-center px-2 py-2 text-base font-medium uppercase rounded-md hover:bg-gray-700 hover:text-white`}
+                      flex items-center px-2 py-2 text-base font-medium uppercase rounded-md hover:text-white hover:bg-white hover:bg-opacity-10`}
                     >
                       {label}
                     </Link>
@@ -73,7 +74,7 @@ function MobileMenu() {
                   className="flex-1 flex-shrink-0 block group"
                 >
                   <div className="flex items-center">
-                    <div className="flex items-center justify-center w-10 h-10 bg-gray-900 rounded-full">
+                    <div className="flex items-center justify-center w-10 h-10 text-white bg-gray-900 rounded-full">
                       <HiPhone />
                     </div>
                     <div className="ml-3">
