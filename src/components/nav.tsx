@@ -7,9 +7,9 @@ import { HiMenu } from "react-icons/hi";
 import { useMenuContext } from "../utils/hooks";
 
 function Nav() {
-  const { isOpen, setIsOpen } = useMenuContext();
+  const { setIsOpen } = useMenuContext();
   return (
-    <nav className="font-medium bg-brand-blue">
+    <nav className="sticky top-0 z-20 font-medium bg-brand-blue">
       <div className="flex items-center w-full max-w-screen-xl px-4 py-5 mx-auto space-x-6 lg:items-stretch sm:px-6 lg:px-8">
         <Link to="/">
           <SiteLogo className="h-16 lg:h-24" />
