@@ -1,6 +1,6 @@
+import * as React from "react";
 import { Menu } from "@headlessui/react";
 import { Link } from "gatsby";
-import React from "react";
 
 import config from "../data/config";
 import { SiteLogo } from "./vectors/logos";
@@ -18,7 +18,7 @@ function Footer() {
         <nav>
           <ul>
             {config.siteNavigation.map((navItem) => (
-              <li key={navItem.slug} className="prose-lg text-white">
+              <li key={navItem.label} className="prose-lg text-white">
                 {navItem.slug ? (
                   <Link to={navItem.slug} className="hover:underline">
                     {navItem.label}
