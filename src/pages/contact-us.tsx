@@ -126,7 +126,7 @@ function ContactForm() {
             label="Full Name"
             register={register}
             errors={errors}
-            className="w-full"
+            className="w-full focus:outline-none focus:ring-brand-teal focus:ring-2"
           />
           <Input
             name="email-address"
@@ -134,7 +134,7 @@ function ContactForm() {
             type="email"
             register={register}
             errors={errors}
-            className="w-full"
+            className="w-full focus:outline-none focus:ring-brand-teal focus:ring-2"
           />
           <Input
             name="contact-number"
@@ -142,7 +142,7 @@ function ContactForm() {
             type="tel"
             register={register}
             errors={errors}
-            className="w-full"
+            className="w-full focus:outline-none focus:ring-brand-teal focus:ring-2"
           />
           <Textarea
             name="message"

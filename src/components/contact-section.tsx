@@ -25,7 +25,7 @@ function ContactSection() {
                 label="Full Name"
                 register={register}
                 errors={errors}
-                className="w-full"
+                className="w-full focus:outline-none focus:ring-brand-teal focus:ring-2"
               />
               <Input
                 name="email-address"
@@ -33,7 +33,7 @@ function ContactSection() {
                 type="email"
                 register={register}
                 errors={errors}
-                className="w-full"
+                className="w-full focus:outline-none focus:ring-brand-teal focus:ring-2"
               />
               <Input
                 name="contact-number"
@@ -41,14 +41,14 @@ function ContactSection() {
                 type="tel"
                 register={register}
                 errors={errors}
-                className="w-full"
+                className="w-full focus:outline-none focus:ring-brand-teal focus:ring-2"
               />
               <Textarea
                 name="message"
                 label="Message"
                 register={register}
                 errors={errors}
-                className="block w-full"
+                className="block w-full focus:ring-brand-teal"
               />
               <div>
                 <button
