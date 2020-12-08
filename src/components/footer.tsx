@@ -1,3 +1,4 @@
+import { Menu } from "@headlessui/react";
 import { Link } from "gatsby";
 import React from "react";
 
@@ -17,8 +18,18 @@ function Footer() {
         <nav>
           <ul>
             {config.siteNavigation.map((navItem) => (
-              <li key={navItem.slug} className="prose-lg hover:underline">
-                <Link to={navItem.slug}>{navItem.label}</Link>
+              <li key={navItem.slug} className="prose-lg text-white">
+                {navItem.slug ? (
+                  <Link to={navItem.slug} className="hover:underline">
+                    {navItem.label}
+                  </Link>
+                ) : (
+                  <Menu as="div">
+                    <Menu.Button className="font-medium">
+                      {navItem.label}
+                    </Menu.Button>
+                  </Menu>
+                )}
               </li>
             ))}
           </ul>

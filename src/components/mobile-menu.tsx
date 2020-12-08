@@ -1,6 +1,7 @@
 import * as React from "react";
 import { useLocation } from "@reach/router";
 import { Link } from "gatsby";
+import { Menu, Transition } from "@headlessui/react";
 import { AnimatePresence, motion } from "framer-motion";
 import { HiPhone, HiX } from "react-icons/hi";
 
@@ -50,22 +51,26 @@ function MobileMenu() {
                   <SiteLogo className="w-auto h-16" />
                 </div>
                 <nav className="px-2 mt-5 space-y-1">
-                  {config.siteNavigation.map(({ label, slug }) => (
-                    <Link
-                      key={slug}
-                      to={slug}
-                      onClick={handleClose}
-                      className={`
+                  {config.siteNavigation.map((node) =>
+                    node.submenu ? (
+                      <SubMenu node={node} handleClose={handleClose} />
+                    ) : (
+                      <Link
+                        key={node.slug}
+                        to={node.slug}
+                        onClick={handleClose}
+                        className={`
                       ${
-                        pathname === slug
+                        pathname === node.slug
                           ? " bg-gray-800 text-white"
                           : "text-gray-300 hover:text-white"
                       }
                       flex items-center px-2 py-2 text-base font-medium uppercase rounded-md hover:text-white hover:bg-white hover:bg-opacity-10`}
-                    >
-                      {label}
-                    </Link>
-                  ))}
+                      >
+                        {node.label}
+                      </Link>
+                    )
+                  )}
                 </nav>
               </div>
               <div className="flex flex-shrink-0 p-4 bg-gray-700">
@@ -93,6 +98,148 @@ function MobileMenu() {
         </motion.div>
       )}
     </AnimatePresence>
+  );
+}
+
+const transition = { min: 0, max: 100, bounceDamping: 9 };
+
+function SubMenu({ node, handleClose }) {
+  return (
+    <Menu>
+      {({ open }) => (
+        <>
+          <Menu.Button className="flex items-center justify-between w-full px-2 py-2 text-base font-medium text-gray-300 uppercase rounded-md hover:text-white hover:bg-white hover:bg-opacity-10">
+            <span>{node.label}</span>
+            <span className="ml-2 -mr-1">
+              <motion.svg
+                viewBox="0 0 20 20"
+                fill="currentColor"
+                initial={{ rotate: "0deg" }}
+                animate={{ rotate: open ? "90deg" : "0deg" }}
+                transition={transition}
+                className="w-5 h-5"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                  clipRule="evenodd"
+                />
+              </motion.svg>
+            </span>
+          </Menu.Button>
+          <AnimatePresence>
+            {open && (
+              <motion.div
+                initial="closed"
+                animate="open"
+                exit="closed"
+                variants={{
+                  open: { height: "auto", opacity: 1, overflow: "visible" },
+                  closed: { height: 0, opacity: 0, overflow: "hidden" },
+                }}
+                transition={transition}
+              >
+                <Menu.Items as="ul" className="rounded-md">
+                  {node.submenu.map((node) =>
+                    node.submenu ? (
+                      <Menu.Item key={node.label} as="li">
+                        <Menu>
+                          {(open) => (
+                            <>
+                              <Menu.Button className="flex items-center justify-between w-full px-2 py-2 text-base font-medium text-gray-300 uppercase rounded-md hover:text-white hover:bg-white hover:bg-opacity-10">
+                                <span>{node.label}</span>
+                                <span className="ml-2 -mr-1">
+                                  <motion.svg
+                                    viewBox="0 0 20 20"
+                                    fill="currentColor"
+                                    initial={{ rotate: "0deg" }}
+                                    animate={{
+                                      rotate: open ? "90deg" : "0deg",
+                                    }}
+                                    transition={transition}
+                                    className="w-5 h-5"
+                                  >
+                                    <path
+                                      fillRule="evenodd"
+                                      d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                      clipRule="evenodd"
+                                    />
+                                  </motion.svg>
+                                </span>
+                              </Menu.Button>
+                              <AnimatePresence>
+                                {open && (
+                                  <motion.div
+                                    initial="closed"
+                                    animate="open"
+                                    exit="closed"
+                                    variants={{
+                                      open: {
+                                        height: "auto",
+                                        opacity: 1,
+                                        overflow: "visible",
+                                      },
+                                      closed: {
+                                        height: 0,
+                                        opacity: 0,
+                                        overflow: "hidden",
+                                      },
+                                    }}
+                                    transition={transition}
+                                  >
+                                    <Menu.Items as="ul">
+                                      {node.submenu.map((n) => (
+                                        <Menu.Item key={n.label} as="li">
+                                          {({ active }) => (
+                                            <Link
+                                              to={n.slug}
+                                              onClick={handleClose}
+                                              partiallyActive={false}
+                                              activeClassName="bg-burnt-orange"
+                                              className={`flex items-center pl-6 pr-2 py-2 mt-1 text-base font-normal leading-6 text-gray-300 transition duration-150 ease-in-out rounded-md group hover:text-white hover:bg-burnt-orange focus:outline-none focus:text-white focus:bg-burnt-orange ${
+                                                active
+                                                  ? "bg-white bg-opacity-10"
+                                                  : ""
+                                              }`}
+                                            >
+                                              {n.label}
+                                            </Link>
+                                          )}
+                                        </Menu.Item>
+                                      ))}
+                                    </Menu.Items>
+                                  </motion.div>
+                                )}
+                              </AnimatePresence>
+                            </>
+                          )}
+                        </Menu>
+                      </Menu.Item>
+                    ) : (
+                      <Menu.Item key={node.label} as="li">
+                        {({ active }) => (
+                          <Link
+                            to={node.slug}
+                            onClick={handleClose}
+                            partiallyActive={false}
+                            activeClassName="bg-burnt-orange"
+                            className={`flex items-center pl-6 pr-2 py-2 mt-1 text-base font-normal leading-6 text-gray-300 transition duration-150 ease-in-out rounded-md group hover:text-white hover:bg-burnt-orange focus:outline-none focus:text-white focus:bg-burnt-orange ${
+                              active ? "bg-white bg-opacity-10" : ""
+                            }`}
+                          >
+                            {node.label}
+                          </Link>
+                        )}
+                      </Menu.Item>
+                    )
+                  )}
+                </Menu.Items>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </>
+      )}
+    </Menu>
   );
 }
 

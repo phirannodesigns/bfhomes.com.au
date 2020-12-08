@@ -1,7 +1,8 @@
 import * as React from "react";
 import { Link } from "gatsby";
 import { useLocation } from "@reach/router";
-import { HiMenu } from "react-icons/hi";
+import { Menu, Transition } from "@headlessui/react";
+import { HiChevronDown, HiMenu } from "react-icons/hi";
 
 import config from "../data/config";
 import { SiteLogo } from "./vectors/logos";
@@ -35,18 +36,22 @@ function Nav() {
             </ul>
           </div>
           <ul className="hidden space-x-12 lg:flex">
-            {config.siteNavigation.map((navItem) => (
-              <li key={navItem.slug}>
-                <Link
-                  to={navItem.slug}
-                  className={`
+            {config.siteNavigation.map((navItem) =>
+              navItem.submenu ? (
+                <SubMenu key={navItem.label} node={navItem} />
+              ) : (
+                <li key={navItem.slug}>
+                  <Link
+                    to={navItem.slug}
+                    className={`
                 ${pathname === navItem.slug ? "text-brand-teal" : "text-white"}
                 uppercase`}
-                >
-                  {navItem.label}
-                </Link>
-              </li>
-            ))}
+                  >
+                    {navItem.label}
+                  </Link>
+                </li>
+              )
+            )}
           </ul>
         </div>
         <button
@@ -58,6 +63,105 @@ function Nav() {
         </button>
       </div>
     </nav>
+  );
+}
+
+function SubMenu({ node }) {
+  const { pathname } = useLocation();
+  return (
+    <li className="relative">
+      <Menu>
+        {({ open }) => (
+          <>
+            <Menu.Button className="inline-flex items-center space-x-2 font-medium text-white uppercase transition duration-150 ease-in-out">
+              <span>{node.label}</span>
+              <span className="-mr-1">
+                <HiChevronDown
+                  className={`${
+                    open
+                      ? "rotate-90 duration-100 ease-out"
+                      : "rotate-0 ease-in duration-75"
+                  }
+                  w-5 h-5 transform transition-transform`}
+                />
+              </span>
+            </Menu.Button>
+            <Transition
+              show={open}
+              enter="transition ease-out duration-100"
+              enterFrom="transform opacity-0 scale-95"
+              enterTo="transform opacity-100 scale-100"
+              leave="transition ease-in duration-75"
+              leaveFrom="transform opacity-100 scale-100"
+              leaveTo="transform opacity-0 scale-95"
+            >
+              <Menu.Items
+                static
+                className="absolute left-0 w-56 mt-2 origin-top-left bg-white divide-y divide-gray-100 shadow-lg"
+              >
+                <div className="py-1">
+                  {node.submenu.map((navItem) =>
+                    navItem.submenu ? (
+                      <Menu>
+                        <Menu.Button className="inline-flex items-start justify-between w-full px-4 py-2 space-x-2 text-sm font-medium tracking-wider text-left uppercase transition duration-150 ease-in-out text-brand-blue hover:bg-gray-50 focus:bg-gray-50">
+                          <span>{navItem.label}</span>
+                          <span className="inline-flex items-center transform translate-x-1">
+                            <span>&#8203;</span>
+                            <HiChevronDown className="w-5 h-5 transition-transform transform" />
+                          </span>
+                        </Menu.Button>
+                        <Transition
+                          show={open}
+                          enter="transition ease-out duration-100"
+                          enterFrom="transform opacity-0 scale-95"
+                          enterTo="transform opacity-100 scale-100"
+                          leave="transition ease-in duration-75"
+                          leaveFrom="transform opacity-100 scale-100"
+                          leaveTo="transform opacity-0 scale-95"
+                        >
+                          <Menu.Items
+                          // static
+                          // className="absolute left-0 w-56 mt-2 origin-top-left bg-white divide-y divide-gray-100 shadow-lg"
+                          >
+                            {navItem.submenu.map((n) => (
+                              <Menu.Item key={n.id}>
+                                {({ active }) => (
+                                  <Link
+                                    to={n.slug}
+                                    className={`${
+                                      active ? "bg-gray-50" : "bg-white"
+                                    } flex justify-between text-brand-blue w-full px-4 py-2 text-left`}
+                                  >
+                                    {n.label}
+                                  </Link>
+                                )}
+                              </Menu.Item>
+                            ))}
+                          </Menu.Items>
+                        </Transition>
+                      </Menu>
+                    ) : (
+                      <Menu.Item key={navItem.id}>
+                        {({ active }) => (
+                          <Link
+                            to={navItem.slug}
+                            className={`${
+                              active ? "bg-gray-50" : "bg-white"
+                            } flex justify-between text-brand-blue w-full px-4 py-2 text-left`}
+                          >
+                            {navItem.label}
+                          </Link>
+                        )}
+                      </Menu.Item>
+                    )
+                  )}
+                </div>
+              </Menu.Items>
+            </Transition>
+          </>
+        )}
+      </Menu>
+    </li>
   );
 }
 

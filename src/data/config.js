@@ -24,16 +24,60 @@ module.exports = {
   ],
   siteNavigation: [
     {
-      label: 'About Us',
-      slug: '/about-us/',
+      label: 'Homes',
+      submenu: [
+        {
+          label: 'Marchment',
+          slug: '/marchment/',
+        },
+        {
+          label: 'Black Caviar',
+          slug: '/black-caviar/',
+        },
+        {
+          label: 'Duplex',
+          slug: '/duplex/',
+        },
+      ],
     },
     {
-      label: 'How Can We Help',
-      slug: '/how-can-we-help/',
+      label: 'Renovations',
+      submenu: [
+        {
+          label: 'House Extension',
+          submenu: [
+            {
+              label: 'Bathrooms',
+              slug: '/bathrooms/',
+            },
+            {
+              label: 'Kitchens',
+              slug: '/kitchens/',
+            },
+          ],
+        },
+        {
+          label: 'Outdoor Living Areas',
+          submenu: [
+            {
+              label: 'Decks',
+              slug: '/decks/',
+            },
+            {
+              label: 'Flyover Roofs',
+              slug: '/flyover-roofs/',
+            },
+          ],
+        },
+      ],
     },
     {
       label: 'Blog',
       slug: '/blog/',
+    },
+    {
+      label: 'About Us',
+      slug: '/about-us/',
     },
     {
       label: 'Contact Us',
