@@ -41,3 +41,9 @@
     @apply inline-block text-3xl font-bold uppercase border-b-2;
   }
 }
+
+@layer utilities {
+  .placeholder-uppercase::placeholder {
+    @apply uppercase;
+  }
+}
