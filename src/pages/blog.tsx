@@ -1,8 +1,8 @@
 import * as React from "react";
 import { graphql } from "gatsby";
-import GatsbyImage from "gatsby-image";
 import { GatsbyImage as NewImage, getImage } from "gatsby-plugin-image";
 import GatsbyImage, { FluidObject } from "gatsby-image";
+import { matchSorter } from "match-sorter";
 import SanityBlockContent from "@sanity/block-content-to-react";
 import { HiArrowRight } from "react-icons/hi";
 
@@ -50,47 +50,41 @@ interface LatestBlogsProps {
 function LatestBlogs({ nodes }: LatestBlogsProps) {
   // Filter posts from search input
   const [searchQuery, setSearchQuery] = React.useState("");
-  const [posts, setPosts] = React.useState(nodes);
 
-  // Filter search results from search results
-  React.useMemo(() => {
-    const filteredPosts = nodes.filter(
-      (node) =>
-        node.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        node.categories.find(
-          ({ title }) =>
-            title.toLowerCase().indexOf(searchQuery.toLowerCase()) !== -1
-        )
-    );
-    setPosts(filteredPosts);
-  }, [nodes, searchQuery]);
-
-  // Filter posts from select menu
-  const [categories, setCategories] = React.useState([]);
+  // Update searchQuery value whenever input changes
+  function handleSearchQuery(event) {
+    setSearchQuery(event.target.value);
+  }
 
   // State for filtering posts from select menu
   const [filter, setFilter] = React.useState("All");
 
-  // Get unique categories
+  // Update filter value whenever select changes
+  function handleFilter(event) {
+    setFilter(event.target.value);
+  }
+
+  // Filter posts from select menu
+  const [categories, setCategories] = React.useState([]);
   React.useMemo(() => {
     const cat = [];
     // Push all category titles to cat array
-    posts.map((post) => {
+    nodes.map((post) => {
       return post.categories.map((category) => cat.push(category.title));
     });
     // Filter duplicates and sort alphabetically
     setCategories([...new Set(cat)].sort((a, b) => a.localeCompare(b)));
-  }, [posts]);
+  }, [nodes]);
 
   // Filter by tag
-  const filtered = React.useMemo(
+  const filteredPosts = React.useMemo(
     () =>
       filter === "All"
-        ? posts
-        : posts.filter((post) => {
+        ? nodes
+        : nodes.filter((post) => {
             return post.categories.some(({ title }) => title === filter);
           }),
-    [filter, posts]
+    [filter, nodes]
   );
 
   return (
@@ -105,18 +99,18 @@ function LatestBlogs({ nodes }: LatestBlogsProps) {
             </div>
             <div className="grid gap-4 lg:grid-cols-2 text-brand-blue">
               <input
-                onChange={(e) => setSearchQuery(e.target.value)}
+                onChange={handleSearchQuery}
                 value={searchQuery}
                 type="text"
                 placeholder="Search"
                 className="font-medium transition duration-150 ease-in-out opacity-50 placeholder-uppercase placeholder-brand-blue focus:opacity-100"
               />
               <select
-                onChange={(e) => setFilter(e.target.value)}
+                onChange={handleFilter}
                 value={filter}
                 className="font-medium uppercase transition duration-150 ease-in-out opacity-50 focus:opacity-100"
               >
-                <option value="all">Categories</option>
+                <option value="All">Categories</option>
                 {categories.map((category) => (
                   <option key={category} value={category}>
                     {category}
@@ -126,7 +120,9 @@ function LatestBlogs({ nodes }: LatestBlogsProps) {
             </div>
           </div>
           <ul className="grid mt-10 gap-x-10 gap-y-16 lg:grid-cols-3">
-            {filtered.map((post) => (
+            {matchSorter(filteredPosts, searchQuery, {
+              keys: ["title"],
+            }).map((post) => (
               <li key={post.id}>
                 <div className="relative h-0 aspect-w-4 aspect-h-3">
                   <div className="absolute inset-0 flex">
