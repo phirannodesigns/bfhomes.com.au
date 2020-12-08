@@ -3,6 +3,40 @@
 @tailwind utilities;
 
 @layer components {
+  /* Replace default focus styles */
+  a:focus,
+  button:focus,
+  input:focus,
+  textarea:focus,
+  select:focus,
+  [tabindex]:focus {
+    @apply ring outline-none ring-brand-teal;
+  }
+
+  /* See https://piccalil.li/quick-tip/a-safer-way-to-vertically-fill-the-viewport/ for details */
+  html,
+  body,
+  #___gatsby,
+  #gatsby-focus-wrapper {
+    height: -webkit-fill-available;
+  }
+
+  /* Use Smooth Scroll for jump links */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Turn off animations for people who have the prefers-reduced-motion query enabled */
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
+  /* Typography */
   .heading-2 {
     @apply inline-block text-3xl font-bold uppercase border-b-2;
   }
