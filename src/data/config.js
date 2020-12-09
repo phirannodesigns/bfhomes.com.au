@@ -25,6 +25,7 @@ module.exports = {
   siteNavigation: [
     {
       label: 'Homes',
+      slug: '/homes/',
       submenu: [
         {
           label: 'Marchment',
@@ -42,9 +43,11 @@ module.exports = {
     },
     {
       label: 'Renovations',
+      slug: '/renovations/',
       submenu: [
         {
           label: 'House Extension',
+          slug: '/house-extension/',
           submenu: [
             {
               label: 'Bathrooms',
@@ -58,6 +61,7 @@ module.exports = {
         },
         {
           label: 'Outdoor Living Areas',
+          slug: '/outdoor-living-areas/',
           submenu: [
             {
               label: 'Decks',
