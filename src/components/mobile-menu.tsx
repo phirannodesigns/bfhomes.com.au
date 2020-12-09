@@ -1,9 +1,9 @@
 import * as React from "react";
 import { useLocation } from "@reach/router";
 import { Link } from "gatsby";
-import { Menu, Transition } from "@headlessui/react";
+import { Menu } from "@headlessui/react";
 import { AnimatePresence, motion } from "framer-motion";
-import { HiPhone, HiX } from "react-icons/hi";
+import { HiChevronDown, HiPhone, HiX } from "react-icons/hi";
 
 import config from "../data/config";
 import { SiteLogo } from "./vectors/logos";
@@ -53,19 +53,19 @@ function MobileMenu() {
                 <nav className="px-2 mt-5 space-y-1">
                   {config.siteNavigation.map((node) =>
                     node.submenu ? (
-                      <SubMenu node={node} handleClose={handleClose} />
+                      <SubMenu key={node.label} node={node} />
                     ) : (
                       <Link
                         key={node.slug}
                         to={node.slug}
                         onClick={handleClose}
                         className={`
-                      ${
-                        pathname === node.slug
-                          ? " bg-gray-800 text-white"
-                          : "text-gray-300 hover:text-white"
-                      }
-                      flex items-center px-2 py-2 text-base font-medium uppercase rounded-md hover:text-white hover:bg-white hover:bg-opacity-10`}
+                        ${
+                          pathname === node.slug
+                            ? " bg-gray-800 text-white"
+                            : "text-gray-300 hover:text-white"
+                        }
+                        flex items-center px-2 py-2 text-base font-medium uppercase rounded-md hover:text-white hover:bg-white hover:bg-opacity-10`}
                       >
                         {node.label}
                       </Link>
@@ -103,14 +103,15 @@ function MobileMenu() {
 
 const transition = { min: 0, max: 100, bounceDamping: 9 };
 
-function SubMenu({ node, handleClose }) {
+function SubMenu({ node }) {
+  const { pathname } = useLocation();
   return (
-    <Menu>
+    <Menu as="div">
       {({ open }) => (
         <>
           <Menu.Button className="flex items-center justify-between w-full px-2 py-2 text-base font-medium text-gray-300 uppercase rounded-md hover:text-white hover:bg-white hover:bg-opacity-10">
             <span>{node.label}</span>
-            <span className="ml-2 -mr-1">
+            <span className="-mr-1">
               <motion.svg
                 viewBox="0 0 20 20"
                 fill="currentColor"
@@ -139,76 +140,50 @@ function SubMenu({ node, handleClose }) {
                 }}
                 transition={transition}
               >
-                <Menu.Items as="ul" className="rounded-md">
-                  {node.submenu.map((node) =>
-                    node.submenu ? (
-                      <Menu.Item key={node.label} as="li">
-                        <Menu>
-                          {(open) => (
+                <Menu.Items static as="ul" className="rounded-md">
+                  {node.submenu.map((navItem) =>
+                    navItem.submenu ? (
+                      <Menu.Item key={navItem.label} as="li">
+                        <Menu as="div">
+                          {({ open }) => (
                             <>
                               <Menu.Button className="flex items-center justify-between w-full px-2 py-2 text-base font-medium text-gray-300 uppercase rounded-md hover:text-white hover:bg-white hover:bg-opacity-10">
-                                <span>{node.label}</span>
-                                <span className="ml-2 -mr-1">
-                                  <motion.svg
-                                    viewBox="0 0 20 20"
-                                    fill="currentColor"
-                                    initial={{ rotate: "0deg" }}
-                                    animate={{
-                                      rotate: open ? "90deg" : "0deg",
-                                    }}
-                                    transition={transition}
-                                    className="w-5 h-5"
-                                  >
-                                    <path
-                                      fillRule="evenodd"
-                                      d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                                      clipRule="evenodd"
-                                    />
-                                  </motion.svg>
+                                <span>{navItem.label}</span>
+                                <span className="inline-flex items-center transform translate-x-1">
+                                  <span>&#8203;</span>
+                                  <HiChevronDown className="w-5 h-5 transition-transform transform" />
                                 </span>
                               </Menu.Button>
                               <AnimatePresence>
                                 {open && (
-                                  <motion.div
-                                    initial="closed"
-                                    animate="open"
-                                    exit="closed"
-                                    variants={{
-                                      open: {
-                                        height: "auto",
-                                        opacity: 1,
-                                        overflow: "visible",
-                                      },
-                                      closed: {
-                                        height: 0,
-                                        opacity: 0,
-                                        overflow: "hidden",
-                                      },
-                                    }}
-                                    transition={transition}
+                                  <Menu.Items
+                                    static
+                                    as="ul"
+                                    className="rounded-md"
                                   >
-                                    <Menu.Items as="ul">
-                                      {node.submenu.map((n) => (
-                                        <Menu.Item key={n.label} as="li">
-                                          {({ active }) => (
-                                            <Link
-                                              to={n.slug}
-                                              onClick={handleClose}
-                                              partiallyActive={false}
-                                              activeClassName="bg-burnt-orange"
-                                              className={`flex items-center pl-6 pr-2 py-2 mt-1 text-base font-normal leading-6 text-gray-300 transition duration-150 ease-in-out rounded-md group hover:text-white hover:bg-burnt-orange focus:outline-none focus:text-white focus:bg-burnt-orange ${
-                                                active
-                                                  ? "bg-white bg-opacity-10"
-                                                  : ""
-                                              }`}
-                                            >
-                                              {n.label}
-                                            </Link>
-                                          )}
-                                        </Menu.Item>
-                                      ))}
-                                    </Menu.Items>
-                                  </motion.div>
+                                    {navItem.submenu.map((n) => (
+                                      <Menu.Item key={navItem.label} as="li">
+                                        {({ active }) => (
+                                          <Link
+                                            to={n.slug}
+                                            className={`${
+                                              active
+                                                ? "bg-opacity-10"
+                                                : "bg-opacity-0"
+                                            }
+                                            ${
+                                              pathname === node.slug
+                                                ? " bg-gray-800 text-white"
+                                                : "text-gray-300 hover:text-white"
+                                            }
+                                            flex items-center justify-between w-full px-2 py-2 text-base font-medium text-gray-300 rounded-md hover:text-white hover:bg-white hover:bg-opacity-10`}
+                                          >
+                                            {n.label}
+                                          </Link>
+                                        )}
+                                      </Menu.Item>
+                                    ))}
+                                  </Menu.Items>
                                 )}
                               </AnimatePresence>
                             </>
@@ -216,18 +191,23 @@ function SubMenu({ node, handleClose }) {
                         </Menu>
                       </Menu.Item>
                     ) : (
-                      <Menu.Item key={node.label} as="li">
+                      <Menu.Item key={navItem.id}>
                         {({ active }) => (
                           <Link
-                            to={node.slug}
-                            onClick={handleClose}
-                            partiallyActive={false}
-                            activeClassName="bg-burnt-orange"
-                            className={`flex items-center pl-6 pr-2 py-2 mt-1 text-base font-normal leading-6 text-gray-300 transition duration-150 ease-in-out rounded-md group hover:text-white hover:bg-burnt-orange focus:outline-none focus:text-white focus:bg-burnt-orange ${
-                              active ? "bg-white bg-opacity-10" : ""
-                            }`}
+                            to={navItem.slug}
+                            className={`${
+                              active
+                                ? "bg-opacity-10 text-white"
+                                : "bg-opacity-0 text-gray-300"
+                            }
+                            ${
+                              pathname === node.slug
+                                ? " bg-gray-800 text-white"
+                                : "text-gray-300 hover:text-white"
+                            }
+                            flex items-center justify-between w-full px-2 py-2 text-base font-medium text-gray-300 rounded-md hover:text-white hover:bg-white hover:bg-opacity-10`}
                           >
-                            {node.label}
+                            {navItem.label}
                           </Link>
                         )}
                       </Menu.Item>
