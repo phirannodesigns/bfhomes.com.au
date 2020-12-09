@@ -4,7 +4,8 @@ import { GatsbyImage as NewImage, getImage } from "gatsby-plugin-image";
 import GatsbyImage, { FluidObject } from "gatsby-image";
 import { matchSorter } from "match-sorter";
 import SanityBlockContent from "@sanity/block-content-to-react";
-import { HiArrowRight } from "react-icons/hi";
+import { nanoid } from "nanoid";
+import { HiArrowLeft, HiArrowRight } from "react-icons/hi";
 
 import { Layout, SEO, ContactSection, BGImageLeft } from "../components";
 
@@ -48,19 +49,45 @@ interface LatestBlogsProps {
 }
 
 function LatestBlogs({ nodes }: LatestBlogsProps) {
+  // Pad out posts to test pagination
+  const posts = React.useMemo(
+    () =>
+      nodes
+        .concat(nodes)
+        .concat(nodes)
+        .concat(nodes)
+        .concat(nodes)
+        .concat(nodes)
+        .concat(nodes)
+        .concat(nodes)
+        .concat(nodes)
+        .concat(nodes)
+        .map((n, i) => ({ ...n, index: i })),
+    [nodes]
+  );
+
+  // State for pagination
+  const [index, setIndex] = React.useState(0);
+
+  const INCREMENTOR = 6;
+
   // Filter posts from search input
   const [searchQuery, setSearchQuery] = React.useState("");
 
   // Update searchQuery value whenever input changes
   function handleSearchQuery(event) {
+    setIndex(0);
     setSearchQuery(event.target.value);
   }
 
+  const ALL_CATEGORIES = "All";
+
   // State for filtering posts from select menu
-  const [filter, setFilter] = React.useState("All");
+  const [filter, setFilter] = React.useState(ALL_CATEGORIES);
 
   // Update filter value whenever select changes
   function handleFilter(event) {
+    setIndex(0);
     setFilter(event.target.value);
   }
 
@@ -69,23 +96,27 @@ function LatestBlogs({ nodes }: LatestBlogsProps) {
   React.useMemo(() => {
     const cat = [];
     // Push all category titles to cat array
-    nodes.map((post) => {
+    posts.map((post) => {
       return post.categories.map((category) => cat.push(category.title));
     });
     // Filter duplicates and sort alphabetically
     setCategories([...new Set(cat)].sort((a, b) => a.localeCompare(b)));
-  }, [nodes]);
+  }, [posts]);
 
   // Filter by tag
-  const filteredPosts = React.useMemo(
+  const postsFilteredByCategory = React.useMemo(
     () =>
-      filter === "All"
-        ? nodes
-        : nodes.filter((post) => {
+      filter === ALL_CATEGORIES
+        ? posts
+        : posts.filter((post) => {
             return post.categories.some(({ title }) => title === filter);
           }),
-    [filter, nodes]
+    [filter, posts]
   );
+
+  const filteredPosts = matchSorter(postsFilteredByCategory, searchQuery, {
+    keys: ["title", "categories"],
+  });
 
   return (
     <article className="text-white bg-brand-blue">
@@ -110,7 +141,7 @@ function LatestBlogs({ nodes }: LatestBlogsProps) {
                 value={filter}
                 className="font-medium uppercase transition duration-150 ease-in-out opacity-50 focus:opacity-100"
               >
-                <option value="All">Categories</option>
+                <option value={ALL_CATEGORIES}>Categories</option>
                 {categories.map((category) => (
                   <option key={category} value={category}>
                     {category}
@@ -120,34 +151,73 @@ function LatestBlogs({ nodes }: LatestBlogsProps) {
             </div>
           </div>
           <ul className="grid mt-10 gap-x-10 gap-y-16 lg:grid-cols-3">
-            {matchSorter(filteredPosts, searchQuery, {
-              keys: ["title"],
-            }).map((post) => (
-              <li key={post.id}>
-                <div className="relative h-0 aspect-w-4 aspect-h-3">
-                  <div className="absolute inset-0 flex">
-                    <GatsbyImage
-                      fluid={post.mainImage.asset.fluid}
-                      alt=""
-                      className="flex-1 shadow-lg"
-                    />
+            {filteredPosts
+              .slice(index * INCREMENTOR, index * INCREMENTOR + INCREMENTOR)
+              .map((post) => (
+                <li key={nanoid()}>
+                  <div className="relative h-0 aspect-w-4 aspect-h-3">
+                    <div className="absolute inset-0 flex">
+                      <GatsbyImage
+                        fluid={post.mainImage.asset.fluid}
+                        alt=""
+                        className="flex-1 shadow-lg"
+                      />
+                    </div>
                   </div>
-                </div>
-                <h3 className="flex items-center mt-5 space-x-2 text-2xl font-bold uppercase text-brand-teal">
-                  <span>{post.title}</span>
-                  <HiArrowRight aria-hidden className="text-lg" />
-                </h3>
-                <div className="font-medium prose text-white clamp-3">
-                  <SanityBlockContent blocks={post._rawBody.slice(0, 1)} />
-                </div>
-                <div className="mt-1 font-medium text-brand-teal">
-                  <time dateTime={post._publishedAt}>{post.publishedAt}</time>
-                  <span className="mx-3">|</span>
-                  <a href="#">Share</a>
-                </div>
-              </li>
-            ))}
+                  <h3 className="flex items-center mt-5 space-x-2 text-2xl font-bold uppercase text-brand-teal">
+                    <span>{post.title}</span>
+                    <HiArrowRight aria-hidden className="text-lg" />
+                  </h3>
+                  <div className="font-medium prose text-white clamp-3">
+                    <SanityBlockContent blocks={post._rawBody.slice(0, 1)} />
+                  </div>
+                  <div className="mt-1 font-medium text-brand-teal">
+                    <time dateTime={post._publishedAt}>{post.publishedAt}</time>
+                    <span className="mx-3">|</span>
+                    <a href="#">Share</a>
+                  </div>
+                </li>
+              ))}
           </ul>
+          <div className="flex items-center justify-center mt-20 space-x-2">
+            <button
+              onClick={() =>
+                index <= 0 ? null : setIndex((prevIndex) => prevIndex - 1)
+              }
+              className="p-1"
+            >
+              <span className="sr-only">Newer posts</span>
+              <HiArrowLeft />
+            </button>
+            <ul className="flex space-x-2">
+              {Array(Math.ceil(filteredPosts.length / INCREMENTOR))
+                .fill("")
+                .map((_, i) => (
+                  <li key={i}>
+                    <button
+                      onClick={() => setIndex(i)}
+                      className={`
+                      ${index === i && "font-bold underline"}
+                      p-1
+                      `}
+                    >
+                      {i + 1}
+                    </button>
+                  </li>
+                ))}
+            </ul>
+            <button
+              onClick={() =>
+                index >= Math.ceil(filteredPosts.length / INCREMENTOR)
+                  ? null
+                  : setIndex((prevIndex) => prevIndex + 1)
+              }
+              className="p-1"
+            >
+              <span className="sr-only">Older posts</span>
+              <HiArrowRight />
+            </button>
+          </div>
         </div>
       </BGImageLeft>
     </article>
