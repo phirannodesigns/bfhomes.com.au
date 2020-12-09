@@ -8,7 +8,7 @@ module.exports = {
   email: 'brucorp@hotmail.com',
   address: 'Port Macquarie, NSW 2444',
   officeHours: 'Monday to Friday 9am–5pm',
-  siteUrl: 'https://www.rmaircraft.com.au',
+  siteUrl: 'https://www.bfhomes.com.au',
   ogImage: '../../static/og-image.jpg',
   socialLinks: [
     {
