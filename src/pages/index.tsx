@@ -67,7 +67,15 @@ function Services({ imageData }) {
     <ul className="grid w-full gap-12 px-4 mx-auto transform -translate-y-12 sm:px-6 lg:px-8 lg:grid-cols-3 lg:-translate-y-1/3">
       {services.map((service) => (
         <li key={service.slug}>
-          <GatsbyImage image={imageData} alt="" className="shadow-lg" />
+          <div className="relative h-0 aspect-w-4 aspect-h-3">
+            <div className="absolute inset-0 flex">
+              <GatsbyImage
+                image={imageData}
+                alt=""
+                className="flex-1 shadow-lg"
+              />
+            </div>
+          </div>
           <Link to={service.slug}>
             <h2 className="flex items-center mt-5 space-x-2 text-2xl font-bold uppercase text-brand-blue">
               <span>{service.heading} </span>
