@@ -1,8 +1,13 @@
 import * as React from "react";
 
-export const MenuContext = React.createContext({
+interface Context {
+  isOpen: boolean;
+  setIsOpen(isOpen: boolean): void;
+}
+
+const MenuContext = React.createContext<Context>({
   isOpen: false,
-  setIsOpen: (value: boolean) => {},
+  setIsOpen: (isOpen: boolean) => {},
 });
 
 function MenuContextProvider({ children }) {
@@ -14,4 +19,4 @@ function MenuContextProvider({ children }) {
   );
 }
 
-export { MenuContextProvider };
+export { MenuContext, MenuContextProvider };
