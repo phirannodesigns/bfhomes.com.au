@@ -20,11 +20,15 @@ function Footer() {
             {config.siteNavigation.map((navItem) => (
               <li key={navItem.label} className="prose-lg text-white">
                 {navItem.slug ? (
-                  <Link to={navItem.slug} className="hover:underline">
+                  <Link
+                    key={navItem.label}
+                    to={navItem.slug}
+                    className="hover:underline"
+                  >
                     {navItem.label}
                   </Link>
                 ) : (
-                  <Menu as="div">
+                  <Menu key={navItem.label} as="div">
                     <Menu.Button className="font-medium">
                       {navItem.label}
                     </Menu.Button>

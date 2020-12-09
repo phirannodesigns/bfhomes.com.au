@@ -44,8 +44,12 @@ function Nav() {
                   <Link
                     to={navItem.slug}
                     className={`
-                ${pathname === navItem.slug ? "text-brand-teal" : "text-white"}
-                uppercase`}
+                    ${
+                      pathname === navItem.slug
+                        ? "text-brand-teal"
+                        : "text-white"
+                    }
+                    uppercase`}
                   >
                     {navItem.label}
                   </Link>
@@ -67,7 +71,6 @@ function Nav() {
 }
 
 function SubMenu({ node }) {
-  const { pathname } = useLocation();
   return (
     <li className="relative">
       <Menu>
@@ -102,7 +105,7 @@ function SubMenu({ node }) {
                 <div className="py-1">
                   {node.submenu.map((navItem) =>
                     navItem.submenu ? (
-                      <Menu>
+                      <Menu key={navItem.label}>
                         <Menu.Button className="inline-flex items-start justify-between w-full px-4 py-2 space-x-2 text-sm font-medium tracking-wider text-left uppercase transition duration-150 ease-in-out text-brand-blue hover:bg-gray-50 focus:bg-gray-50">
                           <span>{navItem.label}</span>
                           <span className="inline-flex items-center transform translate-x-1">
@@ -119,12 +122,9 @@ function SubMenu({ node }) {
                           leaveFrom="transform opacity-100 scale-100"
                           leaveTo="transform opacity-0 scale-95"
                         >
-                          <Menu.Items
-                          // static
-                          // className="absolute left-0 w-56 mt-2 origin-top-left bg-white divide-y divide-gray-100 shadow-lg"
-                          >
+                          <Menu.Items>
                             {navItem.submenu.map((n) => (
-                              <Menu.Item key={n.id}>
+                              <Menu.Item key={n.label}>
                                 {({ active }) => (
                                   <Link
                                     to={n.slug}
@@ -141,7 +141,7 @@ function SubMenu({ node }) {
                         </Transition>
                       </Menu>
                     ) : (
-                      <Menu.Item key={navItem.id}>
+                      <Menu.Item key={navItem.label}>
                         {({ active }) => (
                           <Link
                             to={navItem.slug}
