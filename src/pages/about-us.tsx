@@ -1,11 +1,8 @@
 import * as React from "react";
-import { graphql, Link } from "gatsby";
+import { graphql } from "gatsby";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
-import { useForm } from "react-hook-form";
 
 import { Layout, SEO, BGImageRight, ContactSection } from "../components";
-import { Input, NetlifyForm, Textarea } from "../components/form-elements";
-import { HiArrowRight } from "react-icons/hi";
 
 function AboutPage({ data }) {
   const newHomes = getImage(data.newHomes);
@@ -68,94 +65,6 @@ function AboutUs({ imageData }) {
           </div>
         </div>
       </BGImageRight>
-    </article>
-  );
-}
-
-function ContactForm() {
-  const { handleSubmit, register, errors } = useForm({ mode: "onBlur" });
-  const [isSubmitting, setIsSubmitting] = React.useState(false);
-  return (
-    <article>
-      <div className="flex flex-col w-full max-w-2xl px-4 py-20 mx-auto sm:px-6 lg:px-8">
-        <h2 className="inline-block mx-auto text-3xl font-bold uppercase border-b-2 border-brand-teal text-brand-teal">
-          Leave Us A Message
-        </h2>
-        <NetlifyForm
-          handleSubmit={handleSubmit}
-          setIsSubmitting={setIsSubmitting}
-          className="grid gap-4 mt-10"
-        >
-          <Input
-            name="full-name"
-            label="Full Name"
-            register={register}
-            errors={errors}
-            className="w-full"
-          />
-          <Input
-            name="email-address"
-            label="Email Address"
-            type="email"
-            register={register}
-            errors={errors}
-            className="w-full"
-          />
-          <Input
-            name="contact-number"
-            label="Contact Number"
-            type="tel"
-            register={register}
-            errors={errors}
-            className="w-full"
-          />
-          <Textarea
-            name="message"
-            label="Message"
-            register={register}
-            errors={errors}
-            className="block w-full"
-          />
-          <div className="flex justify-center">
-            <button
-              type="submit"
-              disabled={isSubmitting}
-              className={`
-          ${isSubmitting ? "opacity-50 cursor-wait" : ""}
-          inline-flex space-x-2 items-center py-5 text-lg font-medium leading-none tracking-wider text-white uppercase border border-white px-14 bg-brand-blue
-          `}
-            >
-              {isSubmitting ? (
-                <>
-                  <svg
-                    className="w-5 h-5 text-white animate-spin"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                  >
-                    <circle
-                      className="opacity-25"
-                      cx="12"
-                      cy="12"
-                      r="10"
-                      stroke="currentColor"
-                      stroke-width="3"
-                    ></circle>
-                    <path
-                      className="opacity-75"
-                      fill="currentColor"
-                      d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                    ></path>
-                  </svg>
-                  <span>Submitting</span>
-                </>
-              ) : (
-                "Submit"
-              )}
-            </button>
-          </div>
-        </NetlifyForm>
-      </div>
     </article>
   );
 }
