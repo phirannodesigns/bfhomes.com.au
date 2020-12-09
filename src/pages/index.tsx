@@ -174,7 +174,7 @@ function WhoAreWe({ imageData }) {
         <h3 className="mt-4 text-5xl uppercase">Get To Know More About Us</h3>
         <p className="mt-4">
           <Link
-            to="/"
+            to="/about-us/"
             className="inline-flex tracking-wider items-center space-x-3 px-4 py-2.5 text-sm font-medium uppercase border text-white border-white"
           >
             <span className="whitespace-nowrap">Find out more about us</span>
