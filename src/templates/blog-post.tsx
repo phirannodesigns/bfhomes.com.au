@@ -16,16 +16,18 @@ import {
 } from '../components';
 import { FaRegBell } from 'react-icons/fa';
 
-function PostTemplate({ data }) {
+function PostTemplate({ data, pageContext }) {
   const newHomes = getImage(data.newHomes);
   const whoAreWe = getImage(data.whoAreWe);
+
+  console.log(pageContext);
 
   return (
     <Layout>
       <SEO title={data.sanityPost.title} />
       <Hero imageData={newHomes} />
       <article className="relative grid w-full grid-cols-1 px-0 mx-auto lg:grid-cols-3">
-        <div className="w-full col-span-2 px-6 py-24 mx-auto prose xl:px-24 max-w-7xl bg-brand-blue">
+        <div className="w-full col-span-2 px-6 py-24 mx-auto prose text-white xl:px-24 max-w-7xl bg-brand-blue">
           <h1
             style={{ color: 'white' }}
             className="pb-2 mb-12 overflow-hidden uppercase border-b-4 border-white"
@@ -52,6 +54,20 @@ function PostTemplate({ data }) {
             >
               Share
             </a>
+          </div>
+          <div className="flex justify-between w-full mt-8">
+            <Link
+              to={`/blogs/${pageContext.prev}`}
+              className="text-xl text-white whitespace-no-wrap border-white button"
+            >
+              &larr; Previous Post
+            </Link>
+            <Link
+              to={`/blogs/${pageContext.next}`}
+              className="text-xl text-white whitespace-no-wrap border-white button"
+            >
+              Next Post &rarr;
+            </Link>
           </div>
         </div>
         <div className="hidden px-12 py-24 bg-white lg:px-6 lg:block lg:col-span-1">
@@ -178,6 +194,7 @@ function WhoAreWe({ imageData }) {
 
 PostTemplate.propTypes = {
   data: PropTypes.object,
+  pageContext: PropTypes.object,
 };
 
 export const query = graphql`

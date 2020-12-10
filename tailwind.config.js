@@ -46,14 +46,14 @@ module.exports = {
               color: '#ffffff',
             },
             li: {
-              color: '#ffffff'
+              color: '#ffffff',
             },
             a: {
-              color: '#ffffff'
-            }
-          }
-        }
-      }
+              color: '#ffffff',
+            },
+          },
+        },
+      },
     },
   },
   variants: {

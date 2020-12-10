@@ -19,17 +19,26 @@ exports.createPages = async ({ graphql, actions }) => {
     throw result.errors;
   }
 
-  // Create blog posts from Sanity
-  const posts = result.data.allSanityPost.nodes || [];
-  posts.forEach((post) => {
-    const {
-      slug: { current: slug },
-    } = post;
+  // Iterate over all posts and create a new page using a template
+  const posts = result.data.allSanityPost.nodes;
+  posts.forEach((post, index) => {
+    const slug = post.slug.current;
+    const prev =
+      index === 0
+        ? posts[posts.length - 1].slug.current
+        : posts[index - 1].slug.current;
+    const next =
+      index === posts.length - 1
+        ? posts[0].slug.current
+        : posts[index + 1].slug.current;
     createPage({
       path: `/blogs/${slug}`,
-      component: require.resolve('./src/templates/blog-post.tsx'),
-      context: { slug },
+      component: path.resolve(`./src/templates/blog-post.tsx`),
+      context: {
+        slug,
+        prev,
+        next,
+      },
     });
   });
-
 };
