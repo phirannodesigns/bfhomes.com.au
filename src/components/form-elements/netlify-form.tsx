@@ -1,6 +1,12 @@
 import * as React from "react";
 import { navigate } from "gatsby";
 
+function encode(data) {
+  return Object.keys(data)
+    .map((key) => `${encodeURIComponent(key)}=${encodeURIComponent(data[key])}`)
+    .join("&");
+}
+
 interface NetlifyFormProps {
   action?: string;
   children: React.ReactNode;
@@ -8,12 +14,6 @@ interface NetlifyFormProps {
   handleSubmit: any;
   name?: string;
   setIsSubmitting: React.Dispatch<React.SetStateAction<boolean>>;
-}
-
-function encode(data) {
-  return Object.keys(data)
-    .map((key) => `${encodeURIComponent(key)}=${encodeURIComponent(data[key])}`)
-    .join("&");
 }
 
 function NetlifyForm({
