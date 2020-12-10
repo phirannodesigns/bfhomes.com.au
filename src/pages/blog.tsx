@@ -1,13 +1,13 @@
-import * as React from "react";
-import { graphql } from "gatsby";
-import { GatsbyImage as NewImage, getImage } from "gatsby-plugin-image";
-import GatsbyImage, { FluidObject } from "gatsby-image";
-import { matchSorter } from "match-sorter";
-import SanityBlockContent from "@sanity/block-content-to-react";
-import { nanoid } from "nanoid";
-import { HiArrowLeft, HiArrowRight } from "react-icons/hi";
+import * as React from 'react';
+import { graphql, Link } from 'gatsby';
+import { GatsbyImage as NewImage, getImage } from 'gatsby-plugin-image';
+import GatsbyImage, { FluidObject } from 'gatsby-image';
+import { matchSorter } from 'match-sorter';
+import SanityBlockContent from '@sanity/block-content-to-react';
+import { nanoid } from 'nanoid';
+import { HiArrowLeft, HiArrowRight } from 'react-icons/hi';
 
-import { Layout, SEO, ContactSection, BGImageLeft } from "../components";
+import { Layout, SEO, ContactSection, BGImageLeft } from '../components';
 
 function LatestNewsPage({ data }) {
   const newHomes = getImage(data.newHomes);
@@ -72,7 +72,7 @@ function LatestBlogs({ nodes }: LatestBlogsProps) {
   const INCREMENTOR = 6;
 
   // Filter posts from search input
-  const [searchQuery, setSearchQuery] = React.useState("");
+  const [searchQuery, setSearchQuery] = React.useState('');
 
   // Update searchQuery value whenever input changes
   function handleSearchQuery(event) {
@@ -80,7 +80,7 @@ function LatestBlogs({ nodes }: LatestBlogsProps) {
     setSearchQuery(event.target.value);
   }
 
-  const ALL_CATEGORIES = "All";
+  const ALL_CATEGORIES = 'All';
 
   // State for filtering posts from select menu
   const [filter, setFilter] = React.useState(ALL_CATEGORIES);
@@ -115,7 +115,7 @@ function LatestBlogs({ nodes }: LatestBlogsProps) {
   );
 
   const filteredPosts = matchSorter(postsFilteredByCategory, searchQuery, {
-    keys: ["title", "categories"],
+    keys: ['title', 'categories'],
   });
 
   return (
@@ -155,27 +155,31 @@ function LatestBlogs({ nodes }: LatestBlogsProps) {
               .slice(index * INCREMENTOR, index * INCREMENTOR + INCREMENTOR)
               .map((post) => (
                 <li key={nanoid()}>
-                  <div className="relative h-0 aspect-w-4 aspect-h-3">
-                    <div className="absolute inset-0 flex">
-                      <GatsbyImage
-                        fluid={post.mainImage.asset.fluid}
-                        alt=""
-                        className="flex-1 shadow-lg"
-                      />
+                  <Link to={`/blogs/${post.slug.current}`}>
+                    <div className="relative h-0 aspect-w-4 aspect-h-3">
+                      <div className="absolute inset-0 flex">
+                        <GatsbyImage
+                          fluid={post.mainImage.asset.fluid}
+                          alt=""
+                          className="flex-1 shadow-lg"
+                        />
+                      </div>
                     </div>
-                  </div>
-                  <h3 className="flex items-center mt-5 space-x-2 text-2xl font-bold uppercase text-brand-teal">
-                    <span>{post.title}</span>
-                    <HiArrowRight aria-hidden className="text-lg" />
-                  </h3>
-                  <div className="font-medium prose text-white clamp-3">
-                    <SanityBlockContent blocks={post._rawBody.slice(0, 1)} />
-                  </div>
-                  <div className="mt-1 font-medium text-brand-teal">
-                    <time dateTime={post._publishedAt}>{post.publishedAt}</time>
-                    <span className="mx-3">|</span>
-                    <a href="#">Share</a>
-                  </div>
+                    <h3 className="flex items-center mt-5 space-x-2 text-2xl font-bold uppercase text-brand-teal">
+                      <span>{post.title}</span>
+                      <HiArrowRight aria-hidden className="text-lg" />
+                    </h3>
+                    <div className="font-medium prose text-white clamp-3">
+                      <SanityBlockContent blocks={post._rawBody.slice(0, 1)} />
+                    </div>
+                    <div className="mt-1 font-medium text-brand-teal">
+                      <time dateTime={post._publishedAt}>
+                        {post.publishedAt}
+                      </time>
+                      <span className="mx-3">|</span>
+                      <a href="#">Share</a>
+                    </div>
+                  </Link>
                 </li>
               ))}
           </ul>
@@ -191,13 +195,13 @@ function LatestBlogs({ nodes }: LatestBlogsProps) {
             </button>
             <ul className="flex space-x-2">
               {Array(Math.ceil(filteredPosts.length / INCREMENTOR))
-                .fill("")
+                .fill('')
                 .map((_, i) => (
                   <li key={i}>
                     <button
                       onClick={() => setIndex(i)}
                       className={`
-                      ${index === i && "font-bold underline"}
+                      ${index === i && 'font-bold underline'}
                       p-1
                       `}
                     >
