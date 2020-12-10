@@ -23,6 +23,37 @@ module.exports = {
       fontFamily: {
         sans: ['Avenir', 'Montserrat', ...defaultTheme.fontFamily.sans],
       },
+      typography: {
+        DEFAULT: {
+          css: {
+            color: '#ffffff',
+            h1: {
+              color: '#ffffff',
+            },
+            h2: {
+              color: '#ffffff',
+            },
+            h3: {
+              color: '#ffffff',
+            },
+            h4: {
+              color: '#ffffff',
+            },
+            h5: {
+              color: '#ffffff',
+            },
+            h6: {
+              color: '#ffffff',
+            },
+            li: {
+              color: '#ffffff'
+            },
+            a: {
+              color: '#ffffff'
+            }
+          }
+        }
+      }
     },
   },
   variants: {
