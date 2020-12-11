@@ -1,8 +1,11 @@
 import * as React from "react";
 import { graphql } from "gatsby";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
+import { useKeenSlider } from "keen-slider/react";
+import "keen-slider/keen-slider.min.css";
 
 import { Layout, SEO, BGImageRight, ContactSection } from "../components";
+import { HiArrowLeft, HiArrowRight } from "react-icons/hi";
 
 function HomesPage({ data }) {
   const newHomes = getImage(data.newHomes);
@@ -101,8 +104,6 @@ function Homes({ imageData }) {
 }
 
 function Home({ home, reverse, imageData }) {
-  const images = Array(3).fill({ imageData });
-
   function MainImage() {
     return (
       <div className="relative lg:row-span-2">
@@ -114,6 +115,18 @@ function Home({ home, reverse, imageData }) {
   }
 
   function InnerContent() {
+    const [currentSlide, setCurrentSlide] = React.useState(0);
+    const [sliderRef, slider] = useKeenSlider<HTMLUListElement>({
+      slidesPerView: 3,
+      spacing: 16,
+      initial: 0,
+      loop: true,
+      slideChanged(s) {
+        setCurrentSlide(s.details().relativeSlide);
+      },
+    });
+
+    const images = Array(9).fill({ imageData });
     return (
       <div className="relative z-10 grid w-full max-w-screen-xl gap-4 px-4 py-20 mx-auto sm:px-6 lg:px-8 lg:grid-cols-4">
         {reverse && <MainImage />}
@@ -133,18 +146,50 @@ function Home({ home, reverse, imageData }) {
           />
         </div>
         {!reverse && <MainImage />}
-        {/* // TODO: Add carousel */}
-        {images.map((image) => (
-          <div className="relative h-0 aspect-w-4 aspect-h-3">
-            <div className="absolute inset-0">
-              <GatsbyImage
-                image={image.imageData}
-                alt=""
-                className="w-full h-full max-w-sm mx-auto"
-              />
-            </div>
+        <div className="relative lg:col-span-3">
+          <div>
+            <ul ref={sliderRef} className="keen-slider">
+              {images.map((image) => (
+                <li className="keen-slider__slide">
+                  <div className="relative h-0 aspect-w-4 aspect-h-3">
+                    <div className="absolute inset-0">
+                      <GatsbyImage
+                        image={image.imageData}
+                        alt=""
+                        className="w-full h-full max-w-sm mx-auto"
+                      />
+                    </div>
+                  </div>
+                </li>
+              ))}
+            </ul>
+            {slider && (
+              <div className="absolute inset-x-0 bottom-0 flex items-center justify-center py-2 space-x-2 transform translate-y-full">
+                <button onClick={(e) => e.stopPropagation() || slider.prev()}>
+                  <HiArrowLeft />
+                </button>
+                {[...Array(slider.details().size).keys()].map((index) => {
+                  return (
+                    <button
+                      key={index}
+                      onClick={() => {
+                        slider.moveToSlideRelative(index);
+                      }}
+                      className={`rounded-full h-3 w-3 bg-white transition duration-150 ease-in-out hover:bg-opacity-100 ${
+                        currentSlide === index
+                          ? "bg-opacity-100"
+                          : "bg-opacity-50"
+                      }`}
+                    />
+                  );
+                })}
+                <button onClick={(e) => e.stopPropagation() || slider.next()}>
+                  <HiArrowRight />
+                </button>
+              </div>
+            )}
           </div>
-        ))}
+        </div>
       </div>
     );
   }

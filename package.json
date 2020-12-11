@@ -39,6 +39,7 @@
     "gatsby-source-filesystem": "^2.7.0",
     "gatsby-source-sanity": "^6.0.4",
     "gatsby-transformer-sharp": "^2.8.0",
+    "keen-slider": "^5.3.5",
     "match-sorter": "^6.0.2",
     "nanoid": "^3.1.20",
     "postcss": "^8.1.14",
