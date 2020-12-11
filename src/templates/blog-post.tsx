@@ -33,6 +33,7 @@ function Hero({ imageData }) {
 }
 
 function BlogPost({ post, pageContext }) {
+  const { origin } = useLocation();
   return (
     <article
       style={{ backgroundImage: `url(${bgLeft})` }}
@@ -46,8 +47,13 @@ function BlogPost({ post, pageContext }) {
       <div className="font-medium text-brand-teal">
         <time>{post.publishedAt}</time>
         <span className="mx-3">|</span>
-        {/* // TODO: Make this link work when articles have URL */}
-        <a href="#">Share</a>
+        <a
+          href={`https://www.facebook.com/sharer/sharer.php?u=${origin}/posts/${post.slug.current}/`}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Share
+        </a>
       </div>
       <div className="flex justify-between w-full mt-8">
         <Link
