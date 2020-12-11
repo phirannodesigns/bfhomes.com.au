@@ -1,5 +1,5 @@
 import * as React from "react";
-import { GatsbyImage } from "gatsby-plugin-image";
+import { GatsbyImage, IGatsbyImageData } from "gatsby-plugin-image";
 import { useKeenSlider } from "keen-slider/react";
 import "keen-slider/keen-slider.min.css";
 
@@ -9,7 +9,18 @@ import { getTailwindConfig } from "../utils/get-tailwind-config";
 
 const tailwindConfig = getTailwindConfig();
 
-function Service({ home, reverse, imageData }) {
+interface ServiceProps {
+  service: {
+    id: string;
+    title: string;
+    copy: string;
+    slug: string;
+  };
+  reverse: boolean;
+  imageData: IGatsbyImageData;
+}
+
+function Service({ service, reverse, imageData }: ServiceProps) {
   function MainImage() {
     return (
       <div className="relative lg:row-span-2">
@@ -56,10 +67,10 @@ function Service({ home, reverse, imageData }) {
           ${reverse ? "border-white" : "border-brand-blue"}
           heading-2`}
           >
-            {home.title}
+            {service.title}
           </h2>
           <div
-            dangerouslySetInnerHTML={{ __html: home.copy }}
+            dangerouslySetInnerHTML={{ __html: service.copy }}
             className={`
             ${reverse ? "text-white" : "text-brand-blue"}
             mt-5 prose-lg font-medium`}
@@ -119,6 +130,7 @@ function Service({ home, reverse, imageData }) {
 
   return (
     <article
+      id={service.id}
       className={`
     ${reverse ? "text-white bg-brand-blue" : "text-brand-blue bg-gray-100"}
     relative`}

@@ -2,7 +2,13 @@ import * as React from "react";
 import { graphql } from "gatsby";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 
-import { Layout, SEO, Service, ContactSection } from "../components";
+import {
+  Layout,
+  SEO,
+  HeadingWithCopy,
+  Service,
+  ContactSection,
+} from "../components";
 
 function RenovationsPage({ data }) {
   const newHomes = getImage(data.newHomes);
@@ -24,23 +30,6 @@ function Hero({ imageData }) {
   return <GatsbyImage image={imageData} alt="" />;
 }
 
-function HeadingWithCopy({ id, heading, copy }) {
-  return (
-    <article id={id} className="text-brand-blue">
-      <div className="w-full max-w-screen-xl px-4 py-20 mx-auto sm:px-6 lg:px-8">
-        <div className="flex flex-col items-center">
-          <h2 className="inline-block text-2xl font-bold text-center uppercase border-b-2 border-brand-blue">
-            {heading}
-          </h2>
-          <div className="mt-5 prose">
-            <p>{copy}</p>
-          </div>
-        </div>
-      </div>
-    </article>
-  );
-}
-
 function HouseExtension() {
   return (
     <HeadingWithCopy
@@ -53,6 +42,7 @@ function HouseExtension() {
 
 const houseExtensions = [
   {
+    id: "bathrooms",
     title: "Bathrooms",
     copy: `<p>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
@@ -65,6 +55,7 @@ const houseExtensions = [
     slug: "/renovations/house-extensions/#bathrooms",
   },
   {
+    id: "kitchens",
     title: "Kitchens",
     copy: `<p>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
@@ -81,10 +72,10 @@ const houseExtensions = [
 function HouseExtensions({ imageData }) {
   return (
     <>
-      {houseExtensions.map((home, index) => (
+      {houseExtensions.map((service, index) => (
         <Service
-          key={home.title}
-          home={home}
+          key={service.title}
+          service={service}
           imageData={imageData}
           reverse={index % 2 === 0}
         />
@@ -105,6 +96,7 @@ function OutdoorLivingArea() {
 
 const outdoorLivingAreas = [
   {
+    id: "decks",
     title: "Decks",
     copy: `<p>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
@@ -117,6 +109,7 @@ const outdoorLivingAreas = [
     slug: "/renovations/outdoor-living-areas/#decks",
   },
   {
+    id: "flyover-roofs",
     title: "Flyover Roofs",
     copy: `<p>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
@@ -133,10 +126,10 @@ const outdoorLivingAreas = [
 function OutdoorLivingAreas({ imageData }) {
   return (
     <>
-      {outdoorLivingAreas.map((home, index) => (
+      {outdoorLivingAreas.map((service, index) => (
         <Service
-          key={home.title}
-          home={home}
+          key={service.title}
+          service={service}
           imageData={imageData}
           reverse={index % 2 === 0}
         />

@@ -2,7 +2,13 @@ import * as React from "react";
 import { graphql } from "gatsby";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 
-import { Layout, SEO, Service, ContactSection } from "../components";
+import {
+  Layout,
+  SEO,
+  HeadingWithCopy,
+  Service,
+  ContactSection,
+} from "../components";
 
 function HomesPage({ data }) {
   const newHomes = getImage(data.newHomes);
@@ -24,30 +30,17 @@ function Hero({ imageData }) {
 
 function OurHomes() {
   return (
-    <article className="text-brand-blue">
-      <div className="w-full max-w-screen-xl px-4 py-20 mx-auto sm:px-6 lg:px-8">
-        <div className="flex flex-col items-center">
-          <h2 className="inline-block text-2xl font-bold text-center uppercase border-b-2 border-brand-blue">
-            Our Homes
-          </h2>
-          <div className="mt-5 prose">
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit
-              amet, consectetur adipiscing elit, sed do eiusmod tempor
-              incididunt.
-            </p>
-          </div>
-        </div>
-      </div>
-    </article>
+    <HeadingWithCopy
+      id="homes"
+      heading="Our Homes"
+      copy="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt."
+    />
   );
 }
 
 const homes = [
   {
+    id: "marchment",
     title: "Marchment",
     copy: `<p>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
@@ -60,6 +53,7 @@ const homes = [
     slug: "/homes/marchment/",
   },
   {
+    id: "black-caviar",
     title: "Black Caviar",
     copy: `<p>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
@@ -72,6 +66,7 @@ const homes = [
     slug: "/homes/black-caviar/",
   },
   {
+    id: "duplex",
     title: "Duplex",
     copy: `<p>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
@@ -88,10 +83,10 @@ const homes = [
 function Homes({ imageData }) {
   return (
     <>
-      {homes.map((home, index) => (
+      {homes.map((service, index) => (
         <Service
-          key={home.title}
-          home={home}
+          key={service.title}
+          service={service}
           imageData={imageData}
           reverse={index % 2 === 0}
         />
