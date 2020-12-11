@@ -47,13 +47,21 @@ function BlogPost({ post, pageContext }) {
       <div className="font-medium text-brand-teal">
         <time>{post.publishedAt}</time>
         <span className="mx-3">|</span>
-        <a
-          href={`https://www.facebook.com/sharer/sharer.php?u=${origin}/posts/${post.slug.current}/`}
-          target="_blank"
-          rel="noopener noreferrer"
+        <button
+          onClick={() => {
+            if (navigator?.share) {
+              navigator.share({
+                url: `${origin}/posts/${post.slug.current}/`,
+              });
+            } else if (typeof window !== "undefined") {
+              window.open(
+                `https://www.facebook.com/sharer/sharer.php?u=${origin}/posts/${post.slug.current}/`
+              );
+            } else return;
+          }}
         >
           Share
-        </a>
+        </button>
       </div>
       <div className="flex justify-between w-full mt-8">
         <Link
@@ -98,13 +106,21 @@ function Post({ post }) {
       <div className="mt-1 font-medium text-brand-teal">
         <time>{post.publishedAt}</time>
         <span className="mx-3">|</span>
-        <a
-          href={`https://www.facebook.com/sharer/sharer.php?u=${origin}/posts/${post.slug.current}/`}
-          target="_blank"
-          rel="noopener noreferrer"
+        <button
+          onClick={() => {
+            if (navigator?.share) {
+              navigator.share({
+                url: `${origin}/posts/${post.slug.current}/`,
+              });
+            } else if (typeof window !== "undefined") {
+              window.open(
+                `https://www.facebook.com/sharer/sharer.php?u=${origin}/posts/${post.slug.current}/`
+              );
+            } else return;
+          }}
         >
           Share
-        </a>
+        </button>
       </div>
     </article>
   );

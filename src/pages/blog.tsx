@@ -8,6 +8,7 @@ import { nanoid } from "nanoid";
 import { HiArrowLeft, HiArrowRight } from "react-icons/hi";
 
 import { Layout, SEO, ContactSection, BGImageLeft } from "../components";
+import { useLocation } from "@reach/router";
 
 function LatestNewsPage({ data }) {
   const newHomes = getImage(data.newHomes);
@@ -106,6 +107,8 @@ function LatestBlogs({ nodes }: LatestBlogsProps) {
     keys: ["title", "categories"],
   });
 
+  const { origin } = useLocation();
+
   return (
     <article className="text-white bg-brand-blue">
       <BGImageLeft>
@@ -153,21 +156,33 @@ function LatestBlogs({ nodes }: LatestBlogsProps) {
                         />
                       </div>
                     </div>
-                    <h3 className="flex items-center mt-5 space-x-2 text-2xl font-bold uppercase text-brand-teal">
-                      <span>{post.title}</span>
-                      <HiArrowRight aria-hidden className="text-lg" />
-                    </h3>
-                    <div className="font-medium prose text-white clamp-3">
-                      <SanityBlockContent blocks={post._rawBody.slice(0, 1)} />
-                    </div>
-                    <div className="mt-1 font-medium text-brand-teal">
-                      <time dateTime={post._publishedAt}>
-                        {post.publishedAt}
-                      </time>
-                      <span className="mx-3">|</span>
-                      <a href="#">Share</a>
-                    </div>
                   </Link>
+                  <h3 className="flex items-center mt-5 space-x-2 text-2xl font-bold uppercase text-brand-teal">
+                    <span>{post.title}</span>
+                    <HiArrowRight aria-hidden className="text-lg" />
+                  </h3>
+                  <div className="font-medium prose text-white clamp-3">
+                    <SanityBlockContent blocks={post._rawBody.slice(0, 1)} />
+                  </div>
+                  <div className="mt-1 font-medium text-brand-teal">
+                    <time dateTime={post._publishedAt}>{post.publishedAt}</time>
+                    <span className="mx-3">|</span>
+                    <button
+                      onClick={() => {
+                        if (navigator?.share) {
+                          navigator.share({
+                            url: `${origin}/posts/${post.slug.current}/`,
+                          });
+                        } else if (typeof window !== "undefined") {
+                          window.open(
+                            `https://www.facebook.com/sharer/sharer.php?u=${origin}/posts/${post.slug.current}/`
+                          );
+                        } else return;
+                      }}
+                    >
+                      Share
+                    </button>
+                  </div>
                 </li>
               ))}
           </ul>
