@@ -1,13 +1,13 @@
-import * as React from 'react';
-import { graphql, Link } from 'gatsby';
-import { GatsbyImage as NewImage, getImage } from 'gatsby-plugin-image';
-import GatsbyImage, { FluidObject } from 'gatsby-image';
-import { matchSorter } from 'match-sorter';
-import SanityBlockContent from '@sanity/block-content-to-react';
-import { nanoid } from 'nanoid';
-import { HiArrowLeft, HiArrowRight } from 'react-icons/hi';
+import * as React from "react";
+import { graphql, Link } from "gatsby";
+import { GatsbyImage as NewImage, getImage } from "gatsby-plugin-image";
+import GatsbyImage, { FluidObject } from "gatsby-image";
+import { matchSorter } from "match-sorter";
+import SanityBlockContent from "@sanity/block-content-to-react";
+import { nanoid } from "nanoid";
+import { HiArrowLeft, HiArrowRight } from "react-icons/hi";
 
-import { Layout, SEO, ContactSection, BGImageLeft } from '../components';
+import { Layout, SEO, ContactSection, BGImageLeft } from "../components";
 
 function LatestNewsPage({ data }) {
   const newHomes = getImage(data.newHomes);
@@ -60,7 +60,7 @@ function LatestBlogs({ nodes }: LatestBlogsProps) {
   const INCREMENTOR = 6;
 
   // Filter posts from search input
-  const [searchQuery, setSearchQuery] = React.useState('');
+  const [searchQuery, setSearchQuery] = React.useState("");
 
   // Update searchQuery value whenever input changes
   function handleSearchQuery(event) {
@@ -68,7 +68,7 @@ function LatestBlogs({ nodes }: LatestBlogsProps) {
     setSearchQuery(event.target.value);
   }
 
-  const ALL_CATEGORIES = 'All';
+  const ALL_CATEGORIES = "All";
 
   // State for filtering posts from select menu
   const [filter, setFilter] = React.useState(ALL_CATEGORIES);
@@ -103,7 +103,7 @@ function LatestBlogs({ nodes }: LatestBlogsProps) {
   );
 
   const filteredPosts = matchSorter(postsFilteredByCategory, searchQuery, {
-    keys: ['title', 'categories'],
+    keys: ["title", "categories"],
   });
 
   return (
@@ -183,13 +183,13 @@ function LatestBlogs({ nodes }: LatestBlogsProps) {
             </button>
             <ul className="flex space-x-2">
               {Array(Math.ceil(filteredPosts.length / INCREMENTOR))
-                .fill('')
+                .fill("")
                 .map((_, i) => (
                   <li key={i}>
                     <button
                       onClick={() => setIndex(i)}
                       className={`
-                      ${index === i && 'font-bold underline'}
+                      ${index === i && "font-bold underline"}
                       p-1
                       `}
                     >
