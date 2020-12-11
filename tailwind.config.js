@@ -23,12 +23,18 @@ module.exports = {
       fontFamily: {
         sans: ['Avenir', 'Montserrat', ...defaultTheme.fontFamily.sans],
       },
-      typography: () => ({
+      typography: (theme) => ({
         DEFAULT: {
           css: {
             color: 'inherit',
-            'h1, h2, h3, h4, h5, h6, li, a, blockquote, figure figcaption, table thead, table hr': {
+            'h1, h2, h3, h4, h5, h6, strong, blockquote, figure figcaption, table thead, table hr': {
               color: 'inherit',
+            },
+            a: {
+              color: theme('colors.brand.teal'),
+            },
+            'ol > li::before, ul > li::before': {
+              'background-color': theme('colors.brand.teal'),
             },
           },
         },
