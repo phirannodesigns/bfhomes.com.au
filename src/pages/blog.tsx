@@ -143,7 +143,7 @@ function LatestBlogs({ nodes }: LatestBlogsProps) {
               .slice(index * INCREMENTOR, index * INCREMENTOR + INCREMENTOR)
               .map((post) => (
                 <li key={nanoid()}>
-                  <Link to={`/blogs/${post.slug.current}`}>
+                  <Link to={`/posts/${post.slug.current}`}>
                     <div className="relative h-0 aspect-w-4 aspect-h-3">
                       <div className="absolute inset-0 flex">
                         <GatsbyImage
