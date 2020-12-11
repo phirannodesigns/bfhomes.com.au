@@ -5,7 +5,7 @@ import { useKeenSlider } from "keen-slider/react";
 import "keen-slider/keen-slider.min.css";
 
 import { Layout, SEO, BGImageRight, ContactSection } from "../components";
-import { HiArrowLeft, HiArrowRight } from "react-icons/hi";
+import { HiChevronLeft, HiChevronRight } from "react-icons/hi";
 
 function HomesPage({ data }) {
   const newHomes = getImage(data.newHomes);
@@ -166,7 +166,7 @@ function Home({ home, reverse, imageData }) {
             {slider && (
               <div className="absolute inset-x-0 bottom-0 flex items-center justify-center py-2 space-x-2 transform translate-y-full">
                 <button onClick={(e) => e.stopPropagation() || slider.prev()}>
-                  <HiArrowLeft />
+                  <HiChevronLeft className="text-2xl" />
                 </button>
                 {[...Array(slider.details().size).keys()].map((index) => {
                   return (
@@ -184,7 +184,7 @@ function Home({ home, reverse, imageData }) {
                   );
                 })}
                 <button onClick={(e) => e.stopPropagation() || slider.next()}>
-                  <HiArrowRight />
+                  <HiChevronRight className="text-2xl" />
                 </button>
               </div>
             )}
