@@ -43,21 +43,21 @@ const services = [
     heading: "New Homes",
     copy:
       "Lorem ipsum dolor sit amet, consectetur a ut dipiscing elit, sed do eiusmod tempor incididunt ut labore et.",
-    slug: "/services/new-homes/",
+    slug: "/homes/",
     image: "../images/new-homes.jpg",
   },
   {
     heading: "Renovations",
     copy:
       "Lorem ipsum dolor sit amet, consectetur a ut dipiscing elit, sed do tempor incididunt ut labore et dolore magna aliqua.",
-    slug: "/services/renovations/",
+    slug: "/renovations/",
     image: "../images/new-homes.jpg",
   },
   {
     heading: "Outdoors",
     copy:
       "Lorem ipsum dolor sit amet, consectetur a ut dipiscing elit, sed do eiusmod incididunt an labore et dolore magna.",
-    slug: "/services/outdoors/",
+    slug: "/renovations/#outdoor-living-areas",
     image: "../images/new-homes.jpg",
   },
 ];
@@ -67,17 +67,19 @@ function Services({ imageData }) {
     <ul className="grid w-full gap-12 px-4 mx-auto transform -translate-y-12 sm:px-6 lg:px-8 lg:grid-cols-3 lg:-translate-y-1/3">
       {services.map((service) => (
         <li key={service.slug}>
-          <div className="relative h-0 aspect-w-4 aspect-h-3">
-            <div className="absolute inset-0 flex">
-              <GatsbyImage
-                image={imageData}
-                alt=""
-                className="flex-1 shadow-lg"
-              />
+          <Link aria-hidden tabIndex={-1} to={service.slug} className="block">
+            <div className="relative h-0 aspect-w-4 aspect-h-3">
+              <div className="absolute inset-0 flex">
+                <GatsbyImage
+                  image={imageData}
+                  alt=""
+                  className="flex-1 block shadow-lg"
+                />
+              </div>
             </div>
-          </div>
-          <Link to={service.slug}>
-            <h2 className="flex items-center mt-5 space-x-2 text-2xl font-bold uppercase text-brand-blue">
+          </Link>
+          <Link to={service.slug} className="inline-block mt-5">
+            <h2 className="flex items-center space-x-2 text-2xl font-bold uppercase text-brand-blue">
               <span>{service.heading} </span>
               <HiArrowRight aria-hidden className="text-lg" />
             </h2>
@@ -268,7 +270,7 @@ const articles = [
     date: "April 15th, 2020",
   },
   {
-    heading: "Minalism Interiors",
+    heading: "Minimalist Interiors",
     copy:
       "Lorem ipsum dolor sit amet, consectetur a ut dipiscing elit, sed do eiusmod incididunt an labore et dolore magna",
     date: "September 21 st, 2020",
