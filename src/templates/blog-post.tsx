@@ -1,14 +1,13 @@
 import React from "react";
 import { graphql, Link } from "gatsby";
-import BlockContent from "@sanity/block-content-to-react";
 import GatsbyImage from "gatsby-image";
 import { GatsbyImage as NewImage, getImage } from "gatsby-plugin-image";
-import { HiArrowLeft, HiArrowRight } from "react-icons/hi";
+import { useLocation } from "@reach/router";
 import SanityBlockContent from "@sanity/block-content-to-react";
+import { HiArrowLeft, HiArrowRight } from "react-icons/hi";
 
 import { Layout, SEO, BGImageRight, ContactSection } from "../components";
 import bgLeft from "../images/bg-left.svg";
-import { useLocation } from "@reach/router";
 
 function PostTemplate({ data, pageContext }) {
   const whoAreWe = getImage(data.whoAreWe);
@@ -41,7 +40,7 @@ function BlogPost({ post, pageContext }) {
     >
       <h1 className="border-white heading-2">{post.title}</h1>
       <div className="mt-12 prose text-white">
-        <BlockContent blocks={post._rawBody} />
+        <SanityBlockContent blocks={post._rawBody} />
       </div>
       <h2 className="text-xl font-bold text-brand-teal">{post.author.name}</h2>
       <div className="font-medium text-brand-teal">
