@@ -1,14 +1,11 @@
 import * as React from "react";
-import { graphql, Link } from "gatsby";
+import { graphql } from "gatsby";
 import { GatsbyImage as NewImage, getImage } from "gatsby-plugin-image";
-import GatsbyImage, { FluidObject } from "gatsby-image";
+import { FluidObject } from "gatsby-image";
 import { matchSorter } from "match-sorter";
-import SanityBlockContent from "@sanity/block-content-to-react";
-import { nanoid } from "nanoid";
 import { HiArrowLeft, HiArrowRight } from "react-icons/hi";
 
-import { Layout, SEO, ContactSection, BGImageLeft } from "../components";
-import { useLocation } from "@reach/router";
+import { Layout, SEO, BGImageLeft, Post, ContactSection } from "../components";
 
 function LatestNewsPage({ data }) {
   const newHomes = getImage(data.newHomes);
@@ -107,8 +104,6 @@ function LatestBlogs({ nodes }: LatestBlogsProps) {
     keys: ["title", "categories"],
   });
 
-  const { origin } = useLocation();
-
   return (
     <article className="text-white bg-brand-blue">
       <BGImageLeft>
@@ -145,55 +140,7 @@ function LatestBlogs({ nodes }: LatestBlogsProps) {
             {filteredPosts
               .slice(index * INCREMENTOR, index * INCREMENTOR + INCREMENTOR)
               .map((post) => (
-                <li key={nanoid()}>
-                  <Link
-                    aria-hidden
-                    tabIndex={-1}
-                    to={`/posts/${post.slug.current}`}
-                    className="block"
-                  >
-                    <div className="relative h-0 aspect-w-4 aspect-h-3">
-                      <div className="absolute inset-0 flex">
-                        <GatsbyImage
-                          fluid={post.mainImage.asset.fluid}
-                          alt=""
-                          className="flex-1 shadow-lg"
-                        />
-                      </div>
-                    </div>
-                  </Link>
-                  <Link to={`/posts/${post.slug.current}`} className="block">
-                    <h3 className="flex items-start mt-5 space-x-2 text-2xl font-bold uppercase text-brand-teal">
-                      <span>{post.title}</span>
-                      <span className="flex items-center">
-                        &#8203;
-                        <HiArrowRight aria-hidden className="text-lg" />
-                      </span>
-                    </h3>
-                  </Link>
-                  <div className="font-medium prose text-white clamp-3">
-                    <SanityBlockContent blocks={post._rawBody.slice(0, 1)} />
-                  </div>
-                  <div className="mt-1 font-medium text-brand-teal">
-                    <time dateTime={post._publishedAt}>{post.publishedAt}</time>
-                    <span className="mx-3">|</span>
-                    <button
-                      onClick={() => {
-                        if (navigator?.share) {
-                          navigator.share({
-                            url: `${origin}/posts/${post.slug.current}/`,
-                          });
-                        } else if (typeof window !== "undefined") {
-                          window.open(
-                            `https://www.facebook.com/sharer/sharer.php?u=${origin}/posts/${post.slug.current}/`
-                          );
-                        } else return;
-                      }}
-                    >
-                      Share
-                    </button>
-                  </div>
-                </li>
+                <Post key={post.id} post={post} />
               ))}
           </ul>
           <div className="flex items-center justify-center mt-20 space-x-2">

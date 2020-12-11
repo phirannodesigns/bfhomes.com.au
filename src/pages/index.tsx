@@ -10,6 +10,7 @@ import {
   BGImageRight,
   BGImageLeft,
   ContactSection,
+  Post,
 } from "../components";
 
 function IndexPage({ data }) {
@@ -26,7 +27,7 @@ function IndexPage({ data }) {
         <WhoAreWe imageData={whoAreWe} />
       </BGImageRight>
       <Feedback />
-      <LatestNews imageData={newHomes} />
+      <LatestNews imageData={newHomes} posts={data.allSanityPost.nodes} />
       <ContactSection />
     </Layout>
   );
@@ -277,7 +278,7 @@ const articles = [
   },
 ];
 
-function LatestNews({ imageData }) {
+function LatestNews({ imageData, posts }) {
   return (
     <article className="text-white bg-brand-blue">
       <BGImageLeft>
@@ -287,23 +288,8 @@ function LatestNews({ imageData }) {
               Check Out Our Latest News
             </h2>
             <ul className="grid gap-10 mt-10 lg:grid-cols-3">
-              {articles.map((article) => (
-                <li key={article.date}>
-                  <GatsbyImage image={imageData} alt="" className="shadow-lg" />
-                  <h3 className="flex items-center mt-5 space-x-2 text-2xl font-bold uppercase text-brand-teal">
-                    <span>{article.heading}</span>
-                    <HiArrowRight aria-hidden className="text-lg" />
-                  </h3>
-                  <div className="font-medium prose text-white">
-                    <p className="clamp-3">{article.copy}</p>
-                  </div>
-                  <div className="mt-1 font-medium text-brand-teal">
-                    <time>{article.date}</time>
-                    <span className="mx-3">|</span>
-                    {/* // TODO: Make this link work when articles have URL */}
-                    <a href="#">Share</a>
-                  </div>
-                </li>
+              {posts.map((post) => (
+                <Post post={post} />
               ))}
             </ul>
           </div>
@@ -315,6 +301,30 @@ function LatestNews({ imageData }) {
 
 export const query = graphql`
   query {
+    allSanityPost(sort: { order: DESC, fields: publishedAt }, limit: 3) {
+      nodes {
+        _publishedAt: publishedAt
+        _rawBody
+        categories {
+          title
+          id
+        }
+        id
+        imageAltText
+        mainImage {
+          asset {
+            fluid(maxWidth: 450) {
+              ...GatsbySanityImageFluid
+            }
+          }
+        }
+        publishedAt(formatString: "MMMM DD, YYYY")
+        slug {
+          current
+        }
+        title
+      }
+    }
     newHomes: file(relativePath: { eq: "new-homes.jpg" }) {
       childImageSharp {
         gatsbyImageData(layout: FLUID, maxWidth: 1920, maxHeight: 1080)
