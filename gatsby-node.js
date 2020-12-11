@@ -32,7 +32,7 @@ exports.createPages = async ({ graphql, actions }) => {
         ? posts[0].slug.current
         : posts[index + 1].slug.current;
     createPage({
-      path: `/blogs/${slug}`,
+      path: `/posts/${slug}`,
       component: path.resolve(`./src/templates/blog-post.tsx`),
       context: {
         slug,
