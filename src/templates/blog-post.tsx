@@ -4,6 +4,7 @@ import GatsbyImage from "gatsby-image";
 import { GatsbyImage as NewImage, getImage } from "gatsby-plugin-image";
 import { useLocation } from "@reach/router";
 import SanityBlockContent from "@sanity/block-content-to-react";
+import { matchSorter } from "match-sorter";
 import { HiArrowLeft, HiArrowRight } from "react-icons/hi";
 
 import { Layout, SEO, BGImageRight, ContactSection } from "../components";
@@ -17,7 +18,7 @@ function PostTemplate({ data, pageContext }) {
       <Hero imageData={data.sanityPost.mainImage?.asset?.fluid} />
       <div className="relative grid w-full grid-cols-1 px-0 mx-auto lg:grid-cols-3">
         <BlogPost post={data.sanityPost} pageContext={pageContext} />
-        <RelatedPosts post={data.sanityPost} />
+        <RelatedPosts post={data.sanityPost} posts={data.allSanityPost.nodes} />
       </div>
       <BGImageRight>
         <WhoAreWe imageData={whoAreWe} />
@@ -128,27 +129,37 @@ function Post({ post }) {
   );
 }
 
-function RelatedPosts({ post }) {
-  const posts = [{ ...post }];
+function RelatedPosts({ post, posts }) {
+  const postsMinusCurrent = posts.filter(
+    (p) => p.slug.current !== post.slug.current
+  );
+
+  const relatedPosts = matchSorter(
+    postsMinusCurrent,
+    post.categories[0].title,
+    { keys: [(p) => p.categories.map((c) => c.title)] }
+  );
+
   return (
     <div className="hidden px-12 py-24 bg-white lg:px-6 lg:block lg:col-span-1">
-      <div className="sticky space-y-12">
+      <div className="space-y-12">
         <div>
           <h2 className="heading-2 text-brand-blue border-brand-blue">
             Other related posts
           </h2>
-          {posts.concat(posts).map((p, i) => (
+          {relatedPosts.slice(0, 2).map((p, i) => (
             <Post key={i} post={p} />
           ))}
         </div>
-        <div>
+        {/* // TODO: We have no way to rank 'Top Posts' so have removed them for now */}
+        {/* <div>
           <h2 className="heading-2 text-brand-blue border-brand-blue">
             Top posts
           </h2>
-          {posts.concat(posts).map((p, i) => (
+          {posts.slice(0, 2).map((p, i) => (
             <Post key={i} post={p} />
           ))}
-        </div>
+        </div> */}
       </div>
     </div>
   );
@@ -157,10 +168,8 @@ function RelatedPosts({ post }) {
 function WhoAreWe({ imageData }) {
   return (
     <article className="relative text-white bg-gray-900">
-      <div className="sticky top-0">
-        <div className="absolute inset-0 flex">
-          <NewImage image={imageData} alt="" className="flex-1" />
-        </div>
+      <div className="absolute inset-0 flex">
+        <NewImage image={imageData} alt="" className="flex-1" />
       </div>
       <div className="relative z-10 w-full max-w-screen-xl px-4 py-40 mx-auto sm:px-6 lg:px-8">
         <h2 className="border-white heading-2">Who Are We?</h2>
@@ -181,17 +190,40 @@ function WhoAreWe({ imageData }) {
 
 export const query = graphql`
   query($slug: String!) {
+    allSanityPost(sort: { order: DESC, fields: publishedAt }) {
+      nodes {
+        _publishedAt: publishedAt
+        _rawBody
+        categories {
+          title
+          id
+        }
+        id
+        imageAltText
+        mainImage {
+          asset {
+            fluid(maxWidth: 450) {
+              ...GatsbySanityImageFluid
+            }
+          }
+        }
+        publishedAt(formatString: "MMMM DD, YYYY")
+        slug {
+          current
+        }
+        title
+      }
+    }
     sanityPost(slug: { current: { eq: $slug } }) {
       _rawBody(resolveReferences: { maxDepth: 50 })
-      slug {
-        current
-      }
-      title
       author {
         name
       }
+      categories {
+        title
+        id
+      }
       id
-      publishedAt(formatString: "MMMM DD, YYYY")
       imageAltText
       mainImage {
         asset {
@@ -200,6 +232,11 @@ export const query = graphql`
           }
         }
       }
+      publishedAt(formatString: "MMMM DD, YYYY")
+      slug {
+        current
+      }
+      title
     }
     newHomes: file(relativePath: { eq: "new-homes.jpg" }) {
       childImageSharp {
