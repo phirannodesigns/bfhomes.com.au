@@ -50,21 +50,9 @@ interface LatestBlogsProps {
 
 function LatestBlogs({ nodes }: LatestBlogsProps) {
   // Pad out posts to test pagination
-  const posts = React.useMemo(
-    () =>
-      nodes
-        .concat(nodes)
-        .concat(nodes)
-        .concat(nodes)
-        .concat(nodes)
-        .concat(nodes)
-        .concat(nodes)
-        .concat(nodes)
-        .concat(nodes)
-        .concat(nodes)
-        .map((n, i) => ({ ...n, index: i })),
-    [nodes]
-  );
+  const posts = React.useMemo(() => nodes.map((n, i) => ({ ...n, index: i })), [
+    nodes,
+  ]);
 
   // State for pagination
   const [index, setIndex] = React.useState(0);
