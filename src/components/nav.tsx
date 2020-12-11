@@ -13,8 +13,8 @@ function Nav() {
   const { setIsOpen } = useMenuContext();
   return (
     <nav className="sticky top-0 z-20 font-medium bg-brand-blue">
-      <div className="flex items-center w-full max-w-screen-xl px-4 py-5 mx-auto space-x-6 lg:items-stretch sm:px-6 lg:px-8">
-        <Link to="/">
+      <div className="flex items-center w-full max-w-screen-xl px-4 py-6 mx-auto space-x-6 lg:items-stretch sm:px-6 lg:px-8">
+        <Link to="/" className="block">
           <span className="sr-only">{config.title}</span>
           <SiteLogo className="h-16 lg:h-24" />
         </Link>
@@ -103,58 +103,20 @@ function SubMenu({ node }) {
                 className="absolute left-0 w-56 mt-2 origin-top-left bg-white divide-y divide-gray-100 shadow-lg"
               >
                 <div className="py-1">
-                  {node.submenu.map((navItem) =>
-                    navItem.submenu ? (
-                      <Menu key={navItem.label}>
-                        <Menu.Button className="inline-flex items-start justify-between w-full px-4 py-2 space-x-2 text-sm font-medium tracking-wider text-left uppercase transition duration-150 ease-in-out text-brand-blue hover:bg-gray-50 focus:bg-gray-50">
-                          <span>{navItem.label}</span>
-                          <span className="inline-flex items-center transform translate-x-1">
-                            <span>&#8203;</span>
-                            <HiChevronDown className="w-5 h-5 transition-transform transform" />
-                          </span>
-                        </Menu.Button>
-                        <Transition
-                          show={open}
-                          enter="transition ease-out duration-100"
-                          enterFrom="transform opacity-0 scale-95"
-                          enterTo="transform opacity-100 scale-100"
-                          leave="transition ease-in duration-75"
-                          leaveFrom="transform opacity-100 scale-100"
-                          leaveTo="transform opacity-0 scale-95"
+                  {node.submenu.map((navItem) => (
+                    <Menu.Item key={navItem.label}>
+                      {({ active }) => (
+                        <Link
+                          to={navItem.slug}
+                          className={`${
+                            active ? "bg-gray-50" : "bg-white"
+                          } flex justify-between text-brand-blue w-full px-4 py-2 text-left`}
                         >
-                          <Menu.Items>
-                            {navItem.submenu.map((n) => (
-                              <Menu.Item key={n.label}>
-                                {({ active }) => (
-                                  <Link
-                                    to={n.slug}
-                                    className={`${
-                                      active ? "bg-gray-50" : "bg-white"
-                                    } flex justify-between text-brand-blue w-full px-4 py-2 text-left`}
-                                  >
-                                    {n.label}
-                                  </Link>
-                                )}
-                              </Menu.Item>
-                            ))}
-                          </Menu.Items>
-                        </Transition>
-                      </Menu>
-                    ) : (
-                      <Menu.Item key={navItem.label}>
-                        {({ active }) => (
-                          <Link
-                            to={navItem.slug}
-                            className={`${
-                              active ? "bg-gray-50" : "bg-white"
-                            } flex justify-between text-brand-blue w-full px-4 py-2 text-left`}
-                          >
-                            {navItem.label}
-                          </Link>
-                        )}
-                      </Menu.Item>
-                    )
-                  )}
+                          {navItem.label}
+                        </Link>
+                      )}
+                    </Menu.Item>
+                  ))}
                 </div>
               </Menu.Items>
             </Transition>
