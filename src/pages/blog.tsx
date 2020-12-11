@@ -150,6 +150,7 @@ function LatestBlogs({ nodes }: LatestBlogsProps) {
                     aria-hidden
                     tabIndex={-1}
                     to={`/posts/${post.slug.current}`}
+                    className="block"
                   >
                     <div className="relative h-0 aspect-w-4 aspect-h-3">
                       <div className="absolute inset-0 flex">
@@ -240,8 +241,8 @@ function LatestBlogs({ nodes }: LatestBlogsProps) {
   );
 }
 
-export const graphqlQuery = graphql`
-  query MyQuery {
+export const query = graphql`
+  {
     allSanityPost(sort: { order: DESC, fields: publishedAt }) {
       nodes {
         _publishedAt: publishedAt
