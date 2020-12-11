@@ -6,7 +6,6 @@ import { Layout, SEO, BGImageRight, ContactSection } from "../components";
 
 function HomesPage({ data }) {
   const newHomes = getImage(data.newHomes);
-  const whoAreWe = getImage(data.whoAreWe);
   return (
     <Layout>
       <SEO title="Homes" />
