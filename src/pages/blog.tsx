@@ -146,7 +146,11 @@ function LatestBlogs({ nodes }: LatestBlogsProps) {
               .slice(index * INCREMENTOR, index * INCREMENTOR + INCREMENTOR)
               .map((post) => (
                 <li key={nanoid()}>
-                  <Link to={`/posts/${post.slug.current}`}>
+                  <Link
+                    aria-hidden
+                    tabIndex={-1}
+                    to={`/posts/${post.slug.current}`}
+                  >
                     <div className="relative h-0 aspect-w-4 aspect-h-3">
                       <div className="absolute inset-0 flex">
                         <GatsbyImage
@@ -157,10 +161,10 @@ function LatestBlogs({ nodes }: LatestBlogsProps) {
                       </div>
                     </div>
                   </Link>
-                  <h3 className="flex items-center mt-5 space-x-2 text-2xl font-bold uppercase text-brand-teal">
-                    <span>{post.title}</span>
+                  <Link to={`/posts/${post.slug.current}`} className="block">
                     <HiArrowRight aria-hidden className="text-lg" />
                   </h3>
+                  </Link>
                   <div className="font-medium prose text-white clamp-3">
                     <SanityBlockContent blocks={post._rawBody.slice(0, 1)} />
                   </div>
