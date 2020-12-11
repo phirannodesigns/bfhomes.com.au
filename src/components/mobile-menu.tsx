@@ -48,29 +48,36 @@ function MobileMenu() {
               </div>
               <div className="flex-1 h-0 pt-5 pb-4 overflow-y-auto">
                 <div className="flex items-center flex-shrink-0 px-4">
-                  <SiteLogo className="w-auto h-16" />
+                  <SiteLogo className="h-16" />
                 </div>
-                <nav className="px-2 mt-5 space-y-1">
-                  {config.siteNavigation.map((node) =>
-                    node.submenu ? (
-                      <SubMenu key={node.label} node={node} />
-                    ) : (
-                      <Link
-                        key={node.slug}
-                        to={node.slug}
-                        onClick={handleClose}
-                        className={`
+                <nav className="mt-5">
+                  <ul className="px-2 space-y-1">
+                    {config.siteNavigation.map((node) =>
+                      node.submenu ? (
+                        <SubMenu
+                          key={node.label}
+                          node={node}
+                          handleClose={handleClose}
+                        />
+                      ) : (
+                        <li key={node.slug}>
+                          <Link
+                            to={node.slug}
+                            onClick={handleClose}
+                            className={`
                         ${
                           pathname === node.slug
                             ? " bg-gray-800 text-white"
                             : "text-gray-300 hover:text-white"
                         }
                         flex items-center px-2 py-2 text-base font-medium uppercase rounded-md hover:text-white hover:bg-white hover:bg-opacity-10`}
-                      >
-                        {node.label}
-                      </Link>
-                    )
-                  )}
+                          >
+                            {node.label}
+                          </Link>
+                        </li>
+                      )
+                    )}
+                  </ul>
                 </nav>
               </div>
               <div className="flex flex-shrink-0 p-4 bg-gray-700">
@@ -103,10 +110,10 @@ function MobileMenu() {
 
 const transition = { min: 0, max: 100, bounceDamping: 9 };
 
-function SubMenu({ node }) {
+function SubMenu({ node, handleClose }) {
   const { pathname } = useLocation();
   return (
-    <Menu as="div">
+    <Menu as="li">
       {({ open }) => (
         <>
           <Menu.Button className="flex items-center justify-between w-full px-2 py-2 text-base font-medium text-gray-300 uppercase rounded-md hover:text-white hover:bg-white hover:bg-opacity-10">
@@ -141,78 +148,29 @@ function SubMenu({ node }) {
                 transition={transition}
               >
                 <Menu.Items static as="ul" className="rounded-md">
-                  {node.submenu.map((navItem) =>
-                    navItem.submenu ? (
-                      <Menu.Item key={navItem.label} as="li">
-                        <Menu as="div">
-                          {({ open }) => (
-                            <>
-                              <Menu.Button className="flex items-center justify-between w-full px-2 py-2 text-base font-medium text-gray-300 uppercase rounded-md hover:text-white hover:bg-white hover:bg-opacity-10">
-                                <span>{navItem.label}</span>
-                                <span className="inline-flex items-center transform translate-x-1">
-                                  <span>&#8203;</span>
-                                  <HiChevronDown className="w-5 h-5 transition-transform transform" />
-                                </span>
-                              </Menu.Button>
-                              <AnimatePresence>
-                                {open && (
-                                  <Menu.Items
-                                    static
-                                    as="ul"
-                                    className="rounded-md"
-                                  >
-                                    {navItem.submenu.map((n) => (
-                                      <Menu.Item key={navItem.label} as="li">
-                                        {({ active }) => (
-                                          <Link
-                                            to={n.slug}
-                                            className={`${
-                                              active
-                                                ? "bg-opacity-10"
-                                                : "bg-opacity-0"
-                                            }
-                                            ${
-                                              pathname === node.slug
-                                                ? " bg-gray-800 text-white"
-                                                : "text-gray-300 hover:text-white"
-                                            }
-                                            flex items-center justify-between w-full px-2 py-2 text-base font-medium text-gray-300 rounded-md hover:text-white hover:bg-white hover:bg-opacity-10`}
-                                          >
-                                            {n.label}
-                                          </Link>
-                                        )}
-                                      </Menu.Item>
-                                    ))}
-                                  </Menu.Items>
-                                )}
-                              </AnimatePresence>
-                            </>
-                          )}
-                        </Menu>
-                      </Menu.Item>
-                    ) : (
-                      <Menu.Item key={navItem.id}>
-                        {({ active }) => (
-                          <Link
-                            to={navItem.slug}
-                            className={`${
-                              active
-                                ? "bg-opacity-10 text-white"
-                                : "bg-opacity-0 text-gray-300"
-                            }
-                            ${
-                              pathname === node.slug
-                                ? " bg-gray-800 text-white"
-                                : "text-gray-300 hover:text-white"
-                            }
-                            flex items-center justify-between w-full px-2 py-2 text-base font-medium text-gray-300 rounded-md hover:text-white hover:bg-white hover:bg-opacity-10`}
-                          >
-                            {navItem.label}
-                          </Link>
-                        )}
-                      </Menu.Item>
-                    )
-                  )}
+                  {node.submenu.map((navItem) => (
+                    <Menu.Item key={navItem.id} as="li">
+                      {({ active }) => (
+                        <Link
+                          to={navItem.slug}
+                          onClick={handleClose}
+                          className={`${
+                            active
+                              ? "bg-opacity-10 text-white"
+                              : "bg-opacity-0 text-gray-300"
+                          }
+                        ${
+                          pathname === node.slug
+                            ? " bg-gray-800 text-white"
+                            : "text-gray-300 hover:text-white"
+                        }
+                        flex items-center justify-between w-full px-2 py-2 text-base font-medium text-gray-300 rounded-md hover:text-white hover:bg-white hover:bg-opacity-10`}
+                        >
+                          {navItem.label}
+                        </Link>
+                      )}
+                    </Menu.Item>
+                  ))}
                 </Menu.Items>
               </motion.div>
             )}

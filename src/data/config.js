@@ -28,16 +28,20 @@ module.exports = {
       slug: '/homes/',
       submenu: [
         {
+          label: 'All Homes',
+          slug: '/homes/#homes',
+        },
+        {
           label: 'Marchment',
-          slug: '/homes/marchment/',
+          slug: '/homes/#marchment',
         },
         {
           label: 'Black Caviar',
-          slug: '/homes/black-caviar/',
+          slug: '/homes/#black-caviar',
         },
         {
           label: 'Duplex',
-          slug: '/homes/duplex/',
+          slug: '/homes/#duplex',
         },
       ],
     },
@@ -46,28 +50,32 @@ module.exports = {
       slug: '/renovations/',
       submenu: [
         {
+          label: 'All Renovations',
+          slug: '/renovations/',
+        },
+        {
           label: 'House Extensions',
-          slug: '/renovations/house-extension/',
+          slug: '/renovations/#house-extension',
         },
         {
           label: 'Bathrooms',
-          slug: '/renovations/house-extension/#bathrooms/',
+          slug: '/renovations/#bathrooms',
         },
         {
           label: 'Kitchens',
-          slug: '/renovations/house-extension/#kitchens/',
+          slug: '/renovations/#kitchens',
         },
         {
           label: 'Outdoor Living Areas',
-          slug: '/renovations/outdoor-living-areas/',
+          slug: '/renovations/#outdoor-living-areas',
         },
         {
           label: 'Decks',
-          slug: '/renovations/outdoor-living-areas/#decks/',
+          slug: '/renovations/#decks',
         },
         {
           label: 'Flyover Roofs',
-          slug: '/renovations/outdoor-living-areas/#flyover-roofs/',
+          slug: '/renovations/#flyover-roofs',
         },
       ],
     },
