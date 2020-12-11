@@ -95,9 +95,12 @@ function Post({ post }) {
         />
       </Link>
       <Link to={`/posts/${post.slug.current}`} className="block mt-5 ">
-        <h3 className="text-2xl border-none heading-2 text-brand-teal">
+        <h3 className="flex items-start space-x-2 text-2xl border-none heading-2 text-brand-teal">
           <span>{post.title}</span>
-          <HiArrowRight aria-hidden className="inline-block text-lg" />
+          <span className="flex items-center">
+            &#8203;
+            <HiArrowRight aria-hidden className="inline-block text-lg" />
+          </span>
         </h3>
       </Link>
       <div className="mt-1 font-medium prose text-brand-blue">

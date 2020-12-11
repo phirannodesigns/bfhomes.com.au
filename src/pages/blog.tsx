@@ -162,8 +162,13 @@ function LatestBlogs({ nodes }: LatestBlogsProps) {
                     </div>
                   </Link>
                   <Link to={`/posts/${post.slug.current}`} className="block">
-                    <HiArrowRight aria-hidden className="text-lg" />
-                  </h3>
+                    <h3 className="flex items-start mt-5 space-x-2 text-2xl font-bold uppercase text-brand-teal">
+                      <span>{post.title}</span>
+                      <span className="flex items-center">
+                        &#8203;
+                        <HiArrowRight aria-hidden className="text-lg" />
+                      </span>
+                    </h3>
                   </Link>
                   <div className="font-medium prose text-white clamp-3">
                     <SanityBlockContent blocks={post._rawBody.slice(0, 1)} />
