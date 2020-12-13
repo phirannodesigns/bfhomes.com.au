@@ -150,7 +150,7 @@ function HowCanWeHelp({ imageData }) {
           </ul>
           <p className="mt-8">
             <Link
-              to="/"
+              to="/contact-us/"
               className="inline-flex items-center px-6 py-4 space-x-3 font-medium leading-none tracking-wider uppercase border text-brand-teal border-brand-teal"
             >
               <span>Learn more</span>
