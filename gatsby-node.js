@@ -23,14 +23,9 @@ exports.createPages = async ({ graphql, actions }) => {
   const posts = result.data.allSanityPost.nodes;
   posts.forEach((post, index) => {
     const slug = post.slug.current;
-    const prev =
-      index === 0
-        ? posts[posts.length - 1].slug.current
-        : posts[index - 1].slug.current;
+    const prev = index === 0 ? null : posts[index - 1].slug.current;
     const next =
-      index === posts.length - 1
-        ? posts[0].slug.current
-        : posts[index + 1].slug.current;
+      index === posts.length - 1 ? null : posts[index + 1].slug.current;
     createPage({
       path: `/posts/${slug}`,
       component: path.resolve(`./src/templates/blog-post.tsx`),

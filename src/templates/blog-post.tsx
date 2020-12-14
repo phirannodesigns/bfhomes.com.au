@@ -64,20 +64,24 @@ function BlogPost({ post, pageContext }) {
         </button>
       </div>
       <div className="flex justify-between w-full mt-8">
-        <Link
-          to={`/blogs/${pageContext.prev}`}
-          className="inline-flex items-center flex-shrink-0 space-x-1 text-xl text-white border-white button"
-        >
-          <HiArrowLeft className="text-base" />
-          <span>Previous Post</span>
-        </Link>
-        <Link
-          to={`/blogs/${pageContext.next}`}
-          className="inline-flex items-center flex-shrink-0 space-x-1 text-xl text-white border-white button"
-        >
-          <span>Next Post</span>
-          <HiArrowRight className="text-base" />
-        </Link>
+        {pageContext.prev && (
+          <Link
+            to={`/posts/${pageContext.prev}`}
+            className="inline-flex items-center flex-shrink-0 space-x-1 text-xl text-white border-white button"
+          >
+            <HiArrowLeft className="text-base" />
+            <span>Previous Post</span>
+          </Link>
+        )}
+        {pageContext.next && (
+          <Link
+            to={`/posts/${pageContext.next}`}
+            className="inline-flex items-center flex-shrink-0 ml-auto space-x-1 text-xl text-white border-white button"
+          >
+            <span>Next Post</span>
+            <HiArrowRight className="text-base" />
+          </Link>
+        )}
       </div>
     </article>
   );
@@ -134,32 +138,17 @@ function RelatedPosts({ post, posts }) {
     (p) => p.slug.current !== post.slug.current
   );
 
-  const relatedPosts = matchSorter(
-    postsMinusCurrent,
-    post.categories[0].title,
-    { keys: [(p) => p.categories.map((c) => c.title)] }
-  );
-
   return (
     <div className="hidden px-12 py-24 bg-white lg:px-6 lg:block lg:col-span-1">
       <div className="space-y-12">
         <div>
           <h2 className="heading-2 text-brand-blue border-brand-blue">
-            Other related posts
+            Recent posts
           </h2>
-          {relatedPosts.slice(0, 2).map((p, i) => (
+          {postsMinusCurrent.slice(0, 4).map((p, i) => (
             <Post key={i} post={p} />
           ))}
         </div>
-        {/* // TODO: We have no way to rank 'Top Posts' so have removed them for now */}
-        {/* <div>
-          <h2 className="heading-2 text-brand-blue border-brand-blue">
-            Top posts
-          </h2>
-          {posts.slice(0, 2).map((p, i) => (
-            <Post key={i} post={p} />
-          ))}
-        </div> */}
       </div>
     </div>
   );
