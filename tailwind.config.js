@@ -30,11 +30,15 @@ module.exports = {
             'h1, h2, h3, h4, h5, h6, strong, blockquote, figure figcaption, table thead, table hr': {
               color: 'inherit',
             },
-            a: {
+            'a, ol > li::before': {
               color: theme('colors.brand.teal'),
             },
-            'ol > li::before, ul > li::before': {
-              'background-color': theme('colors.brand.teal'),
+            'ol > li::before': {
+              color: theme('colors.brand.teal'),
+              fontWeight: theme('fontWeight.semibold'),
+            },
+            'ul > li::before': {
+              backgroundColor: theme('colors.brand.teal'),
             },
           },
         },
