@@ -101,7 +101,7 @@ function LatestBlogs({ nodes }: LatestBlogsProps) {
   );
 
   const filteredPosts = matchSorter(postsFilteredByCategory, searchQuery, {
-    keys: ["title", "categories"],
+    keys: ["title", (post) => post.categories.map((c) => c.title)],
   });
 
   return (
