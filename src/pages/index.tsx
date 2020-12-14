@@ -65,7 +65,7 @@ const services = [
 
 function Services({ imageData }) {
   return (
-    <ul className="grid w-full gap-12 px-4 mx-auto transform -translate-y-12 sm:px-6 lg:px-8 lg:grid-cols-3 lg:-translate-y-1/3">
+    <ul className="grid w-full gap-12 px-4 mx-auto transform -translate-y-12 sm:px-6 lg:px-8 lg:grid-cols-3 lg:-translate-y-24">
       {services.map((service) => (
         <li key={service.slug}>
           <Link aria-hidden tabIndex={-1} to={service.slug} className="block">
