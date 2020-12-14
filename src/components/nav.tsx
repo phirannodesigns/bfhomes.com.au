@@ -110,7 +110,7 @@ function SubMenu({ node }) {
                           to={navItem.slug}
                           className={`${
                             active ? "bg-gray-50" : "bg-white"
-                          } flex justify-between text-brand-blue w-full px-4 py-2 text-left`}
+                          } relative flex justify-between w-full px-4 py-2 text-left text-brand-blue focus:z-10`}
                         >
                           {navItem.label}
                         </Link>
