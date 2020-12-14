@@ -55,27 +55,27 @@ module.exports = {
         },
         {
           label: 'House Extensions',
-          slug: '/renovations/#house-extension',
+          slug: '/renovations/house-extensions',
         },
         {
           label: 'Bathrooms',
-          slug: '/renovations/#bathrooms',
+          slug: '/renovations/house-extensions/#bathrooms',
         },
         {
           label: 'Kitchens',
-          slug: '/renovations/#kitchens',
+          slug: '/renovations/house-extensions/#kitchens',
         },
         {
           label: 'Outdoor Living Areas',
-          slug: '/renovations/#outdoor-living-areas',
+          slug: '/renovations/outdoor-living-areas/',
         },
         {
           label: 'Decks',
-          slug: '/renovations/#decks',
+          slug: '/renovations/outdoor-living-areas/#decks',
         },
         {
           label: 'Flyover Roofs',
-          slug: '/renovations/#flyover-roofs',
+          slug: '/renovations/outdoor-living-areas/#flyover-roofs',
         },
       ],
     },
