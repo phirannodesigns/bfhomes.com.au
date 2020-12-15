@@ -19,7 +19,7 @@ function IndexPage({ data }) {
   const whoAreWe = getImage(data.whoAreWe);
   return (
     <Layout>
-      <SEO title="Home" />
+      <SEO title="Port Macquarie Home Builders - Renovations - Outdoor Living" />
       <Hero imageData={newHomes} />
       <Services imageData={newHomes} />
       <BGImageRight>
@@ -256,29 +256,7 @@ function Feedback() {
   );
 }
 
-// TODO: Source this data from CMS
-const articles = [
-  {
-    heading: "Buying Land Packages",
-    copy:
-      "Lorem ipsum dolor sit amet, consectetur a ut dipiscing elit, sed do eiusmod tempor incididunt ut labore et",
-    date: "January 3rd, 2020",
-  },
-  {
-    heading: "Build New Vs Renovate",
-    copy:
-      "Lorem ipsum dolor sit amet, consectetur a ut dipiscing elit, sed do tempor incididunt ut labore et dolore magna aliqua",
-    date: "April 15th, 2020",
-  },
-  {
-    heading: "Minimalist Interiors",
-    copy:
-      "Lorem ipsum dolor sit amet, consectetur a ut dipiscing elit, sed do eiusmod incididunt an labore et dolore magna",
-    date: "September 21 st, 2020",
-  },
-];
-
-function LatestNews({ imageData, posts }) {
+function LatestNews({ posts }) {
   return (
     <article className="text-white bg-brand-blue">
       <BGImageLeft>
