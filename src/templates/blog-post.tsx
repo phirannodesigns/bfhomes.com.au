@@ -4,7 +4,6 @@ import GatsbyImage from "gatsby-image";
 import { GatsbyImage as NewImage, getImage } from "gatsby-plugin-image";
 import { useLocation } from "@reach/router";
 import SanityBlockContent from "@sanity/block-content-to-react";
-import { matchSorter } from "match-sorter";
 import { HiArrowLeft, HiArrowRight } from "react-icons/hi";
 
 import { Layout, SEO, BGImageRight, ContactSection } from "../components";

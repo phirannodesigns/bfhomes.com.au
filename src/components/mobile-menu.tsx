@@ -3,7 +3,7 @@ import { useLocation } from "@reach/router";
 import { Link } from "gatsby";
 import { Menu } from "@headlessui/react";
 import { AnimatePresence, motion } from "framer-motion";
-import { HiChevronDown, HiPhone, HiX } from "react-icons/hi";
+import { HiPhone, HiX } from "react-icons/hi";
 
 import config from "../data/config";
 import { SiteLogo } from "./vectors/logos";

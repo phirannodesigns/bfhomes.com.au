@@ -1,14 +1,15 @@
 import * as React from "react";
+import { ErrorOption, RegisterOptions } from "react-hook-form";
 
 import { Error } from "./error";
 
 interface TextareaProps {
   className?: string;
-  errors: object;
+  errors: ErrorOption;
   label: string;
   name: string;
   placeholder?: string;
-  register: any;
+  register: RegisterOptions;
   required?: boolean;
   rows?: number;
 }

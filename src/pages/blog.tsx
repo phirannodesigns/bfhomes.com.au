@@ -137,7 +137,7 @@ function LatestBlogs({ nodes }: LatestBlogsProps) {
             </div>
           </div>
           <ul className="grid mt-10 gap-x-10 gap-y-16 lg:grid-cols-3">
-            {filteredPosts
+            {(searchQuery === "" ? postsFilteredByCategory : filteredPosts)
               .slice(index * INCREMENTOR, index * INCREMENTOR + INCREMENTOR)
               .map((post) => (
                 <Post key={post.id} post={post} />
