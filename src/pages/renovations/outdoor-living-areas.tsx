@@ -1,6 +1,6 @@
-import * as React from "react";
-import { graphql } from "gatsby";
-import { GatsbyImage, getImage } from "gatsby-plugin-image";
+import * as React from 'react';
+import { graphql } from 'gatsby';
+import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 
 import {
   Layout,
@@ -8,7 +8,7 @@ import {
   HeadingWithCopy,
   Service,
   ContactSection,
-} from "../../components";
+} from '../../components';
 
 function RenovationsPage({ data }) {
   const newHomes = getImage(data.newHomes);
@@ -33,37 +33,40 @@ function OutdoorLivingArea() {
     <HeadingWithCopy
       id="outdoor-living-areas"
       heading="Outdoor Living Areas"
-      copy="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt."
+      copy=""
+      copyArray={[
+        'Whether you’re looking to accommodate decks, built-in barbecues, flyover roofs, pools, landscaping, or alfresco areas – we can help you achieve your personalised vision for outdoor living and entertaining.',
+        'With over 30 years of experience, Bruen Family Homes have designed and built dozens of outdoor living areas that are economical and comfortable. We design around your needs for entertaining guests, taking advantage of NSW North Coast’s weather, or for maximum privacy.',
+        'No matter your vision, we sit down with you to see how we can achieve your goals.',
+        'See some of our previous work or talk to us today about how we can add more to your home with outdoor living areas',
+      ]}
     />
   );
 }
 
 const outdoorLivingAreas = [
   {
-    id: "decks",
-    title: "Decks",
+    id: 'decks',
+    title: 'Decks',
     copy: `<p>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-      incididunt ut abore et dolore magna aliqua. Ut enim ad minim veniam, quis
-      nostrud exercitation ullamco aboris nisi ut aliquip ex ea commodo consequat.
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-      incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-      nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+    Always a winner no matter the time of year, a polished and roomy deck is a great
+    compliment to any house. We can build from scratch or renovate your existing
+    deck in a variety of materials and timber finishes. We help you design a deck that
+    suits your lifestyle adding space for barbeques, furniture, and more.    
     </p>`,
-    slug: "/renovations/outdoor-living-areas/#decks",
+    slug: '/renovations/outdoor-living-areas/#decks',
   },
   {
-    id: "flyover-roofs",
-    title: "Flyover Roofs",
+    id: 'flyover-roofs',
+    title: 'Flyover Roofs',
     copy: `<p>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-      incididunt ut abore et dolore magna aliqua. Ut enim ad minim veniam, quis
-      nostrud exercitation ullamco aboris nisi ut aliquip ex ea commodo consequat.
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-      incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-      nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+    Also known as patio roofs, a flyover roof is a functional and economical way to
+    extend your living area. With higher ceilings and greater ventilation, a flyover roof
+    is a great and easy way to make the outdoors a part of the everyday. We can
+    design and build a free-standing or attached roof depending on your wants and
+    needs.
     </p>`,
-    slug: "/renovations/outdoor-living-areas/#flyover-roofs",
+    slug: '/renovations/outdoor-living-areas/#flyover-roofs',
   },
 ];
 

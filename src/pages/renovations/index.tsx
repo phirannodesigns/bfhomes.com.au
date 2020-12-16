@@ -1,9 +1,9 @@
-import * as React from "react";
-import { graphql, Link } from "gatsby";
-import { GatsbyImage, getImage } from "gatsby-plugin-image";
+import * as React from 'react';
+import { graphql, Link } from 'gatsby';
+import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 
-import { Layout, SEO, ContactSection } from "../../components";
-import { HiArrowRight } from "react-icons/hi";
+import { Layout, SEO, ContactSection } from '../../components';
+import { HiArrowRight } from 'react-icons/hi';
 
 function RenovationsPage({ data }) {
   const newHomes = getImage(data.newHomes);
@@ -25,7 +25,7 @@ function Hero({ imageData }) {
   return <GatsbyImage image={imageData} alt="" />;
 }
 
-function Service({ title, services, imageData }) {
+function Service({ title, services, imageData, copy }) {
   return (
     <article>
       <div className="text-white bg-brand-blue">
@@ -33,18 +33,9 @@ function Service({ title, services, imageData }) {
           <div>
             <h2 className="border-white heading-2">{title}</h2>
             <div className="mt-5 prose text-white">
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit
-                amet, consectetur adipiscing elit, sed do eiusmod tempor
-                incididunt ut labore et dolore magna et aliqua. Ut enim ad minim
-                veniam, quis nostrud exercitation ullamco laboris nisi ut
-                aliquip ex ea commodo consequat.
-              </p>
+              <p>{copy}</p>
             </div>
-            <ul className="grid gap-3 mt-8 text-xl font-medium max-w-prose">
+            {/* <ul className="grid gap-3 mt-8 text-xl font-medium max-w-prose">
               {[
                 {
                   label: "Lorem ipsum",
@@ -67,7 +58,7 @@ function Service({ title, services, imageData }) {
                   <span>{service.label}</span>
                 </li>
               ))}
-            </ul>
+            </ul> */}
           </div>
           <div className="relative">
             <div className="absolute inset-0">
@@ -112,24 +103,25 @@ function Service({ title, services, imageData }) {
 
 const houseExtensions = [
   {
-    heading: "Bathrooms",
+    heading: 'Bathrooms',
     copy:
-      "Lorem ipsum dolor sit amet, consectetur a ut dipiscing elit, sed do eiusmod tempor incididunt ut labore et.",
-    slug: "/renovations/house-extensions/#bathrooms",
-    image: "../images/new-homes.jpg",
+      'If your bathroom is old, cramped, or frequently occupied, extending your home with a new bathroom is a popular choice to gain more functionality. We can extend your existing bathroom or build new bathrooms and/or ensuites that are close to your current floorplan. Ask us how we can extend your bathroom today.',
+    slug: '/renovations/house-extensions/#bathrooms',
+    image: '../images/new-homes.jpg',
   },
   {
-    heading: "Kitchens",
+    heading: 'Kitchens',
     copy:
-      "Lorem ipsum dolor sit amet, consectetur a ut dipiscing elit, sed do tempor incididunt ut labore et dolore magna aliqua.",
-    slug: "/renovations/house-extensions/#kitchens",
-    image: "../images/new-homes.jpg",
+      'Getting more from your kitchen is easy with Bruen Family Homes. We can extend your kitchen, increasing the space between appliances, benches, and sinks. We can design a new open plan living area, depending on how your home is structured. Talk to us about getting more from your kitchen with a Bruen quality extension.',
+    slug: '/renovations/house-extensions/#kitchens',
+    image: '../images/new-homes.jpg',
   },
 ];
 
 function HouseExtensions({ imageData }) {
   return (
     <Service
+      copy="House extensions give you more room to move and can be an economical and functional way to breathe more life into your home instead of looking elsewhere. Bruen Family Homes have over 30 years of designing and building house extensions by constructing using vacant land or up into a second storey. We can build all types of extensions from living areas, bathrooms, kitchens, bedrooms, and study or office areas. We perform large or small extensions, including ones that require major structural works. We consult with you to make the most from your house extension."
       title="House Extensions"
       services={houseExtensions}
       imageData={imageData}
@@ -139,24 +131,27 @@ function HouseExtensions({ imageData }) {
 
 const outdoorLivingAreas = [
   {
-    heading: "Decks",
+    heading: 'Decks',
     copy:
-      "Lorem ipsum dolor sit amet, consectetur a ut dipiscing elit, sed do eiusmod tempor incididunt ut labore et.",
-    slug: "/renovations/outdoor-living-areas/#decks",
-    image: "../images/new-homes.jpg",
+      'Always a winner no matter the time of year, a polished and roomy deck is a great compliment to any house. We can build from scratch or renovate your existing deck in a variety of materials and timber finishes. We help you design a deck that suits your lifestyle adding space for barbeques, furniture, and more.',
+    slug: '/renovations/outdoor-living-areas/#decks',
+    image: '../images/new-homes.jpg',
   },
   {
-    heading: "Flyover Roofs",
+    heading: 'Flyover Roofs',
     copy:
-      "Lorem ipsum dolor sit amet, consectetur a ut dipiscing elit, sed do tempor incididunt ut labore et dolore magna aliqua.",
-    slug: "/renovations/outdoor-living-areas/#flyover-roofs",
-    image: "../images/new-homes.jpg",
+      'Also known as patio roofs, a flyover roof is a functional and economical way to extend your living area. With higher ceilings and greater ventilation, a flyover roof is a great and easy way to make the outdoors a part of the everyday. We can design and build a free-standing or attached roof depending on your wants and needs.',
+    slug: '/renovations/outdoor-living-areas/#flyover-roofs',
+    image: '../images/new-homes.jpg',
   },
 ];
 
 function OutdoorLivingAreas({ imageData }) {
   return (
     <Service
+      copy="Whether you’re looking to accommodate decks, built-in barbecues, flyover roofs, pools, landscaping, or alfresco areas – we can help you achieve your personalised vision for outdoor living and entertaining.
+
+      With over 30 years of experience, Bruen Family Homes have designed and built dozens of outdoor living areas that are economical and comfortable. We design around your needs for entertaining guests, taking advantage of NSW North Coast’s weather, or for maximum privacy."
       title="Outdoor Living Areas"
       services={outdoorLivingAreas}
       imageData={imageData}

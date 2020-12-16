@@ -1,8 +1,8 @@
-import * as React from "react";
-import { graphql, Link } from "gatsby";
-import { GatsbyImage, getImage } from "gatsby-plugin-image";
-import { HiArrowRight } from "react-icons/hi";
-import { IoStar, IoStarOutline } from "react-icons/io5";
+import * as React from 'react';
+import { graphql, Link } from 'gatsby';
+import { GatsbyImage, getImage } from 'gatsby-plugin-image';
+import { HiArrowRight } from 'react-icons/hi';
+import { IoStar, IoStarOutline } from 'react-icons/io5';
 
 import {
   Layout,
@@ -11,7 +11,7 @@ import {
   BGImageLeft,
   ContactSection,
   Post,
-} from "../components";
+} from '../components';
 
 function IndexPage({ data }) {
   const newHomes = getImage(data.newHomes);
@@ -41,25 +41,25 @@ function Hero({ imageData }) {
 // TODO Source this data from Sanity
 const services = [
   {
-    heading: "New Homes",
+    heading: 'New Homes',
     copy:
-      "Lorem ipsum dolor sit amet, consectetur a ut dipiscing elit, sed do eiusmod tempor incididunt ut labore et.",
-    slug: "/homes/",
-    image: "../images/new-homes.jpg",
+      'Bruen Family Homes design and construct quality homes for families throughout Port Macquarie and NSW North Coast. We deliver on time, on budget, and aim for      complete satisfaction in new builds, extensions, and renovations that are practical, stylish, and liveable.',
+    slug: '/homes/',
+    image: '../images/new-homes.jpg',
   },
   {
-    heading: "Renovations",
+    heading: 'Renovations',
     copy:
-      "Lorem ipsum dolor sit amet, consectetur a ut dipiscing elit, sed do tempor incididunt ut labore et dolore magna aliqua.",
-    slug: "/renovations/",
-    image: "../images/new-homes.jpg",
+      'Bruen Family Homes are Port Macquarie’s specialists in high quality renovations, second storey additions and extensions. Whether you need substantial structural    modifications or interior renovations, your family can rely on Bruen Family Homes to get the job done on time and on budget.',
+    slug: '/renovations/',
+    image: '../images/new-homes.jpg',
   },
   {
-    heading: "Outdoors",
+    heading: 'Outdoors',
     copy:
-      "Lorem ipsum dolor sit amet, consectetur a ut dipiscing elit, sed do eiusmod incididunt an labore et dolore magna.",
-    slug: "/renovations/#outdoor-living-areas",
-    image: "../images/new-homes.jpg",
+      'Barbecues, al fresco dining, and lazy days in your backyard can be yours with outdoor living and dining areas designed and built by Bruen Family Homes. We can help you achieve your personalised vision for outdoor living and entertaining.',
+    slug: '/renovations/#outdoor-living-areas',
+    image: '../images/new-homes.jpg',
   },
 ];
 
@@ -102,41 +102,43 @@ function HowCanWeHelp({ imageData }) {
           <h2 className="border-white heading-2">How Can We Help?</h2>
           <div className="mt-5 prose text-white">
             <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit
-              amet, consectetur adipiscing elit, sed do eiusmod tempor
-              incididunt ut labore et dolore magna et aliqua. Ut enim ad minim
-              veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-              ex ea commodo consequat.
+              Bruen Family Homes are here to help you build your dream home. We
+              sit down with you to design your new home, renovation, or outdoor
+              area, giving you options that are practical, look good, are
+              comfortable, and stand the test of time. When you work with Bruen
+              Family Homes, you become part of our family. We manage the project
+              from start to finish. We’re always on hand to answer all your
+              questions, liaise with subcontractors, designers, and architects,
+              and maintain open communication so you can have a worry-free
+              build. We respond promptly to all your requests to ensure on-time
+              delivery.
             </p>
           </div>
           <ul className="grid grid-cols-2 gap-3 mt-8 text-xl font-medium max-w-prose">
             {[
               {
-                label: "Project Management",
-                colour: "text-brand-teal",
+                label: 'Project Management',
+                colour: 'text-brand-teal',
               },
               {
-                label: "Project Management",
-                colour: "text-blue-400",
+                label: 'Liasing With Contractors',
+                colour: 'text-blue-400',
               },
               {
-                label: "Tailored Contracts",
-                colour: "text-gray-400",
+                label: 'Construction',
+                colour: 'text-gray-400',
               },
               {
-                label: "Tailored Contracts",
-                colour: "text-brand-teal",
+                label: 'Quality Control',
+                colour: 'text-brand-teal',
               },
               {
-                label: "Construction",
-                colour: "text-blue-400",
+                label: 'Health & Safety',
+                colour: 'text-blue-400',
               },
               {
-                label: "Construction",
-                colour: "text-gray-400",
+                label: 'Tailored Contracts',
+                colour: 'text-gray-400',
               },
             ].map((service) => (
               <li
@@ -188,7 +190,7 @@ function WhoAreWe({ imageData }) {
             to="/about-us/"
             className="inline-flex tracking-wider items-center space-x-3 px-4 py-2.5 text-sm font-medium uppercase border text-white border-white"
           >
-            <span className="whitespace-nowrap">Find out more about us</span>
+            <span className="whitespace-nowrap">Find out more</span>
             <HiArrowRight className="text-lg" />
           </Link>
         </p>
@@ -199,21 +201,21 @@ function WhoAreWe({ imageData }) {
 
 const reviews = [
   {
-    name: "Bree Knowles",
+    name: 'Bree Knowles',
     text:
-      "Lorem ipsum dolor sit amet, consectetur a ut dipiscing elit, sed do tempor incididunt ut labore et dolore magna aliqua.",
+      'Lorem ipsum dolor sit amet, consectetur a ut dipiscing elit, sed do tempor incididunt ut labore et dolore magna aliqua.',
     rating: 4,
   },
   {
-    name: "Hannah Smith",
+    name: 'Hannah Smith',
     text:
-      "Lorem ipsum dolor sit amet, consectetur a ut dipiscing elit, sed do tempor incididunt ut labore et dolore magna aliqua.",
+      'Lorem ipsum dolor sit amet, consectetur a ut dipiscing elit, sed do tempor incididunt ut labore et dolore magna aliqua.',
     rating: 4,
   },
   {
-    name: "Jonathon Kin",
+    name: 'Jonathon Kin',
     text:
-      "Lorem ipsum dolor sit amet, consectetur a ut dipiscing elit, sed do tempor incididunt ut labore et dolore magna aliqua.",
+      'Lorem ipsum dolor sit amet, consectetur a ut dipiscing elit, sed do tempor incididunt ut labore et dolore magna aliqua.',
     rating: 4,
   },
 ];
@@ -236,12 +238,12 @@ function Feedback() {
                   <p className="mt-5 font-bold">{review.name}</p>
                   <div className="flex items-center justify-center space-x-1 text-2xl text-brand-teal">
                     {Array(review.rating)
-                      .fill("")
+                      .fill('')
                       .map((_, index) => (
                         <IoStar key={index} className="w-6 h-6" />
                       ))}
                     {Array(5 - review.rating)
-                      .fill("")
+                      .fill('')
                       .map((_, index) => (
                         <IoStarOutline key={index} className="w-6 h-6" />
                       ))}

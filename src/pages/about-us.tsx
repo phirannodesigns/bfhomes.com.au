@@ -1,8 +1,8 @@
-import * as React from "react";
-import { graphql } from "gatsby";
-import { GatsbyImage, getImage } from "gatsby-plugin-image";
+import * as React from 'react';
+import { graphql } from 'gatsby';
+import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 
-import { Layout, SEO, BGImageRight, ContactSection } from "../components";
+import { Layout, SEO, BGImageRight, ContactSection } from '../components';
 
 function AboutPage({ data }) {
   const newHomes = getImage(data.newHomes);
@@ -35,22 +35,26 @@ function AboutUs({ imageData }) {
               <h1 className="border-white heading-2">About Us</h1>
               <div className="mt-5 prose text-white">
                 <p>
-                  Lorem psum dolor sit amet, consectetur adipiscing elit, sed do
-                  eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                  enim ad minim veniam, quis nostrud exercitation ullamco
-                  laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum
-                  dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                  tempor incididunt t labore et dolore magna aliqua. Ut enim ad
-                  minim veniam, quis nostrud exercitation ullamco laboris nisi
-                  ut aliquip ex ea commodo consequat.
+                  Bruen Family Homes have been designing, building, and
+                  renovating family homes in Port Macquarie for over 30 years.
+                  Beginning as Bruen Corp Building, along with our other arm,
+                  Bruen Constructions we have earned a reputation for excellence
+                  and quality on the NSW North Coast when it comes to realising
+                  the vision of our valued clients
                 </p>
                 <p>
-                  Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                  laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum
-                  dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                  tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-                  minim veniam, quis nostrud exercitation ullamco laboris nisi
-                  ut aliquip ex ea commodo consequat.
+                  We have the knowledge and passion for building beautiful and
+                  practical homes that suit your family lifestyle and décor.
+                  Bruen Family Homes are specialists in home extensions, giving
+                  you options to extend your home outward or up into a second
+                  storey. We have a passion for outdoor living areas, giving
+                  your family entertainment options in summer, winter, and every
+                  season in-between.
+                </p>
+                <p>
+                  When you partner with us, you become part of the Bruen Family.
+                  We always strive to impress our family with quality
+                  workmanship and stylish results.
                 </p>
               </div>
             </div>
@@ -77,16 +81,24 @@ function WhyChooseUs({ imageData }) {
       </div>
       <div className="relative z-10 w-full max-w-screen-xl px-4 py-40 mx-auto sm:px-6 lg:px-8">
         <h2 className="border-white heading-2">Why Choose Us?</h2>
-        <div className="mt-5 prose text-white">
+        <div className="mt-12 prose text-white">
+          <h3>We're Reliable</h3>
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt labore et dolore magna aliqua. Ut enim ad
-            minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Lorem ipsum dolor Sit amet,
-            consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-            labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-            exercitation ullamco laboris nisi ut aliquip ex ea commodo
-            consequat.
+            It’s simple – we turn up when we say we will and spend as much as we
+            quote. We keep you in the loop with every development and are
+            pro-active when it comes to solving problems.
+          </p>
+          <h3>We're A Family</h3>
+          <p>
+            Our team is made up of quality carpenters, tradespeople, designers,
+            and project managers all experienced in delivering projects big and
+            small to satisfied clients.
+          </p>
+          <h3>We're Focused</h3>
+          <p>
+            We focus all our attention on making sure your home, renovation, or
+            outdoor living area is built to last. That’s the Bruen Family
+            promise.
           </p>
         </div>
       </div>

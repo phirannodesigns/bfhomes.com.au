@@ -1,6 +1,6 @@
-import * as React from "react";
-import { graphql } from "gatsby";
-import { GatsbyImage, getImage } from "gatsby-plugin-image";
+import * as React from 'react';
+import { graphql } from 'gatsby';
+import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 
 import {
   Layout,
@@ -8,7 +8,7 @@ import {
   HeadingWithCopy,
   Service,
   ContactSection,
-} from "../../components";
+} from '../../components';
 
 function RenovationsPage({ data }) {
   const newHomes = getImage(data.newHomes);
@@ -33,37 +33,41 @@ function HouseExtension() {
     <HeadingWithCopy
       id="house-extensions"
       heading="House Extensions"
-      copy="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt."
+      copy="House extensions give you more room to move and can be an economical and
+      functional way to breathe more life into your home instead of looking elsewhere.
+      Bruen Family Homes have over 30 years of designing and building house extensions
+      by constructing using vacant land or up into a second storey. We can build all types
+      of extensions from living areas, bathrooms, kitchens, bedrooms, and study or office
+      areas. We perform large or small extensions, including ones that require major
+      structural works. We consult with you to make the most from your house
+      extension.
+      "
     />
   );
 }
 
 const houseExtensions = [
   {
-    id: "bathrooms",
-    title: "Bathrooms",
+    id: 'bathrooms',
+    title: 'Bathrooms',
     copy: `<p>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-      incididunt ut abore et dolore magna aliqua. Ut enim ad minim veniam, quis
-      nostrud exercitation ullamco aboris nisi ut aliquip ex ea commodo consequat.
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-      incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-      nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+    If your bathroom is old, cramped, or frequently occupied, extending your home
+    with a new bathroom is a popular choice to gain more functionality. We can extend
+    your existing bathroom or build new bathrooms and/or ensuites that are close to
+    your current floorplan. Ask us how we can extend your bathroom today.
     </p>`,
-    slug: "/renovations/house-extensions/#bathrooms",
+    slug: '/renovations/house-extensions/#bathrooms',
   },
   {
-    id: "kitchens",
-    title: "Kitchens",
+    id: 'kitchens',
+    title: 'Kitchens',
     copy: `<p>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-      incididunt ut abore et dolore magna aliqua. Ut enim ad minim veniam, quis
-      nostrud exercitation ullamco aboris nisi ut aliquip ex ea commodo consequat.
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-      incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-      nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+    Getting more from your kitchen is easy with Bruen Family Homes. We can extend
+    your kitchen, increasing the space between appliances, benches, and sinks. We can
+    design a new open plan living area, depending on how your home is structured.
+    Talk to us about getting more from your kitchen with a Bruen quality extension.
     </p>`,
-    slug: "/renovations/house-extensions/#kitchens",
+    slug: '/renovations/house-extensions/#kitchens',
   },
 ];
 
