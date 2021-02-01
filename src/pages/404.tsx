@@ -55,16 +55,6 @@ export const query = graphql`
         gatsbyImageData(layout: FLUID, maxWidth: 1920, maxHeight: 1080)
       }
     }
-    howCanWeHelp: file(relativePath: { eq: "how-can-we-help.jpg" }) {
-      childImageSharp {
-        gatsbyImageData(layout: FLUID, maxWidth: 400, maxHeight: 600)
-      }
-    }
-    whoAreWe: file(relativePath: { eq: "who-are-we.jpg" }) {
-      childImageSharp {
-        gatsbyImageData(layout: FLUID, maxWidth: 1920, maxHeight: 820)
-      }
-    }
   }
 `;
 

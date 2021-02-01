@@ -7,7 +7,7 @@ interface BGImageLeftProps {
 
 function BGImageLeft({ children }: BGImageLeftProps) {
   return (
-    <div className="relative">
+    <div className="relative flex-1">
       {children}
       <BGLeft
         aria-hidden

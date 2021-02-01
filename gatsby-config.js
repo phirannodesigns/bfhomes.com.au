@@ -12,6 +12,13 @@ module.exports = {
   siteMetadata: {
     siteUrl,
   },
+  flags: {
+    FAST_DEV: true,
+    DEV_SSR: true,
+    PRESERVE_WEBPACK_CACHE: true,
+    PRESERVE_FILE_DOWNLOAD_CACHE: true,
+    PARALLEL_SOURCING: true,
+  },
   plugins: [
     'gatsby-plugin-netlify',
     'gatsby-plugin-image',
