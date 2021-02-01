@@ -7,11 +7,11 @@ interface Context {
 
 const MenuContext = React.createContext<Context>({
   isOpen: false,
-  setIsOpen: (isOpen: boolean) => {},
+  setIsOpen: () => null,
 });
 
 function MenuContextProvider({ children }) {
-  const [isOpen, setIsOpen] = React.useState(false);
+  const [isOpen, setIsOpen] = React.useState<boolean>(false);
   return (
     <MenuContext.Provider value={{ isOpen, setIsOpen }}>
       {children}
