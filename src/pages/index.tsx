@@ -17,19 +17,22 @@ function IndexPage({ data }) {
 // TODO Replace hero image with video
 function Hero({ imageData }) {
   return (
-    <article className="relative flex-1 bg-brand-blue">
-      <GatsbyImage
-        image={imageData}
-        alt=""
-        style={{ filter: "grayscale(1)", mixBlendMode: "multiply" }}
-      />
-      <div className="absolute inset-0 flex">
+    <article className="relative flex flex-1 bg-brand-blue">
+      <div className="absolute inset-0 flex flex-1 sm:relative">
+        <GatsbyImage
+          image={imageData}
+          alt=""
+          style={{ filter: "grayscale(1)", mixBlendMode: "multiply" }}
+          className="flex-1"
+        />
+      </div>
+      <div className="relative flex flex-1 sm:absolute sm:inset-0">
         <BGImageRight>
-          <div className="absolute inset-0 z-10 flex items-center justify-center w-full bg-black bg-opacity-25">
-            <h1 className="text-5xl text-center text-white uppercase">
-              Watch this space <br />
+          <div className="relative z-10 flex items-center justify-center w-full h-full py-12 bg-black bg-opacity-25 sm:inset-0 sm:absolute">
+            <h1 className="text-3xl text-center text-white uppercase sm:text-5xl">
+              Watch this space. <br />
               New website <br />
-              coming soon
+              coming soon!
             </h1>
           </div>
         </BGImageRight>
