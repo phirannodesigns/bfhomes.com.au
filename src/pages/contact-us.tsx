@@ -1,11 +1,11 @@
-import * as React from "react";
-import { graphql } from "gatsby";
-import { GatsbyImage, getImage } from "gatsby-plugin-image";
-import { useForm } from "react-hook-form";
+import * as React from 'react';
+import { graphql } from 'gatsby';
+import { GatsbyImage, getImage } from 'gatsby-plugin-image';
+import { useForm } from 'react-hook-form';
 
-import config from "../data/config";
-import { Layout, SEO, BGImageRight } from "../components";
-import { Input, NetlifyForm, Textarea } from "../components/form-elements";
+import config from '../data/config';
+import { Layout, SEO, BGImageRight } from '../components';
+import { Input, NetlifyForm, Textarea } from '../components/form-elements';
 
 function ContactPage({ data }) {
   const newHomes = getImage(data.newHomes);
@@ -22,7 +22,13 @@ function ContactPage({ data }) {
 
 // TODO replace hero image
 function Hero({ imageData }) {
-  return <GatsbyImage image={imageData} alt="" />;
+  return (
+    <div className="relative aspect-w-16 aspect-h-9">
+      <div className="absolute inset-0 flex">
+        <GatsbyImage image={imageData} alt="" className="flex-1" />
+      </div>
+    </div>
+  );
 }
 
 function ContactInfo({ imageData }) {
@@ -108,7 +114,7 @@ function ContactInfo({ imageData }) {
 }
 
 function ContactForm() {
-  const { handleSubmit, register, errors } = useForm({ mode: "onBlur" });
+  const { handleSubmit, register, errors } = useForm({ mode: 'onBlur' });
   const [isSubmitting, setIsSubmitting] = React.useState(false);
   return (
     <article>
@@ -124,6 +130,7 @@ function ContactForm() {
           <Input
             name="full-name"
             label="Full Name"
+            placeholder={null}
             register={register}
             errors={errors}
             className="w-full focus:outline-none focus:ring-brand-teal focus:ring-2"
@@ -132,6 +139,7 @@ function ContactForm() {
             name="email-address"
             label="Email Address"
             type="email"
+            placeholder={null}
             register={register}
             errors={errors}
             className="w-full focus:outline-none focus:ring-brand-teal focus:ring-2"
@@ -140,6 +148,7 @@ function ContactForm() {
             name="contact-number"
             label="Contact Number"
             type="tel"
+            placeholder={null}
             register={register}
             errors={errors}
             className="w-full focus:outline-none focus:ring-brand-teal focus:ring-2"
@@ -147,6 +156,7 @@ function ContactForm() {
           <Textarea
             name="message"
             label="Message"
+            placeholder={null}
             register={register}
             errors={errors}
             className="block w-full"
@@ -156,7 +166,7 @@ function ContactForm() {
               type="submit"
               disabled={isSubmitting}
               className={`
-          ${isSubmitting ? "opacity-50 cursor-wait" : ""}
+          ${isSubmitting ? 'opacity-50 cursor-wait' : ''}
           inline-flex space-x-2 items-center py-5 text-lg font-medium leading-none tracking-wider text-white uppercase border border-white px-14 bg-brand-blue
           `}
             >
@@ -174,18 +184,18 @@ function ContactForm() {
                       cy="12"
                       r="10"
                       stroke="currentColor"
-                      stroke-width="3"
-                    ></circle>
+                      strokeWidth="3"
+                    />
                     <path
                       className="opacity-75"
                       fill="currentColor"
                       d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                    ></path>
+                    />
                   </svg>
                   <span>Submitting</span>
                 </>
               ) : (
-                "Submit"
+                'Submit'
               )}
             </button>
           </div>
@@ -199,12 +209,12 @@ export const query = graphql`
   query {
     newHomes: file(relativePath: { eq: "new-homes.jpg" }) {
       childImageSharp {
-        gatsbyImageData(layout: FLUID, maxWidth: 1920, maxHeight: 1080)
+        gatsbyImageData(layout: CONSTRAINED, width: 1920)
       }
     }
     howCanWeHelp: file(relativePath: { eq: "how-can-we-help.jpg" }) {
       childImageSharp {
-        gatsbyImageData(layout: FLUID, maxWidth: 400, maxHeight: 600)
+        gatsbyImageData(layout: CONSTRAINED, width: 400)
       }
     }
   }

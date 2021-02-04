@@ -1,12 +1,12 @@
-import * as React from "react";
-import { Link } from "gatsby";
-import { useLocation } from "@reach/router";
-import { Menu, Transition } from "@headlessui/react";
-import { HiChevronDown, HiMenu } from "react-icons/hi";
+import * as React from 'react';
+import { Link } from 'gatsby';
+import { useLocation } from '@reach/router';
+import { Menu, Transition } from '@headlessui/react';
+import { HiChevronDown, HiMenu } from 'react-icons/hi';
 
-import config from "../data/config";
-import { SiteLogo } from "./vectors/logos";
-import { useMenuContext } from "../utils/hooks";
+import config from '../data/config';
+import { SiteLogo } from './vectors/logos';
+import { useMenuContext } from '../utils/hooks';
 
 function Nav() {
   const { pathname } = useLocation();
@@ -20,7 +20,10 @@ function Nav() {
         </Link>
         <div className="flex flex-col items-end justify-between flex-1">
           <div className="flex items-center space-x-6 text-brand-teal">
-            <a href={`tel:${config.phone}`}>Call us on {config.phone}</a>
+            <a href={`tel:${config.phone}`}>
+              Call us on
+              {config.phone}
+            </a>
             <ul className="flex items-center space-x-3">
               {config.socialLinks.map((socialLink) => (
                 <li key={socialLink.url}>
@@ -36,26 +39,24 @@ function Nav() {
             </ul>
           </div>
           <ul className="hidden space-x-12 lg:flex">
-            {config.siteNavigation.map((navItem) =>
-              navItem.submenu ? (
-                <SubMenu key={navItem.label} node={navItem} />
-              ) : (
-                <li key={navItem.slug}>
-                  <Link
-                    to={navItem.slug}
-                    className={`
+            {config.siteNavigation.map((navItem) => (navItem.submenu ? (
+              <SubMenu key={navItem.label} node={navItem} />
+            ) : (
+              <li key={navItem.slug}>
+                <Link
+                  to={navItem.slug}
+                  className={`
                     ${
                       pathname === navItem.slug
-                        ? "text-brand-teal"
-                        : "text-white"
+                        ? 'text-brand-teal'
+                        : 'text-white'
                     }
                     uppercase`}
-                  >
-                    {navItem.label}
-                  </Link>
-                </li>
-              )
-            )}
+                >
+                  {navItem.label}
+                </Link>
+              </li>
+            )))}
           </ul>
         </div>
         <button
@@ -82,8 +83,8 @@ function SubMenu({ node }) {
                 <HiChevronDown
                   className={`${
                     open
-                      ? "rotate-90 duration-100 ease-out"
-                      : "rotate-0 ease-in duration-75"
+                      ? 'rotate-90 duration-100 ease-out'
+                      : 'rotate-0 ease-in duration-75'
                   }
                   w-5 h-5 transform transition-transform`}
                 />
@@ -109,7 +110,7 @@ function SubMenu({ node }) {
                         <Link
                           to={navItem.slug}
                           className={`${
-                            active ? "bg-gray-50" : "bg-white"
+                            active ? 'bg-gray-50' : 'bg-white'
                           } relative flex justify-between w-full px-4 py-2 text-left text-brand-blue focus:z-10`}
                         >
                           {navItem.label}

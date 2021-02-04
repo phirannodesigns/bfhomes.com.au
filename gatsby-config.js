@@ -1,7 +1,8 @@
 const dotenv = require('dotenv');
 const config = require('./src/data/config');
 
-// Set up `dotenv` so that we can use `.env.development` and/or `.env.production` to store environment variables
+// Set up `dotenv` so that we can use `.env.development` and/or `.env.production`
+// to store environment variables
 dotenv.config({
   path: `.env.${process.env.NODE_ENV}`,
 });
@@ -11,6 +12,11 @@ const { title, siteUrl } = config;
 module.exports = {
   siteMetadata: {
     siteUrl,
+  },
+  flags: {
+    DEV_SSR: true,
+    FAST_DEV: true,
+    FAST_REFRESH: true,
   },
   plugins: [
     'gatsby-plugin-netlify',
@@ -67,7 +73,4 @@ module.exports = {
       },
     },
   ],
-  flags: {
-    FAST_REFRESH: true,
-  },
 };

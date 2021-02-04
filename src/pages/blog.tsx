@@ -1,11 +1,10 @@
-import * as React from "react";
-import { graphql } from "gatsby";
-import { GatsbyImage as NewImage, getImage } from "gatsby-plugin-image";
-import { FluidObject } from "gatsby-image";
-import { matchSorter } from "match-sorter";
-import { HiArrowLeft, HiArrowRight } from "react-icons/hi";
+import * as React from 'react';
+import { graphql } from 'gatsby';
+import { GatsbyImage, getImage, IImage } from 'gatsby-plugin-image';
+import { matchSorter } from 'match-sorter';
+import { HiArrowLeft, HiArrowRight } from 'react-icons/hi';
 
-import { Layout, SEO, BGImageLeft, Post, ContactSection } from "../components";
+import { Layout, SEO, BGImageLeft, Post, ContactSection } from '../components';
 
 function LatestNewsPage({ data }) {
   const newHomes = getImage(data.newHomes);
@@ -20,7 +19,13 @@ function LatestNewsPage({ data }) {
 }
 
 function Hero({ imageData }) {
-  return <NewImage image={imageData} alt="" />;
+  return (
+    <div className="relative aspect-w-16 aspect-h-9">
+      <div className="absolute inset-0 flex">
+        <GatsbyImage image={imageData} alt="" className="flex-1" />
+      </div>
+    </div>
+  );
 }
 
 interface LatestBlogsProps {
@@ -35,7 +40,7 @@ interface LatestBlogsProps {
     imageAltText?: string;
     mainImage: {
       asset: {
-        fluid: FluidObject;
+        fluid: IImage;
       };
     };
     publishedAt: string;
@@ -58,7 +63,7 @@ function LatestBlogs({ nodes }: LatestBlogsProps) {
   const INCREMENTOR = 6;
 
   // Filter posts from search input
-  const [searchQuery, setSearchQuery] = React.useState("");
+  const [searchQuery, setSearchQuery] = React.useState('');
 
   // Update searchQuery value whenever input changes
   function handleSearchQuery(event) {
@@ -66,7 +71,7 @@ function LatestBlogs({ nodes }: LatestBlogsProps) {
     setSearchQuery(event.target.value);
   }
 
-  const ALL_CATEGORIES = "All";
+  const ALL_CATEGORIES = 'All';
 
   // State for filtering posts from select menu
   const [filter, setFilter] = React.useState(ALL_CATEGORIES);
@@ -82,9 +87,9 @@ function LatestBlogs({ nodes }: LatestBlogsProps) {
   React.useMemo(() => {
     const cat = [];
     // Push all category titles to cat array
-    posts.map((post) => {
-      return post.categories.map((category) => cat.push(category.title));
-    });
+    posts.map((post) =>
+      post.categories.map((category) => cat.push(category.title))
+    );
     // Filter duplicates and sort alphabetically
     setCategories([...new Set(cat)].sort((a, b) => a.localeCompare(b)));
   }, [posts]);
@@ -94,14 +99,14 @@ function LatestBlogs({ nodes }: LatestBlogsProps) {
     () =>
       filter === ALL_CATEGORIES
         ? posts
-        : posts.filter((post) => {
-            return post.categories.some(({ title }) => title === filter);
-          }),
+        : posts.filter((post) =>
+            post.categories.some(({ title }) => title === filter)
+          ),
     [filter, posts]
   );
 
   const filteredPosts = matchSorter(postsFilteredByCategory, searchQuery, {
-    keys: ["title", (post) => post.categories.map((c) => c.title)],
+    keys: ['title', (post) => post.categories.map((c) => c.title)],
   });
 
   return (
@@ -137,7 +142,7 @@ function LatestBlogs({ nodes }: LatestBlogsProps) {
             </div>
           </div>
           <ul className="grid mt-10 gap-x-10 gap-y-16 lg:grid-cols-3">
-            {(searchQuery === "" ? postsFilteredByCategory : filteredPosts)
+            {(searchQuery === '' ? postsFilteredByCategory : filteredPosts)
               .slice(index * INCREMENTOR, index * INCREMENTOR + INCREMENTOR)
               .map((post) => (
                 <Post key={post.id} post={post} />
@@ -155,13 +160,13 @@ function LatestBlogs({ nodes }: LatestBlogsProps) {
             </button>
             <ul className="flex space-x-2">
               {Array(Math.ceil(filteredPosts.length / INCREMENTOR))
-                .fill("")
+                .fill('')
                 .map((_, i) => (
                   <li key={i}>
                     <button
                       onClick={() => setIndex(i)}
                       className={`
-                      ${index === i && "font-bold underline"}
+                      ${index === i && 'font-bold underline'}
                       p-1
                       `}
                     >
@@ -216,7 +221,7 @@ export const query = graphql`
     }
     newHomes: file(relativePath: { eq: "new-homes.jpg" }) {
       childImageSharp {
-        gatsbyImageData(layout: FLUID, maxWidth: 1920, maxHeight: 1080)
+        gatsbyImageData(layout: CONSTRAINED, width: 1920)
       }
     }
   }

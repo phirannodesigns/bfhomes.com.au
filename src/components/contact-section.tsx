@@ -1,11 +1,11 @@
-import * as React from "react";
-import { useForm } from "react-hook-form";
+import * as React from 'react';
+import { useForm } from 'react-hook-form';
 
-import { Input, NetlifyForm, Textarea } from "./form-elements";
-import config from "../data/config";
+import { Input, NetlifyForm, Textarea } from './form-elements';
+import config from '../data/config';
 
 function ContactSection() {
-  const { handleSubmit, register, errors } = useForm({ mode: "onBlur" });
+  const { handleSubmit, register, errors } = useForm({ mode: 'onBlur' });
   const [isSubmitting, setIsSubmitting] = React.useState(false);
   return (
     <article>
@@ -23,6 +23,7 @@ function ContactSection() {
               <Input
                 name="full-name"
                 label="Full Name"
+                placeholder={null}
                 register={register}
                 errors={errors}
                 className="w-full focus:outline-none focus:ring-brand-teal focus:ring-2"
@@ -31,6 +32,7 @@ function ContactSection() {
                 name="email-address"
                 label="Email Address"
                 type="email"
+                placeholder={null}
                 register={register}
                 errors={errors}
                 className="w-full focus:outline-none focus:ring-brand-teal focus:ring-2"
@@ -39,6 +41,7 @@ function ContactSection() {
                 name="contact-number"
                 label="Contact Number"
                 type="tel"
+                placeholder={null}
                 register={register}
                 errors={errors}
                 className="w-full focus:outline-none focus:ring-brand-teal focus:ring-2"
@@ -46,6 +49,7 @@ function ContactSection() {
               <Textarea
                 name="message"
                 label="Message"
+                placeholder={null}
                 register={register}
                 errors={errors}
                 className="block w-full focus:ring-brand-teal"
@@ -55,7 +59,7 @@ function ContactSection() {
                   type="submit"
                   disabled={isSubmitting}
                   className={`
-                  ${isSubmitting ? "opacity-50 cursor-wait" : ""}
+                  ${isSubmitting ? 'opacity-50 cursor-wait' : ''}
                   inline-flex space-x-2 items-center py-5 text-lg font-medium leading-none tracking-wider text-white uppercase border border-white px-14 bg-brand-blue
                   `}
                 >
@@ -73,18 +77,18 @@ function ContactSection() {
                           cy="12"
                           r="10"
                           stroke="currentColor"
-                          stroke-width="3"
-                        ></circle>
+                          strokeWidth="3"
+                        />
                         <path
                           className="opacity-75"
                           fill="currentColor"
                           d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                        ></path>
+                        />
                       </svg>
                       <span>Submitting</span>
                     </>
                   ) : (
-                    "Submit"
+                    'Submit'
                   )}
                 </button>
               </div>

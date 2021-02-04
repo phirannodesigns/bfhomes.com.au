@@ -22,7 +22,13 @@ function AboutPage({ data }) {
 
 // TODO replace hero image
 function Hero({ imageData }) {
-  return <GatsbyImage image={imageData} alt="" />;
+  return (
+    <div className="relative aspect-w-16 aspect-h-9">
+      <div className="absolute inset-0 flex">
+        <GatsbyImage image={imageData} alt="" className="flex-1" />
+      </div>
+    </div>
+  );
 }
 
 function AboutUs({ imageData }) {
@@ -110,12 +116,12 @@ export const query = graphql`
   query {
     newHomes: file(relativePath: { eq: "new-homes.jpg" }) {
       childImageSharp {
-        gatsbyImageData(layout: FLUID, maxWidth: 1920, maxHeight: 1080)
+        gatsbyImageData(layout: CONSTRAINED, width: 1920)
       }
     }
     whoAreWe: file(relativePath: { eq: "who-are-we.jpg" }) {
       childImageSharp {
-        gatsbyImageData(layout: FLUID, maxWidth: 1920, maxHeight: 820)
+        gatsbyImageData(layout: CONSTRAINED, width: 1920)
       }
     }
   }

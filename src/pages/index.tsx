@@ -1,8 +1,8 @@
-import * as React from "react";
-import { graphql, Link } from "gatsby";
-import { GatsbyImage, getImage } from "gatsby-plugin-image";
-import { HiArrowRight } from "react-icons/hi";
-import { IoStar, IoStarOutline } from "react-icons/io5";
+import * as React from 'react';
+import { graphql, Link } from 'gatsby';
+import { GatsbyImage, getImage } from 'gatsby-plugin-image';
+import { HiArrowRight } from 'react-icons/hi';
+import { IoStar, IoStarOutline } from 'react-icons/io5';
 
 import {
   Layout,
@@ -11,7 +11,7 @@ import {
   BGImageLeft,
   ContactSection,
   Post,
-} from "../components";
+} from '../components';
 
 function IndexPage({ data }) {
   const newHomes = getImage(data.newHomes);
@@ -48,24 +48,24 @@ function Services({ newHomes, renovations, outdoors }) {
   // TODO Source this data from Sanity
   const services = [
     {
-      heading: "New Homes",
+      heading: 'New Homes',
       copy:
-        "Bruen Family Homes design and construct quality homes for families throughout Port Macquarie and NSW North Coast. We deliver on time, on budget, and aim for      complete satisfaction in new builds, extensions, and renovations that are practical, stylish, and liveable.",
-      slug: "/homes/",
+        'Bruen Family Homes design and construct quality homes for families throughout Port Macquarie and NSW North Coast. We deliver on time, on budget, and aim for      complete satisfaction in new builds, extensions, and renovations that are practical, stylish, and liveable.',
+      slug: '/homes/',
       image: newHomes,
     },
     {
-      heading: "Renovations",
+      heading: 'Renovations',
       copy:
-        "Bruen Family Homes are Port Macquarie’s specialists in high quality renovations, second storey additions and extensions. Whether you need substantial structural    modifications or interior renovations, your family can rely on Bruen Family Homes to get the job done on time and on budget.",
-      slug: "/renovations/",
+        'Bruen Family Homes are Port Macquarie’s specialists in high quality renovations, second storey additions and extensions. Whether you need substantial structural    modifications or interior renovations, your family can rely on Bruen Family Homes to get the job done on time and on budget.',
+      slug: '/renovations/',
       image: renovations,
     },
     {
-      heading: "Outdoors",
+      heading: 'Outdoors',
       copy:
-        "Barbecues, al fresco dining, and lazy days in your backyard can be yours with outdoor living and dining areas designed and built by Bruen Family Homes. We can help you achieve your personalised vision for outdoor living and entertaining.",
-      slug: "/renovations/#outdoor-living-areas",
+        'Barbecues, al fresco dining, and lazy days in your backyard can be yours with outdoor living and dining areas designed and built by Bruen Family Homes. We can help you achieve your personalised vision for outdoor living and entertaining.',
+      slug: '/renovations/#outdoor-living-areas',
       image: outdoors,
     },
   ];
@@ -122,28 +122,28 @@ function HowCanWeHelp({ imageData }) {
           <ul className="grid grid-cols-2 gap-3 mt-8 text-xl font-medium max-w-prose">
             {[
               {
-                label: "Project Management",
-                colour: "text-brand-teal",
+                label: 'Project Management',
+                colour: 'text-brand-teal',
               },
               {
-                label: "Liasing With Contractors",
-                colour: "text-blue-400",
+                label: 'Liasing With Contractors',
+                colour: 'text-blue-400',
               },
               {
-                label: "Construction",
-                colour: "text-gray-400",
+                label: 'Construction',
+                colour: 'text-gray-400',
               },
               {
-                label: "Quality Control",
-                colour: "text-brand-teal",
+                label: 'Quality Control',
+                colour: 'text-brand-teal',
               },
               {
-                label: "Health & Safety",
-                colour: "text-blue-400",
+                label: 'Health & Safety',
+                colour: 'text-blue-400',
               },
               {
-                label: "Tailored Contracts",
-                colour: "text-gray-400",
+                label: 'Tailored Contracts',
+                colour: 'text-gray-400',
               },
             ].map((service) => (
               <li
@@ -166,11 +166,11 @@ function HowCanWeHelp({ imageData }) {
           </p>
         </div>
         <div className="relative">
-          <div className="absolute inset-0">
+          <div className="absolute inset-0 flex">
             <GatsbyImage
               image={imageData}
               alt=""
-              className="w-full h-full max-w-sm mx-auto"
+              className="flex-1 w-full h-full max-w-sm mx-auto"
             />
           </div>
         </div>
@@ -206,21 +206,21 @@ function WhoAreWe({ imageData }) {
 
 const reviews = [
   {
-    name: "Bree Knowles",
+    name: 'Bree Knowles',
     text:
-      "Lorem ipsum dolor sit amet, consectetur a ut dipiscing elit, sed do tempor incididunt ut labore et dolore magna aliqua.",
+      'Lorem ipsum dolor sit amet, consectetur a ut dipiscing elit, sed do tempor incididunt ut labore et dolore magna aliqua.',
     rating: 4,
   },
   {
-    name: "Hannah Smith",
+    name: 'Hannah Smith',
     text:
-      "Lorem ipsum dolor sit amet, consectetur a ut dipiscing elit, sed do tempor incididunt ut labore et dolore magna aliqua.",
+      'Lorem ipsum dolor sit amet, consectetur a ut dipiscing elit, sed do tempor incididunt ut labore et dolore magna aliqua.',
     rating: 4,
   },
   {
-    name: "Jonathon Kin",
+    name: 'Jonathon Kin',
     text:
-      "Lorem ipsum dolor sit amet, consectetur a ut dipiscing elit, sed do tempor incididunt ut labore et dolore magna aliqua.",
+      'Lorem ipsum dolor sit amet, consectetur a ut dipiscing elit, sed do tempor incididunt ut labore et dolore magna aliqua.',
     rating: 4,
   },
 ];
@@ -243,12 +243,12 @@ function Feedback() {
                   <p className="mt-5 font-bold">{review.name}</p>
                   <div className="flex items-center justify-center space-x-1 text-2xl text-brand-teal">
                     {Array(review.rating)
-                      .fill("")
+                      .fill('')
                       .map((_, index) => (
                         <IoStar key={index} className="w-6 h-6" />
                       ))}
                     {Array(5 - review.rating)
-                      .fill("")
+                      .fill('')
                       .map((_, index) => (
                         <IoStarOutline key={index} className="w-6 h-6" />
                       ))}
@@ -274,7 +274,7 @@ function LatestNews({ posts }) {
             </h2>
             <ul className="grid gap-10 mt-10 lg:grid-cols-3">
               {posts.map((post) => (
-                <Post post={post} />
+                <Post key={post.id} post={post} />
               ))}
             </ul>
           </div>
@@ -312,27 +312,27 @@ export const query = graphql`
     }
     newHomes: file(relativePath: { eq: "new-homes.jpg" }) {
       childImageSharp {
-        gatsbyImageData(layout: FLUID, maxWidth: 1920, maxHeight: 1080)
+        gatsbyImageData(layout: CONSTRAINED, width: 1920)
       }
     }
     renovations: file(relativePath: { eq: "renovations.jpg" }) {
       childImageSharp {
-        gatsbyImageData(layout: FLUID, maxWidth: 1920, maxHeight: 1080)
+        gatsbyImageData(layout: CONSTRAINED, width: 1920)
       }
     }
     outdoors: file(relativePath: { eq: "outdoors.jpg" }) {
       childImageSharp {
-        gatsbyImageData(layout: FLUID, maxWidth: 1920, maxHeight: 1080)
+        gatsbyImageData(layout: CONSTRAINED, width: 1920)
       }
     }
     howCanWeHelp: file(relativePath: { eq: "how-can-we-help.jpg" }) {
       childImageSharp {
-        gatsbyImageData(layout: FLUID, maxWidth: 400, maxHeight: 600)
+        gatsbyImageData(layout: CONSTRAINED, width: 400)
       }
     }
     whoAreWe: file(relativePath: { eq: "who-are-we.jpg" }) {
       childImageSharp {
-        gatsbyImageData(layout: FLUID, maxWidth: 1920, maxHeight: 820)
+        gatsbyImageData(layout: CONSTRAINED, width: 1920)
       }
     }
   }

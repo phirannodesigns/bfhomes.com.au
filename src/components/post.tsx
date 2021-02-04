@@ -1,9 +1,9 @@
-import * as React from "react";
-import { Link } from "gatsby";
-import GatsbyImage from "gatsby-image";
-import { useLocation } from "@reach/router";
-import SanityBlockContent from "@sanity/block-content-to-react";
-import { HiArrowRight } from "react-icons/hi";
+import * as React from 'react';
+import { Link } from 'gatsby';
+import GatsbyImage from 'gatsby-image';
+import { useLocation } from '@reach/router';
+import SanityBlockContent from '@sanity/block-content-to-react';
+import { HiArrowRight } from 'react-icons/hi';
 
 function Post({ post }) {
   const { origin } = useLocation();
@@ -46,9 +46,9 @@ function Post({ post }) {
               navigator.share({
                 url: `${origin}/posts/${post.slug.current}/`,
               });
-            } else if (typeof window !== "undefined") {
+            } else if (typeof window !== 'undefined') {
               window.open(
-                `https://www.facebook.com/sharer/sharer.php?u=${origin}/posts/${post.slug.current}/`
+                `https://www.facebook.com/sharer/sharer.php?u=${origin}/posts/${post.slug.current}/`,
               );
             } else return;
           }}

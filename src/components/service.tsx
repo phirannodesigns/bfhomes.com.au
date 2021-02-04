@@ -1,11 +1,11 @@
-import * as React from "react";
-import { GatsbyImage, IGatsbyImageData } from "gatsby-plugin-image";
-import { useKeenSlider } from "keen-slider/react";
-import "keen-slider/keen-slider.min.css";
+import * as React from 'react';
+import { GatsbyImage, IGatsbyImageData } from 'gatsby-plugin-image';
+import { useKeenSlider } from 'keen-slider/react';
+import 'keen-slider/keen-slider.min.css';
 
-import { HiChevronLeft, HiChevronRight } from "react-icons/hi";
-import { BGImageRight } from "./bg-image-right";
-import { getTailwindConfig } from "../utils/get-tailwind-config";
+import { HiChevronLeft, HiChevronRight } from 'react-icons/hi';
+import { BGImageRight } from './bg-image-right';
+import { getTailwindConfig } from '../utils/get-tailwind-config';
 
 const tailwindConfig = getTailwindConfig();
 
@@ -64,7 +64,7 @@ function Service({ service, reverse, imageData }: ServiceProps) {
         <div className="lg:col-span-3">
           <h2
             className={`
-          ${reverse ? "border-white" : "border-brand-blue"}
+          ${reverse ? 'border-white' : 'border-brand-blue'}
           heading-2`}
           >
             {service.title}
@@ -72,7 +72,7 @@ function Service({ service, reverse, imageData }: ServiceProps) {
           <div
             dangerouslySetInnerHTML={{ __html: service.copy }}
             className={`
-            ${reverse ? "text-white" : "text-brand-blue"}
+            ${reverse ? 'text-white' : 'text-brand-blue'}
             mt-5 prose-lg font-medium`}
           />
         </div>
@@ -99,24 +99,22 @@ function Service({ service, reverse, imageData }: ServiceProps) {
                 <button onClick={(e) => e.stopPropagation() || slider.prev()}>
                   <HiChevronLeft className="text-2xl" />
                 </button>
-                {[...Array(slider.details().size).keys()].map((index) => {
-                  return (
-                    <button
-                      key={index}
-                      onClick={() => {
-                        slider.moveToSlideRelative(index);
-                      }}
-                      className={`rounded-full h-3 w-3 transition duration-150 ease-in-out hover:bg-opacity-100 ${
-                        reverse ? "bg-white" : "bg-brand-blue"
-                      } ${
-                        currentSlide === index
-                          ? "bg-opacity-100"
-                          : "bg-opacity-50"
-                      }
+                {[...Array(slider.details().size).keys()].map((index) => (
+                  <button
+                    key={index}
+                    onClick={() => {
+                      slider.moveToSlideRelative(index);
+                    }}
+                    className={`rounded-full h-3 w-3 transition duration-150 ease-in-out hover:bg-opacity-100 ${
+                      reverse ? 'bg-white' : 'bg-brand-blue'
+                    } ${
+                      currentSlide === index
+                        ? 'bg-opacity-100'
+                        : 'bg-opacity-50'
+                    }
                       `}
-                    />
-                  );
-                })}
+                  />
+                ))}
                 <button onClick={(e) => e.stopPropagation() || slider.next()}>
                   <HiChevronRight className="text-2xl" />
                 </button>
@@ -132,7 +130,7 @@ function Service({ service, reverse, imageData }: ServiceProps) {
     <article
       id={service.id}
       className={`
-    ${reverse ? "text-white bg-brand-blue" : "text-brand-blue bg-gray-100"}
+    ${reverse ? 'text-white bg-brand-blue' : 'text-brand-blue bg-gray-100'}
     relative`}
     >
       {reverse ? (

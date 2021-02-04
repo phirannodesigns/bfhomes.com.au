@@ -1,10 +1,10 @@
-import * as React from "react";
-import { navigate } from "gatsby";
+import * as React from 'react';
+import { navigate } from 'gatsby';
 
 function encode(data) {
   return Object.keys(data)
     .map((key) => `${encodeURIComponent(key)}=${encodeURIComponent(data[key])}`)
-    .join("&");
+    .join('&');
 }
 
 interface NetlifyFormProps {
@@ -17,26 +17,26 @@ interface NetlifyFormProps {
 }
 
 function NetlifyForm({
-  action = "/success/",
+  action = '/success/',
   children,
   className,
   handleSubmit,
-  name = "contact_form",
+  name = 'contact_form',
   setIsSubmitting,
 }: NetlifyFormProps) {
   function onSubmit(data, ev) {
     ev.preventDefault();
     setIsSubmitting(true);
     const form = ev.target;
-    fetch("/", {
-      method: "POST",
-      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    fetch('/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
       body: encode({
-        "form-name": form.getAttribute("name"),
+        'form-name': form.getAttribute('name'),
         ...data,
       }),
     })
-      .then(() => navigate(form.getAttribute("action")))
+      .then(() => navigate(form.getAttribute('action')))
       .catch((error) => alert(error));
   }
   return (

@@ -5,11 +5,11 @@
  * See: https://www.gatsbyjs.org/docs/use-static-query/
  */
 
-import * as React from "react";
-import { Helmet } from "react-helmet";
-import { useLocation } from "@reach/router";
+import * as React from 'react';
+import { Helmet } from 'react-helmet';
+import { useLocation } from '@reach/router';
 
-import config from "../data/config";
+import config from '../data/config';
 
 interface SEOProps {
   description?: string;
@@ -31,17 +31,17 @@ interface SEOProps {
  */
 
 function SEO({
-  description = "",
+  description = '',
   image,
   type,
-  lang = "en-AU",
+  lang = 'en-AU',
   meta = [],
   title,
 }: SEOProps) {
   const { pathname } = useLocation();
 
   const metaDescription = description || config.description;
-  const metaType = type || "website";
+  const metaType = type || 'website';
   const metaUrl = `${config.siteUrl}${pathname}`;
   const metaImage = image || `${config.siteUrl}${config.ogImage}`;
 
@@ -54,43 +54,43 @@ function SEO({
       titleTemplate={`%s | ${config.title}`}
       meta={[
         {
-          name: "description",
+          name: 'description',
           content: metaDescription,
         },
         {
-          property: "og:title",
+          property: 'og:title',
           content: title,
         },
         {
-          property: "og:description",
+          property: 'og:description',
           content: metaDescription,
         },
         {
-          property: "og:type",
+          property: 'og:type',
           content: metaType,
         },
         {
-          property: "og:url",
+          property: 'og:url',
           content: metaUrl,
         },
         {
-          property: "og:image",
+          property: 'og:image',
           content: metaImage,
         },
         {
-          name: "twitter:card",
-          content: "summary",
+          name: 'twitter:card',
+          content: 'summary',
         },
         {
-          name: "twitter:creator",
+          name: 'twitter:creator',
           content: config.author,
         },
         {
-          name: "twitter:title",
+          name: 'twitter:title',
           content: title,
         },
         {
-          name: "twitter:description",
+          name: 'twitter:description',
           content: metaDescription,
         },
       ].concat(meta)}

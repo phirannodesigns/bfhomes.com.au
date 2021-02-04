@@ -1,8 +1,8 @@
-import * as React from "react";
+import * as React from 'react';
 
-import { Nav } from "./nav";
-import { MobileMenu } from "./mobile-menu";
-import { Footer } from "./footer";
+import { Nav } from './nav';
+import { MobileMenu } from './mobile-menu';
+import { Footer } from './footer';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -10,7 +10,7 @@ interface LayoutProps {
 
 function Layout({ children }: LayoutProps) {
   return (
-    <div className="relative flex flex-col min-h-screen font-sans antialiased text-gray-700 bg-white border-t-4 border-teal-500 fill-available">
+    <div className="relative flex flex-col min-h-screen font-sans antialiased text-gray-700 bg-white fill-available">
       <Nav />
       <main className="flex-1">{children}</main>
       <Footer />

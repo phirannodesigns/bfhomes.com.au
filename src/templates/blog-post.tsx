@@ -1,13 +1,15 @@
-import React from "react";
-import { graphql, Link } from "gatsby";
-import GatsbyImage from "gatsby-image";
-import { GatsbyImage as NewImage, getImage } from "gatsby-plugin-image";
-import { useLocation } from "@reach/router";
-import SanityBlockContent from "@sanity/block-content-to-react";
-import { HiArrowLeft, HiArrowRight } from "react-icons/hi";
+import React from 'react';
+import { graphql, Link } from 'gatsby';
+import GatsbyImage from 'gatsby-image';
+import { GatsbyImage as NewImage, getImage } from 'gatsby-plugin-image';
+import { useLocation } from '@reach/router';
+import SanityBlockContent from '@sanity/block-content-to-react';
+import { HiArrowLeft, HiArrowRight } from 'react-icons/hi';
 
-import { Layout, SEO, BGImageRight, ContactSection } from "../components";
-import bgLeft from "../images/bg-left.svg";
+import {
+  Layout, SEO, BGImageRight, ContactSection,
+} from '../components';
+import bgLeft from '../images/bg-left.svg';
 
 function PostTemplate({ data, pageContext }) {
   const whoAreWe = getImage(data.whoAreWe);
@@ -52,9 +54,9 @@ function BlogPost({ post, pageContext }) {
               navigator.share({
                 url: `${origin}/posts/${post.slug.current}/`,
               });
-            } else if (typeof window !== "undefined") {
+            } else if (typeof window !== 'undefined') {
               window.open(
-                `https://www.facebook.com/sharer/sharer.php?u=${origin}/posts/${post.slug.current}/`
+                `https://www.facebook.com/sharer/sharer.php?u=${origin}/posts/${post.slug.current}/`,
               );
             } else return;
           }}
@@ -118,9 +120,9 @@ function Post({ post }) {
               navigator.share({
                 url: `${origin}/posts/${post.slug.current}/`,
               });
-            } else if (typeof window !== "undefined") {
+            } else if (typeof window !== 'undefined') {
               window.open(
-                `https://www.facebook.com/sharer/sharer.php?u=${origin}/posts/${post.slug.current}/`
+                `https://www.facebook.com/sharer/sharer.php?u=${origin}/posts/${post.slug.current}/`,
               );
             } else return;
           }}
@@ -134,7 +136,7 @@ function Post({ post }) {
 
 function RelatedPosts({ post, posts }) {
   const postsMinusCurrent = posts.filter(
-    (p) => p.slug.current !== post.slug.current
+    (p) => p.slug.current !== post.slug.current,
   );
 
   return (
@@ -228,12 +230,12 @@ export const query = graphql`
     }
     newHomes: file(relativePath: { eq: "new-homes.jpg" }) {
       childImageSharp {
-        gatsbyImageData(layout: FLUID, maxWidth: 1920, maxHeight: 1080)
+        gatsbyImageData(layout: CONSTRAINED)
       }
     }
     whoAreWe: file(relativePath: { eq: "who-are-we.jpg" }) {
       childImageSharp {
-        gatsbyImageData(layout: FLUID, maxWidth: 1920, maxHeight: 820)
+        gatsbyImageData(layout: CONSTRAINED)
       }
     }
   }

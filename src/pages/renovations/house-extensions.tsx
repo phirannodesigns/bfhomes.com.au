@@ -90,12 +90,12 @@ export const query = graphql`
   query {
     newHomes: file(relativePath: { eq: "new-homes.jpg" }) {
       childImageSharp {
-        gatsbyImageData(layout: FLUID, maxWidth: 1920, maxHeight: 1080)
+        gatsbyImageData(layout: CONSTRAINED, width: 1920)
       }
     }
     whoAreWe: file(relativePath: { eq: "who-are-we.jpg" }) {
       childImageSharp {
-        gatsbyImageData(layout: FLUID, maxWidth: 1920, maxHeight: 820)
+        gatsbyImageData(layout: CONSTRAINED, width: 1920)
       }
     }
   }

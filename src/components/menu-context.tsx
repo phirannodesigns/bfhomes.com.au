@@ -1,4 +1,4 @@
-import * as React from "react";
+import * as React from 'react';
 
 interface Context {
   isOpen: boolean;
@@ -7,7 +7,7 @@ interface Context {
 
 const MenuContext = React.createContext<Context>({
   isOpen: false,
-  setIsOpen: (isOpen: boolean) => {},
+  setIsOpen: () => null,
 });
 
 function MenuContextProvider({ children }) {

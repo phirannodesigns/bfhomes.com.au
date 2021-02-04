@@ -1,13 +1,13 @@
-import * as React from "react";
-import { useLocation } from "@reach/router";
-import { Link } from "gatsby";
-import { Menu } from "@headlessui/react";
-import { AnimatePresence, motion } from "framer-motion";
-import { HiPhone, HiX } from "react-icons/hi";
+import * as React from 'react';
+import { useLocation } from '@reach/router';
+import { Link } from 'gatsby';
+import { Menu } from '@headlessui/react';
+import { AnimatePresence, motion } from 'framer-motion';
+import { HiPhone, HiX } from 'react-icons/hi';
 
-import config from "../data/config";
-import { SiteLogo } from "./vectors/logos";
-import { useMenuContext, useOnClickOutside } from "../utils/hooks";
+import config from '../data/config';
+import { SiteLogo } from './vectors/logos';
+import { useMenuContext, useOnClickOutside } from '../utils/hooks';
 
 function MobileMenu() {
   const { pathname } = useLocation();
@@ -27,9 +27,9 @@ function MobileMenu() {
           className="fixed inset-0 z-40 flex bg-gray-600 bg-opacity-75"
         >
           <motion.div
-            initial={{ x: "100%" }}
-            animate={{ x: "0%" }}
-            exit={{ x: "100%" }}
+            initial={{ x: '100%' }}
+            animate={{ x: '0%' }}
+            exit={{ x: '100%' }}
             transition={{ bounceDamping: 9 }}
             className="flex justify-end flex-1 ml-14"
           >
@@ -52,31 +52,29 @@ function MobileMenu() {
                 </div>
                 <nav className="mt-5">
                   <ul className="px-2 space-y-1">
-                    {config.siteNavigation.map((node) =>
-                      node.submenu ? (
-                        <SubMenu
-                          key={node.label}
-                          node={node}
-                          handleClose={handleClose}
-                        />
-                      ) : (
-                        <li key={node.slug}>
-                          <Link
-                            to={node.slug}
-                            onClick={handleClose}
-                            className={`
+                    {config.siteNavigation.map((node) => (node.submenu ? (
+                      <SubMenu
+                        key={node.label}
+                        node={node}
+                        handleClose={handleClose}
+                      />
+                    ) : (
+                      <li key={node.slug}>
+                        <Link
+                          to={node.slug}
+                          onClick={handleClose}
+                          className={`
                         ${
                           pathname === node.slug
-                            ? " bg-gray-800 text-white"
-                            : "text-gray-300 hover:text-white"
+                            ? ' bg-gray-800 text-white'
+                            : 'text-gray-300 hover:text-white'
                         }
                         flex items-center px-2 py-2 text-base font-medium uppercase rounded-md hover:text-white hover:bg-white hover:bg-opacity-10`}
-                          >
-                            {node.label}
-                          </Link>
-                        </li>
-                      )
-                    )}
+                        >
+                          {node.label}
+                        </Link>
+                      </li>
+                    )))}
                   </ul>
                 </nav>
               </div>
@@ -122,8 +120,8 @@ function SubMenu({ node, handleClose }) {
               <motion.svg
                 viewBox="0 0 20 20"
                 fill="currentColor"
-                initial={{ rotate: "0deg" }}
-                animate={{ rotate: open ? "90deg" : "0deg" }}
+                initial={{ rotate: '0deg' }}
+                animate={{ rotate: open ? '90deg' : '0deg' }}
                 transition={transition}
                 className="w-5 h-5"
               >
@@ -142,8 +140,8 @@ function SubMenu({ node, handleClose }) {
                 animate="open"
                 exit="closed"
                 variants={{
-                  open: { height: "auto", opacity: 1, overflow: "visible" },
-                  closed: { height: 0, opacity: 0, overflow: "hidden" },
+                  open: { height: 'auto', opacity: 1, overflow: 'visible' },
+                  closed: { height: 0, opacity: 0, overflow: 'hidden' },
                 }}
                 transition={transition}
               >
@@ -156,13 +154,13 @@ function SubMenu({ node, handleClose }) {
                           onClick={handleClose}
                           className={`${
                             active
-                              ? "bg-opacity-10 text-white"
-                              : "bg-opacity-0 text-gray-300"
+                              ? 'bg-opacity-10 text-white'
+                              : 'bg-opacity-0 text-gray-300'
                           }
                         ${
                           pathname === node.slug
-                            ? " bg-gray-800 text-white"
-                            : "text-gray-300 hover:text-white"
+                            ? ' bg-gray-800 text-white'
+                            : 'text-gray-300 hover:text-white'
                         }
                         flex items-center justify-between w-full px-2 py-2 text-base font-medium text-gray-300 rounded-md hover:text-white hover:bg-white hover:bg-opacity-10`}
                         >

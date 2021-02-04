@@ -1,9 +1,9 @@
-import * as React from "react";
-import { graphql, Link } from "gatsby";
-import { GatsbyImage, getImage } from "gatsby-plugin-image";
-import { HiArrowRight } from "react-icons/hi";
+import * as React from 'react';
+import { graphql, Link } from 'gatsby';
+import { GatsbyImage, getImage } from 'gatsby-plugin-image';
+import { HiArrowRight } from 'react-icons/hi';
 
-import { BGImageRight, ContactSection, Layout, SEO } from "../components";
+import { BGImageRight, ContactSection, Layout, SEO } from '../components';
 
 function SuccessPage({ data }) {
   const newHomes = getImage(data.newHomes);
@@ -19,7 +19,13 @@ function SuccessPage({ data }) {
 
 // TODO Replace hero image with video
 function Hero({ imageData }) {
-  return <GatsbyImage image={imageData} alt="" />;
+  return (
+    <div className="relative aspect-w-16 aspect-h-9">
+      <div className="absolute inset-0 flex">
+        <GatsbyImage image={imageData} alt="" className="flex-1" />
+      </div>
+    </div>
+  );
 }
 
 function Success() {
@@ -52,17 +58,7 @@ export const query = graphql`
   query {
     newHomes: file(relativePath: { eq: "new-homes.jpg" }) {
       childImageSharp {
-        gatsbyImageData(layout: FLUID, maxWidth: 1920, maxHeight: 1080)
-      }
-    }
-    howCanWeHelp: file(relativePath: { eq: "how-can-we-help.jpg" }) {
-      childImageSharp {
-        gatsbyImageData(layout: FLUID, maxWidth: 400, maxHeight: 600)
-      }
-    }
-    whoAreWe: file(relativePath: { eq: "who-are-we.jpg" }) {
-      childImageSharp {
-        gatsbyImageData(layout: FLUID, maxWidth: 1920, maxHeight: 820)
+        gatsbyImageData(layout: CONSTRAINED, width: 1920)
       }
     }
   }

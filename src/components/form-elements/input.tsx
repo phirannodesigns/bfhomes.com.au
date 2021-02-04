@@ -1,32 +1,6 @@
-import * as React from "react";
-import { ErrorOption, RegisterOptions } from "react-hook-form";
+import * as React from 'react';
 
-import { Error } from "./error";
-
-type Name = string;
-
-interface InputProps {
-  className?: string;
-  errors?: ErrorOption;
-  label: string;
-  name: Name;
-  placeholder?: string;
-  register: RegisterOptions;
-  required?: boolean;
-  type?: string;
-}
-
-/**
- * Reusable HTML input component
- * @param className Forwards to the className prop on the input element
- * @param errors Object containing any errors in the form
- * @param label Label for the input
- * @param name Used for both the `id` and `name` of the input
- * @param placeholder Placeholder text for the input, falls back to label if not provided
- * @param register The register function from `react-hook-form`
- * @param required Boolean for if field is required. Set to true by default
- * @param type Input type. Defaults to 'text'
- */
+import { Error } from './error';
 
 function Input({
   className,
@@ -36,15 +10,15 @@ function Input({
   placeholder,
   register,
   required = true,
-  type = "text",
-}: InputProps) {
-  const MIN_LENGTH = type === "tel" ? 8 : 2;
+  type = 'text',
+}) {
+  const MIN_LENGTH = type === 'tel' ? 8 : 2;
   return (
     <div>
       <label htmlFor={name}>
         <span className="sr-only">
           {label}
-          {required && " *"}
+          {required && ' *'}
         </span>
         <input
           type={type}

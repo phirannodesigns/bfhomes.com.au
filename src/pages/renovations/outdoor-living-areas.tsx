@@ -52,7 +52,7 @@ const outdoorLivingAreas = [
     Always a winner no matter the time of year, a polished and roomy deck is a great
     compliment to any house. We can build from scratch or renovate your existing
     deck in a variety of materials and timber finishes. We help you design a deck that
-    suits your lifestyle adding space for barbeques, furniture, and more.    
+    suits your lifestyle adding space for barbeques, furniture, and more.
     </p>`,
     slug: '/renovations/outdoor-living-areas/#decks',
   },
@@ -89,12 +89,12 @@ export const query = graphql`
   query {
     newHomes: file(relativePath: { eq: "new-homes.jpg" }) {
       childImageSharp {
-        gatsbyImageData(layout: FLUID, maxWidth: 1920, maxHeight: 1080)
+        gatsbyImageData(layout: CONSTRAINED, width: 1920)
       }
     }
     whoAreWe: file(relativePath: { eq: "who-are-we.jpg" }) {
       childImageSharp {
-        gatsbyImageData(layout: FLUID, maxWidth: 1920, maxHeight: 820)
+        gatsbyImageData(layout: CONSTRAINED, width: 1920)
       }
     }
   }

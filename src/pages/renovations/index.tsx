@@ -2,8 +2,8 @@ import * as React from 'react';
 import { graphql, Link } from 'gatsby';
 import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 
-import { Layout, SEO, ContactSection } from '../../components';
 import { HiArrowRight } from 'react-icons/hi';
+import { Layout, SEO, ContactSection } from '../../components';
 
 function RenovationsPage({ data }) {
   const newHomes = getImage(data.newHomes);
@@ -61,11 +61,11 @@ function Service({ title, services, imageData, copy }) {
             </ul> */}
           </div>
           <div className="relative">
-            <div className="absolute inset-0">
+            <div className="absolute inset-0 flex">
               <GatsbyImage
                 image={imageData}
                 alt=""
-                className="w-full h-full max-w-sm mx-auto"
+                className="flex-1 w-full h-full max-w-sm mx-auto"
               />
             </div>
           </div>
@@ -187,12 +187,12 @@ export const query = graphql`
   query {
     newHomes: file(relativePath: { eq: "new-homes.jpg" }) {
       childImageSharp {
-        gatsbyImageData(layout: FLUID, maxWidth: 1920, maxHeight: 1080)
+        gatsbyImageData(layout: CONSTRAINED, width: 1920)
       }
     }
     curiousToSeeOurHomes: file(relativePath: { eq: "renovations.jpg" }) {
       childImageSharp {
-        gatsbyImageData(layout: FLUID, maxWidth: 1920, maxHeight: 820)
+        gatsbyImageData(layout: CONSTRAINED, width: 1920)
       }
     }
   }

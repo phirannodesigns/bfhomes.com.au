@@ -1,5 +1,5 @@
-import * as React from "react";
-import { BGLeft } from "./vectors/shapes/bg-left";
+import * as React from 'react';
+import { BGLeft } from './vectors/shapes/bg-left';
 
 interface BGImageLeftProps {
   children: React.ReactNode;
