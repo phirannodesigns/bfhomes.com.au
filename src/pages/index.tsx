@@ -11,6 +11,7 @@ import {
   BGImageLeft,
   ContactSection,
   Post,
+  Carousel,
 } from '../components';
 
 function IndexPage({ data }) {
@@ -206,58 +207,157 @@ function WhoAreWe({ imageData }) {
 
 const reviews = [
   {
-    name: 'Bree Knowles',
-    text:
-      'Lorem ipsum dolor sit amet, consectetur a ut dipiscing elit, sed do tempor incididunt ut labore et dolore magna aliqua.',
-    rating: 4,
+    name: 'Suzy Young & Kurt Peterson',
+    text: `<p>BruCorp Building Pty Ltd Made Our Dream Come True.</p>
+    <p>
+      We initially sought out BruCorp whilst living in Orange NSW, as we had
+      bought a block of land at Lake Cathie.
+    </p>
+    <p>
+      Darren and Corrina were very patient with us as we had to sell our home
+      in Orange and relocate to the mid North Coast before we could begin to
+      build.
+    </p>
+    <p>
+      The thought of committing to, and planning something so big was very
+      daunting to us and especially as we did not want to settle for anything
+      less perfection for our dream home.
+    </p>
+    <p>
+      Upon meeting with Darren and Corrina, I was immediately impressed by
+      their friendly, understanding, professional, non-forceful and ‘can-do’
+      attitude.
+    </p>
+    <p>
+      It made us feel absolutely comfortable and confident about what we were
+      doing and that we had made the right decision.
+    </p>
+    <p>
+      BruCorp Building Pty Ltd made everything easy for us from the initial
+      preparations, paperwork, scheduling, and options. Communication was
+      amazing. They always answered my calls (and their were hundreds) They
+      were friendly, punctual and informative. Nothing was ever a problem.
+      Their attention to detail is second to none.
+    </p>
+    <p>
+      They worked with us to make our dream home fit in with our budget and
+      were extremely considerate yet honest with advice to ensure only the
+      best job was done.
+    </p>
+    <p>
+      When they say the contract price, they really do mean it. Everything was
+      included right down to the grass, garden and driveways. All we had to do
+      was move our furniture in.
+    </p>
+    <p>
+      The build was completed on time and We are now a very proud owners of a
+      well designed, functional, and beautiful home. I have heard so many
+      horror stories about builders and homes, yet we can say with much pride
+      and gratitude that BruCorp Building Pty Ltd made the process of building
+      our dream home relaxing, easy and exciting. Darren and Corrina took
+      building our home to a personal level and above and beyond our
+      expectations.
+    </p>
+    <p>
+      We are glad to have made new friends and we wish BruCorp Building Pty
+      Ltd the Very Best Future.
+    </p>`,
+    rating: 5,
   },
   {
-    name: 'Hannah Smith',
-    text:
-      'Lorem ipsum dolor sit amet, consectetur a ut dipiscing elit, sed do tempor incididunt ut labore et dolore magna aliqua.',
-    rating: 4,
+    name: 'Helen Bickett',
+    text: `<p>
+      It is with much pleasure I offer this testimonial for BruCorp. I am the
+      proud owner of a dual occupancy property expertly constructed by BruCorp. 5
+      bedrooms, 4 bathrooms, 2 kitchens all perfectly finished and on schedule.
+      Corina, Darren, Ben and the crew were fastidious in their finishes and
+      workmanship.
+    </p>
+    <p>
+      I can't thank them enough for their
+      <strong>attention to detail and experience</strong>. They were always
+      available for any queries and always had my best interests at heart.
+    </p>
+    <p>
+      Thanks guys for a <strong>fantastic product</strong>. I would not hesitate
+      to recommend them to build and project manage any construction. I would be
+      happy to speak with any prospective clients of BruCorp.
+    </p>`,
+    rating: 5,
   },
   {
-    name: 'Jonathon Kin',
-    text:
-      'Lorem ipsum dolor sit amet, consectetur a ut dipiscing elit, sed do tempor incididunt ut labore et dolore magna aliqua.',
-    rating: 4,
+    name: 'Malcolm Revell',
+    text: `<p>
+      We would like to sincerely thank you for the recent construction of our
+      4 B/R house and detached granny flat at College Rise. You came to us
+      highly recommended as house/flat specialists and your pricing was very
+      competitive. We enjoyed the personal touch of dealing directly with a
+      builder who we could speak with at any time rather than a conglomerate
+      where we have to deal with sales people.
+    </p>
+    <p>
+      You communicated openly with us at all stages of the construction and
+      kept us fully informed of the progress. As a result we can truthfully
+      state that we did not have one instance where we were dissatisfied. You
+      handled the project professionally and the build quality was  of an
+      exceptional standard.
+    </p>
+    <p>
+      One of the buildings is to be rented and we quoted several RE property
+      managers. We were told by all of them that the design and finish is up
+      with the better ones in this class.
+    </p>
+    <p>
+      The buildings have long been completed and we have not had a single
+      issue under the warranty.
+    </p>
+    <p>
+      We wish you well with your future projects and we would not hesitate to
+      use your services again. We recommend your company to anyone
+      contemplating building a house.
+    </p>`,
+    rating: 5,
   },
 ];
 
 function Feedback() {
   return (
     <article className="text-brand-blue">
-      <div className="w-full max-w-screen-xl px-4 py-20 mx-auto sm:px-6 lg:px-8">
+      <div className="w-full max-w-screen-xl px-4 py-20 mx-auto space-y-8 sm:px-6 lg:px-8">
         <div className="flex">
           <h2 className="inline-block mx-auto text-2xl font-bold text-center uppercase border-b-2 border-brand-blue">
             Feedback From Our Clients
           </h2>
         </div>
-        <ul className="grid gap-4 mt-8 text-center lg:grid-cols-3">
+        <Carousel>
           {reviews.map((review) => (
             <li key={review.name}>
-              <blockquote>
-                <p className="font-medium">{review.text}</p>
-                <footer>
-                  <p className="mt-5 font-bold">{review.name}</p>
-                  <div className="flex items-center justify-center space-x-1 text-2xl text-brand-teal">
-                    {Array(review.rating)
-                      .fill('')
-                      .map((_, index) => (
-                        <IoStar key={index} className="w-6 h-6" />
-                      ))}
-                    {Array(5 - review.rating)
-                      .fill('')
-                      .map((_, index) => (
-                        <IoStarOutline key={index} className="w-6 h-6" />
-                      ))}
-                  </div>
-                </footer>
-              </blockquote>
+              <div className="pb-16 mx-auto overflow-y-auto prose prose-xl max-h-96 user-auto">
+                <blockquote>
+                  <div
+                    dangerouslySetInnerHTML={{ __html: review.text }}
+                    className="font-medium"
+                  />
+                  <footer>
+                    <p className="mt-5 font-bold">{review.name}</p>
+                    <div className="flex items-center justify-center space-x-1 text-2xl text-brand-teal">
+                      {Array(review.rating)
+                        .fill('')
+                        .map((_, index) => (
+                          <IoStar key={index} className="w-6 h-6" />
+                        ))}
+                      {Array(5 - review.rating)
+                        .fill('')
+                        .map((_, index) => (
+                          <IoStarOutline key={index} className="w-6 h-6" />
+                        ))}
+                    </div>
+                  </footer>
+                </blockquote>
+              </div>
             </li>
           ))}
-        </ul>
+        </Carousel>
       </div>
     </article>
   );
