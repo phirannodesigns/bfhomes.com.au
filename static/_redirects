@@ -1,0 +1,20 @@
+# Redirect old domain to new one:
+http://brucorp.com.au/*                 https://www.bfhomes.com.au/:splat 301!
+https://brucorp.com.au/*                https://www.bfhomes.com.au/:splat 301!
+http://www.brucorp.com.au/*             https://www.bfhomes.com.au/:splat 301!
+https://www.brucorp.com.au/*            https://www.bfhomes.com.au/:splat 301!
+
+http://brucorpbuilding.com/*            https://www.bfhomes.com.au/:splat 301!
+http://www.brucorpbuilding.com/*        https://www.bfhomes.com.au/:splat 301!
+https://brucorpbuilding.com/*           https://www.bfhomes.com.au/:splat 301!
+https://www.brucorpbuilding.com/*       https://www.bfhomes.com.au/:splat 301!
+
+http://brucorpbuilding.com.au/*         https://www.bfhomes.com.au/:splat 301!
+http://www.brucorpbuilding.com.au/*     https://www.bfhomes.com.au/:splat 301!
+https://brucorpbuilding.com.au/*        https://www.bfhomes.com.au/:splat 301!
+https://www.brucorpbuilding.com.au/*    https://www.bfhomes.com.au/:splat 301!
+
+# Redirect all traffic to the https www subdomain:
+http://bfhomes.com.au/*                 https://www.bfhomes.com.au/:splat 301!
+http://www.bfhomes.com.au/*             https://www.bfhomes.com.au/:splat 301!
+https://bfhomes.com.au/*                https://www.bfhomes.com.au/:splat 301!
