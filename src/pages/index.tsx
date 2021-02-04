@@ -13,6 +13,7 @@ import {
   Post,
   Carousel,
 } from '../components';
+import config from '../data/config.js';
 
 function IndexPage({ data }) {
   const newHomes = getImage(data.newHomes);
@@ -23,7 +24,7 @@ function IndexPage({ data }) {
   return (
     <Layout>
       <SEO title="Port Macquarie Home Builders - Renovations - Outdoor Living" />
-      <Hero imageData={newHomes} />
+      <Hero />
       <Services
         newHomes={newHomes}
         renovations={renovations}
@@ -41,8 +42,19 @@ function IndexPage({ data }) {
 }
 
 // TODO Replace hero image with video
-function Hero({ imageData }) {
-  return <GatsbyImage image={imageData} alt="" />;
+function Hero() {
+  return (
+    <div className="relative aspect-w-16 aspect-h-9">
+      <iframe
+        src={`https://www.youtube.com/embed/${config.youtubeVideId}?autoplay=1&controls=0&disablekb=1&iv_load_policy=3&loop=1&modestbranding=1&playlist=${config.youtubeVideId}&playsinline=1&rel=0`}
+        className="absolute inset-0 pointer-events-none"
+        frameBorder={0}
+        allowFullScreen
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        title="YouTube video player"
+      />
+    </div>
+  );
 }
 
 function Services({ newHomes, renovations, outdoors }) {
@@ -51,14 +63,14 @@ function Services({ newHomes, renovations, outdoors }) {
     {
       heading: 'New Homes',
       copy:
-        'Bruen Family Homes design and construct quality homes for families throughout Port Macquarie and NSW North Coast. We deliver on time, on budget, and aim for      complete satisfaction in new builds, extensions, and renovations that are practical, stylish, and liveable.',
+        'Bruen Family Homes design and construct quality homes for families throughout Port Macquarie and NSW North Coast. We deliver on time, on budget, and aim for complete satisfaction in new builds, extensions, and renovations that are practical, stylish, and liveable.',
       slug: '/homes/',
       image: newHomes,
     },
     {
       heading: 'Renovations',
       copy:
-        'Bruen Family Homes are Port Macquarie’s specialists in high quality renovations, second storey additions and extensions. Whether you need substantial structural    modifications or interior renovations, your family can rely on Bruen Family Homes to get the job done on time and on budget.',
+        'Bruen Family Homes are Port Macquarie’s specialists in high quality renovations, second storey additions and extensions. Whether you need substantial structural modifications or interior renovations, your family can rely on Bruen Family Homes to get the job done on time and on budget.',
       slug: '/renovations/',
       image: renovations,
     },
