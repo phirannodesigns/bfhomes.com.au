@@ -14,7 +14,7 @@ module.exports = {
   socialLinks: [
     {
       label: 'Facebook',
-      url: 'https://www.facebook.com',
+      url: 'https://www.facebook.com/brucorpbuildingptyltd',
       icon: FaFacebookF,
     },
     {
