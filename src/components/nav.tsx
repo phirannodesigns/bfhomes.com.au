@@ -15,7 +15,7 @@ function Nav() {
         <div className="flex flex-col items-end justify-between flex-1">
           <div className="flex items-center space-x-6 text-brand-teal">
             <a href={`tel:${config.phone}`}>Call us on {config.phone}</a>
-            <ul className="flex items-center space-x-3">
+            <ul className="items-center hidden space-x-3 sm:flex">
               {config.socialLinks.map((socialLink) => (
                 <li key={socialLink.url}>
                   <a
