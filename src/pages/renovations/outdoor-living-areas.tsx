@@ -33,7 +33,6 @@ function OutdoorLivingArea() {
     <HeadingWithCopy
       id="outdoor-living-areas"
       heading="Outdoor Living Areas"
-      copy=""
       copyArray={[
         'Whether you’re looking to accommodate decks, built-in barbecues, flyover roofs, pools, landscaping, or alfresco areas – we can help you achieve your personalised vision for outdoor living and entertaining.',
         'With over 30 years of experience, Bruen Family Homes have designed and built dozens of outdoor living areas that are economical and comfortable. We design around your needs for entertaining guests, taking advantage of NSW North Coast’s weather, or for maximum privacy.',

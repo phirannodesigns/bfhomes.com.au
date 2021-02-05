@@ -40,8 +40,7 @@ function HouseExtension() {
       of extensions from living areas, bathrooms, kitchens, bedrooms, and study or office
       areas. We perform large or small extensions, including ones that require major
       structural works. We consult with you to make the most from your house
-      extension.
-      "
+      extension."
     />
   );
 }

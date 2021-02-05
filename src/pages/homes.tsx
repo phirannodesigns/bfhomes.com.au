@@ -33,7 +33,6 @@ function OurHomes() {
     <HeadingWithCopy
       id="homes"
       heading="Our Homes"
-      copy=""
       copyArray={[
         'Bruen Family Homes are homes that you love to come back to every day. They’re tailored for your lifestyle, look how you want them to look, and are built with quality craftsmanship.',
         'Our team has over 30 years of expertise to realise your design and living requirements. Throughout the process, we stay faithful to your own style and needs. We are in constant communication with you, making sure you get a hassle-free construction experience giving you greater peace of mind.',
