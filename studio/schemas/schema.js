@@ -7,6 +7,9 @@ import schemaTypes from 'all:part:@sanity/base/schema-type';
 // We import object and document schemas
 import blockContent from './blockContent';
 import homes from './homes';
+import renovations from './renovations';
+import renovationArea from './renovationArea';
+import renovationType from './renovationType';
 import category from './category';
 import post from './post';
 import author from './author';
@@ -21,6 +24,9 @@ export default createSchema({
     // The following are document types which will appear
     // in the studio.
     homes,
+    renovations,
+    renovationArea,
+    renovationType,
     post,
     author,
     category,
