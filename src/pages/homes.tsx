@@ -11,11 +11,12 @@ import {
 } from '../components';
 
 function HomesPage({ data }) {
+  const homes = getImage(data.homes);
   const newHomes = getImage(data.newHomes);
   return (
     <Layout>
       <SEO title="Homes" />
-      <Hero imageData={newHomes} />
+      <Hero imageData={homes} />
       <OurHomes />
       <Homes imageData={newHomes} />
       <ContactSection />
@@ -23,7 +24,6 @@ function HomesPage({ data }) {
   );
 }
 
-// TODO replace hero image
 function Hero({ imageData }) {
   return <GatsbyImage image={imageData} alt="" />;
 }
@@ -103,14 +103,14 @@ function Homes({ imageData }) {
 
 export const query = graphql`
   query {
-    newHomes: file(relativePath: { eq: "new-homes.jpg" }) {
+    homes: file(relativePath: { eq: "homes.jpg" }) {
       childImageSharp {
         gatsbyImageData(layout: CONSTRAINED, width: 1920, height: 1080)
       }
     }
-    whoAreWe: file(relativePath: { eq: "who-are-we.jpg" }) {
+    newHomes: file(relativePath: { eq: "new-homes.jpg" }) {
       childImageSharp {
-        gatsbyImageData(layout: CONSTRAINED, width: 1920, height: 820)
+        gatsbyImageData(layout: CONSTRAINED, width: 1920, height: 1080)
       }
     }
   }
