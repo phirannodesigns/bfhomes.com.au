@@ -15,13 +15,13 @@ interface ServiceProps {
   service: {
     _rawBody?: Object;
     copy?: string;
-    heroImage: {
+    heroImage?: {
       asset: {
         fluid: FluidObject;
       };
     };
     id: string;
-    images: Array<{
+    images?: Array<{
       _key: string;
       asset: {
         fluid: FluidObject;
