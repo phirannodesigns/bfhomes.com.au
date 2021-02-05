@@ -41,7 +41,7 @@ function IndexPage({ data }) {
   );
 }
 
-// TODO Replace hero image with video
+// TODO Get autoplay to work on mobile
 function Hero() {
   return (
     <div className="relative aspect-w-16 aspect-h-9">
@@ -82,6 +82,7 @@ function Services({ newHomes, renovations, outdoors }) {
       image: outdoors,
     },
   ];
+
   return (
     <ul className="grid w-full gap-12 px-4 mx-auto transform -translate-y-12 sm:px-6 lg:px-8 lg:grid-cols-3 lg:-translate-y-24">
       {services.map((service) => (
