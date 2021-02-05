@@ -30,19 +30,19 @@ module.exports = {
       submenu: [
         {
           label: 'All Homes',
-          slug: '/homes/#homes',
+          slug: '/homes#homes',
         },
         {
           label: 'Marchment',
-          slug: '/homes/#marchment',
+          slug: '/homes#marchment',
         },
         {
           label: 'Black Caviar',
-          slug: '/homes/#black-caviar',
+          slug: '/homes#black-caviar',
         },
         {
           label: 'Duplex',
-          slug: '/homes/#duplex',
+          slug: '/homes#duplex',
         },
       ],
     },
@@ -60,11 +60,11 @@ module.exports = {
         },
         {
           label: 'Bathrooms',
-          slug: '/renovations/house-extensions/#bathrooms',
+          slug: '/renovations/house-extensions#bathrooms',
         },
         {
           label: 'Kitchens',
-          slug: '/renovations/house-extensions/#kitchens',
+          slug: '/renovations/house-extensions#kitchens',
         },
         {
           label: 'Outdoor Living Areas',
@@ -72,11 +72,11 @@ module.exports = {
         },
         {
           label: 'Decks',
-          slug: '/renovations/outdoor-living-areas/#decks',
+          slug: '/renovations/outdoor-living-areas#decks',
         },
         {
           label: 'Flyover Roofs',
-          slug: '/renovations/outdoor-living-areas/#flyover-roofs',
+          slug: '/renovations/outdoor-living-areas#flyover-roofs',
         },
       ],
     },
