@@ -3,6 +3,7 @@ export * from './bg-image-right';
 export * from './carousel';
 export * from './contact-section';
 export * from './heading-with-copy';
+export * from './hero';
 export * from './layout';
 export * from './post';
 export * from './seo';
