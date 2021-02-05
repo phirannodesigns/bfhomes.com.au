@@ -86,22 +86,20 @@ function Carousel({ children }: ICarousel): React.ReactElement {
       {slider && (
         <div className="absolute inset-x-0 bottom-0 z-10 pt-6 pb-2 transform bg-gradient-to-b from-transparent via-white to-white">
           <ul className="relative flex items-center justify-center space-x-2">
-            {[...Array(slider.details().size).keys()].map((index) => {
-              return (
-                <li key={index}>
-                  <button
-                    type="button"
-                    aria-label={`Move to slide ${index + 1}`}
-                    onClick={() => {
-                      slider.moveToSlideRelative(index);
-                    }}
-                    className={`${
-                      currentSlide !== index ? 'bg-opacity-0' : 'bg-opacity-100'
-                    } bg-brand-blue h-2.5 w-2.5 rounded-full border border-brand-blue transition duration-150 ease-in-out pointer-events-auto`}
-                  />
-                </li>
-              );
-            })}
+            {[...Array(slider.details().size).keys()].map((index) => (
+              <li key={index}>
+                <button
+                  type="button"
+                  aria-label={`Move to slide ${index + 1}`}
+                  onClick={() => {
+                    slider.moveToSlideRelative(index);
+                  }}
+                  className={`${
+                    currentSlide !== index ? 'bg-opacity-0' : 'bg-opacity-100'
+                  } bg-brand-blue h-2.5 w-2.5 rounded-full border border-brand-blue transition duration-150 ease-in-out pointer-events-auto`}
+                />
+              </li>
+            ))}
           </ul>
         </div>
       )}
