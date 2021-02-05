@@ -22,8 +22,18 @@
   }
 
   /* Use Smooth Scroll for jump links */
-  html {
+  html:focus-within {
     scroll-behavior: smooth;
+  }
+
+  [id] {
+    scroll-margin-top: 7rem;
+  }
+
+  @screen lg {
+    [id] {
+      scroll-margin-top: 9rem;
+    }
   }
 
   /* Turn off animations for people who have the prefers-reduced-motion query enabled */
