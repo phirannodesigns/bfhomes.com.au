@@ -1,5 +1,7 @@
 import * as React from 'react';
+import Image, { FluidObject } from 'gatsby-image';
 import { GatsbyImage, IGatsbyImageData } from 'gatsby-plugin-image';
+import SanityBlockContent from '@sanity/block-content-to-react';
 import { useKeenSlider } from 'keen-slider/react';
 import 'keen-slider/keen-slider.min.css';
 
@@ -11,10 +13,26 @@ const tailwindConfig = getTailwindConfig();
 
 interface ServiceProps {
   service: {
+    _rawBody?: Object;
+    copy?: string;
+    heroImage: {
+      asset: {
+        fluid: FluidObject;
+      };
+    };
     id: string;
+    images: Array<{
+      _key: string;
+      asset: {
+        fluid: FluidObject;
+      };
+    }>;
+    slug:
+      | string
+      | {
+          current: string;
+        };
     title: string;
-    copy: string;
-    slug: string;
   };
   reverse: boolean;
   imageData: IGatsbyImageData;
@@ -25,7 +43,15 @@ function Service({ service, reverse, imageData }: ServiceProps) {
     return (
       <div className="relative lg:row-span-2">
         <div className="absolute inset-0 flex">
-          <GatsbyImage image={imageData} alt="" className="flex-1" />
+          {service.heroImage ? (
+            <Image
+              fluid={service.heroImage.asset.fluid}
+              alt=""
+              className="flex-1"
+            />
+          ) : (
+            <GatsbyImage image={imageData} alt="" className="flex-1" />
+          )}
         </div>
       </div>
     );
@@ -59,7 +85,11 @@ function Service({ service, reverse, imageData }: ServiceProps) {
     const images = Array(9).fill({ imageData });
 
     return (
-      <div className="relative z-10 grid w-full max-w-screen-xl gap-4 px-4 py-20 mx-auto sm:px-6 lg:px-8 lg:grid-cols-4">
+      <div
+        // @ts-ignore
+        id={service.slug?.current || service.slug}
+        className="relative z-10 grid w-full max-w-screen-xl gap-4 px-4 py-20 mx-auto sm:px-6 lg:px-8 lg:grid-cols-4"
+      >
         {reverse && <MainImage />}
         <div className="lg:col-span-3">
           <h2
@@ -69,34 +99,58 @@ function Service({ service, reverse, imageData }: ServiceProps) {
           >
             {service.title}
           </h2>
-          <div
-            dangerouslySetInnerHTML={{ __html: service.copy }}
-            className={`
+          {service.copy ? (
+            <div
+              dangerouslySetInnerHTML={{ __html: service.copy }}
+              className={`
+              ${reverse ? 'text-white' : 'text-brand-blue'}
+              mt-5 prose-lg font-medium`}
+            />
+          ) : (
+            <SanityBlockContent
+              blocks={service._rawBody}
+              renderContainerOnSingleChild
+              className={`
             ${reverse ? 'text-white' : 'text-brand-blue'}
             mt-5 prose-lg font-medium`}
-          />
+            />
+          )}
         </div>
         {!reverse && <MainImage />}
         <div className="relative lg:col-span-3">
           <div>
             <ul ref={sliderRef} className="keen-slider">
-              {images.map((image) => (
-                <li className="keen-slider__slide">
-                  <div className="relative h-0 aspect-w-4 aspect-h-3">
-                    <div className="absolute inset-0 flex">
-                      <GatsbyImage
-                        image={image.imageData}
-                        alt=""
-                        className="flex-1"
-                      />
-                    </div>
-                  </div>
-                </li>
-              ))}
+              {service.images
+                ? service.images.map(({ _key, asset }) => (
+                    <li key={_key} className="keen-slider__slide">
+                      <div className="relative h-0 aspect-w-4 aspect-h-3">
+                        <div className="absolute inset-0 flex">
+                          <Image
+                            fluid={asset.fluid}
+                            alt=""
+                            className="flex-1"
+                          />
+                        </div>
+                      </div>
+                    </li>
+                  ))
+                : images.map((image) => (
+                    <li className="keen-slider__slide">
+                      <div className="relative h-0 aspect-w-4 aspect-h-3">
+                        <div className="absolute inset-0 flex">
+                          <GatsbyImage
+                            image={image.imageData}
+                            alt=""
+                            className="flex-1"
+                          />
+                        </div>
+                      </div>
+                    </li>
+                  ))}
             </ul>
             {slider && (
               <div className="absolute inset-x-0 bottom-0 flex items-center justify-center py-2 space-x-2 transform translate-y-full">
-                <button onClick={(e) => e.stopPropagation() || slider.prev()}>
+                <button onClick={() => slider.prev()}>
                   <HiChevronLeft className="text-2xl" />
                 </button>
                 {[...Array(slider.details().size).keys()].map((index) => (
@@ -115,7 +169,7 @@ function Service({ service, reverse, imageData }: ServiceProps) {
                       `}
                   />
                 ))}
-                <button onClick={(e) => e.stopPropagation() || slider.next()}>
+                <button onClick={() => slider.next()}>
                   <HiChevronRight className="text-2xl" />
                 </button>
               </div>
