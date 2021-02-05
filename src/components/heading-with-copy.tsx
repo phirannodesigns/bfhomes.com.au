@@ -10,7 +10,7 @@ function HeadingWithCopy({ id, heading, copy, copyArray }) {
           </h2>
           <div className="mt-5 prose">
             <p>{copy}</p>
-            {copyArray && copyArray.map((i) => <p>{i}</p>)}
+            {copyArray && copyArray.map((c, i) => <p key={i}>{c}</p>)}
           </div>
         </div>
       </div>
