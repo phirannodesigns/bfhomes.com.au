@@ -1,6 +1,13 @@
 import * as React from 'react';
 
-function HeadingWithCopy({ id, heading, copy, copyArray }) {
+interface IHeadingWithCopy {
+  id?: string;
+  heading: string;
+  copy?: string;
+  copyArray?: string[];
+}
+
+function HeadingWithCopy({ id, heading, copy, copyArray }: IHeadingWithCopy) {
   return (
     <article id={id} className="text-brand-blue">
       <div className="w-full max-w-screen-xl px-4 py-20 mx-auto sm:px-6 lg:px-8">
@@ -9,8 +16,11 @@ function HeadingWithCopy({ id, heading, copy, copyArray }) {
             {heading}
           </h2>
           <div className="mt-5 prose">
-            <p>{copy}</p>
-            {copyArray && copyArray.map((c, i) => <p key={i}>{c}</p>)}
+            {copy ? (
+              <p>{copy}</p>
+            ) : (
+              copyArray && copyArray.map((c, i) => <p key={i}>{c}</p>)
+            )}
           </div>
         </div>
       </div>
