@@ -11,14 +11,14 @@ import {
 } from '../components';
 
 function HomesPage({ data }) {
-  const homes = getImage(data.homes);
-  const newHomes = getImage(data.newHomes);
+  const homesHero = getImage(data.homesHero);
+  const homes = data.allSanityHomes.nodes;
   return (
     <Layout>
       <SEO title="Homes" />
-      <Hero imageData={homes} />
+      <Hero imageData={homesHero} />
       <OurHomes />
-      <Homes imageData={newHomes} />
+      <Homes homes={homes} />
       <ContactSection />
     </Layout>
   );
@@ -44,56 +44,13 @@ function OurHomes() {
   );
 }
 
-const homes = [
-  {
-    id: 'marchment',
-    title: 'Marchment',
-    copy: `<p>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-      incididunt ut abore et dolore magna aliqua. Ut enim ad minim veniam, quis
-      nostrud exercitation ullamco aboris nisi ut aliquip ex ea commodo consequat.
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-      incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-      nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-    </p>`,
-    slug: '/homes/marchment/',
-  },
-  {
-    id: 'black-caviar',
-    title: 'Black Caviar',
-    copy: `<p>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-      incididunt ut abore et dolore magna aliqua. Ut enim ad minim veniam, quis
-      nostrud exercitation ullamco aboris nisi ut aliquip ex ea commodo consequat.
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-      incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-      nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-    </p>`,
-    slug: '/homes/black-caviar/',
-  },
-  {
-    id: 'duplex',
-    title: 'Duplex',
-    copy: `<p>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-      incididunt ut abore et dolore magna aliqua. Ut enim ad minim veniam, quis
-      nostrud exercitation ullamco aboris nisi ut aliquip ex ea commodo consequat.
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-      incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-      nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-    </p>`,
-    slug: '/homes/duplex/',
-  },
-];
-
-function Homes({ imageData }) {
+function Homes({ homes }) {
   return (
     <>
       {homes.map((service, index) => (
         <Service
           key={service.title}
           service={service}
-          imageData={imageData}
           reverse={index % 2 === 0}
         />
       ))}
@@ -103,14 +60,35 @@ function Homes({ imageData }) {
 
 export const query = graphql`
   query {
-    homes: file(relativePath: { eq: "homes.jpg" }) {
+    homesHero: file(relativePath: { eq: "homes-hero.jpg" }) {
       childImageSharp {
         gatsbyImageData(layout: CONSTRAINED, width: 1920, height: 1080)
       }
     }
-    newHomes: file(relativePath: { eq: "new-homes.jpg" }) {
-      childImageSharp {
-        gatsbyImageData(layout: CONSTRAINED, width: 1920, height: 1080)
+    allSanityHomes {
+      nodes {
+        _rawBody
+        id
+        publishedAt
+        title
+        heroImage {
+          asset {
+            fluid(maxWidth: 450) {
+              ...GatsbySanityImageFluid
+            }
+          }
+        }
+        images {
+          _key
+          asset {
+            fluid(maxWidth: 450) {
+              ...GatsbySanityImageFluid
+            }
+          }
+        }
+        slug {
+          current
+        }
       }
     }
   }
