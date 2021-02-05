@@ -3,26 +3,22 @@ import { graphql, Link } from 'gatsby';
 import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 
 import { HiArrowRight } from 'react-icons/hi';
-import { Layout, SEO, ContactSection } from '../../components';
+import { Layout, SEO, ContactSection, Hero } from '../../components';
 
 function RenovationsPage({ data }) {
-  const newHomes = getImage(data.newHomes);
-  const curiousToSeeOurHomes = getImage(data.curiousToSeeOurHomes);
+  const renovationsHero = getImage(data.renovationsHero);
+  const bathroom = getImage(data.bathroom);
+  const whoAreWe = getImage(data.whoAreWe);
   return (
     <Layout>
       <SEO title="Renovations" />
-      <Hero imageData={newHomes} />
-      <HouseExtensions imageData={newHomes} />
-      <OutdoorLivingAreas imageData={newHomes} />
-      <CuriousToSeeOurHomes imageData={curiousToSeeOurHomes} />
+      <Hero imageData={renovationsHero} />
+      <HouseExtensions imageData={renovationsHero} bathroom={bathroom} />
+      <OutdoorLivingAreas imageData={renovationsHero} />
+      <CuriousToSeeOurHomes imageData={whoAreWe} />
       <ContactSection />
     </Layout>
   );
-}
-
-// TODO replace hero image
-function Hero({ imageData }) {
-  return <GatsbyImage image={imageData} alt="" />;
 }
 
 function Service({ title, services, imageData, copy }) {
@@ -35,30 +31,6 @@ function Service({ title, services, imageData, copy }) {
             <div className="mt-5 prose text-white">
               <p>{copy}</p>
             </div>
-            {/* <ul className="grid gap-3 mt-8 text-xl font-medium max-w-prose">
-              {[
-                {
-                  label: "Lorem ipsum",
-                  colour: "text-brand-teal",
-                },
-                {
-                  label: "Et dolore magna",
-                  colour: "text-blue-400",
-                },
-                {
-                  label: "Ut enim ad",
-                  colour: "text-gray-400",
-                },
-              ].map((service) => (
-                <li
-                  key={`${service.label}${service.colour}`}
-                  className="flex items-center space-x-3"
-                >
-                  <HiArrowRight className={service.colour} />
-                  <span>{service.label}</span>
-                </li>
-              ))}
-            </ul> */}
           </div>
           <div className="relative">
             <div className="absolute inset-0 flex">
@@ -101,24 +73,23 @@ function Service({ title, services, imageData, copy }) {
   );
 }
 
-const houseExtensions = [
-  {
-    heading: 'Bathrooms',
-    copy:
-      'If your bathroom is old, cramped, or frequently occupied, extending your home with a new bathroom is a popular choice to gain more functionality. We can extend your existing bathroom or build new bathrooms and/or ensuites that are close to your current floorplan. Ask us how we can extend your bathroom today.',
-    slug: '/renovations/house-extensions/#bathrooms',
-    image: '../images/new-homes.jpg',
-  },
-  {
-    heading: 'Kitchens',
-    copy:
-      'Getting more from your kitchen is easy with Bruen Family Homes. We can extend your kitchen, increasing the space between appliances, benches, and sinks. We can design a new open plan living area, depending on how your home is structured. Talk to us about getting more from your kitchen with a Bruen quality extension.',
-    slug: '/renovations/house-extensions/#kitchens',
-    image: '../images/new-homes.jpg',
-  },
-];
-
-function HouseExtensions({ imageData }) {
+function HouseExtensions({ imageData, bathroom }) {
+  const houseExtensions = [
+    {
+      heading: 'Bathrooms',
+      copy:
+        'If your bathroom is old, cramped, or frequently occupied, extending your home with a new bathroom is a popular choice to gain more functionality. We can extend your existing bathroom or build new bathrooms and/or ensuites that are close to your current floorplan. Ask us how we can extend your bathroom today.',
+      slug: '/renovations/house-extensions/#bathrooms',
+      image: bathroom,
+    },
+    {
+      heading: 'Kitchens',
+      copy:
+        'Getting more from your kitchen is easy with Bruen Family Homes. We can extend your kitchen, increasing the space between appliances, benches, and sinks. We can design a new open plan living area, depending on how your home is structured. Talk to us about getting more from your kitchen with a Bruen quality extension.',
+      slug: '/renovations/house-extensions/#kitchens',
+      image: '../images/new-homes.jpg',
+    },
+  ];
   return (
     <Service
       copy="House extensions give you more room to move and can be an economical and functional way to breathe more life into your home instead of looking elsewhere. Bruen Family Homes have over 30 years of designing and building house extensions by constructing using vacant land or up into a second storey. We can build all types of extensions from living areas, bathrooms, kitchens, bedrooms, and study or office areas. We perform large or small extensions, including ones that require major structural works. We consult with you to make the most from your house extension."
@@ -165,14 +136,14 @@ function CuriousToSeeOurHomes({ imageData }) {
       <div className="absolute inset-0 flex">
         <GatsbyImage image={imageData} alt="" className="flex-1" />
       </div>
-      <div className="relative z-10 w-full max-w-screen-xl px-4 py-40 mx-auto bg-black bg-opacity-25 sm:px-6 lg:px-8">
+      <div className="relative z-10 w-full max-w-screen-xl px-4 py-40 mx-auto bg-black bg-opacity-50 sm:px-6 lg:px-8">
         <h2 className="text-5xl border-white heading-2">
           Curious To See Our Homes?
         </h2>
         <p className="mt-5">
           <Link
             to="/homes/"
-            className="inline-flex tracking-wider items-center space-x-3 px-4 py-2.5 text-sm font-medium uppercase border text-white border-white"
+            className="inline-flex tracking-wider items-center space-x-3 px-4 py-2.5 text-sm font-medium uppercase border text-white border-white transition duration-150 ease-in-out hover:bg-white hover:text-brand-blue"
           >
             <span className="whitespace-nowrap">See Our Homes</span>
             <HiArrowRight className="text-lg" />
@@ -185,14 +156,56 @@ function CuriousToSeeOurHomes({ imageData }) {
 
 export const query = graphql`
   query {
-    newHomes: file(relativePath: { eq: "new-homes.jpg" }) {
+    renovationsHero: file(relativePath: { eq: "renovations-hero.jpg" }) {
       childImageSharp {
         gatsbyImageData(layout: CONSTRAINED, width: 1920)
       }
     }
-    curiousToSeeOurHomes: file(relativePath: { eq: "renovations.jpg" }) {
+    bathroom: file(relativePath: { eq: "bathroom.jpg" }) {
       childImageSharp {
         gatsbyImageData(layout: CONSTRAINED, width: 1920)
+      }
+    }
+    whoAreWe: file(relativePath: { eq: "who-are-we.jpg" }) {
+      childImageSharp {
+        gatsbyImageData(layout: CONSTRAINED, width: 1920)
+      }
+    }
+    allSanityRenovations {
+      nodes {
+        id
+        renovation {
+          _rawBody
+          heroImage {
+            asset {
+              fluid(maxWidth: 1920) {
+                ...GatsbySanityImageFluid
+              }
+            }
+          }
+          renovations {
+            _key
+            _rawBody
+            heroImage {
+              asset {
+                fluid(maxWidth: 450) {
+                  ...GatsbySanityImageFluid
+                }
+              }
+            }
+            images {
+              asset {
+                fluid(maxWidth: 1920) {
+                  ...GatsbySanityImageFluid
+                }
+              }
+            }
+            slug {
+              current
+            }
+            title
+          }
+        }
       }
     }
   }

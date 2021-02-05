@@ -5,14 +5,15 @@ import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 import { Layout, SEO, BGImageRight, ContactSection, Hero } from '../components';
 
 function AboutPage({ data }) {
-  const newHomes = getImage(data.newHomes);
+  const aboutHero = getImage(data.aboutHero);
+  const aboutUs = getImage(data.aboutUs);
   const whoAreWe = getImage(data.whoAreWe);
   return (
     <Layout>
       <SEO title="About Us" />
-      <Hero imageData={newHomes} />
+      <Hero imageData={aboutHero} />
       <BGImageRight>
-        <AboutUs imageData={whoAreWe} />
+        <AboutUs imageData={aboutUs} />
         <WhyChooseUs imageData={whoAreWe} />
       </BGImageRight>
       <ContactSection />
@@ -56,8 +57,12 @@ function AboutUs({ imageData }) {
             <div className="relative w-full max-w-xs mx-auto">
               <div className="relative h-0 aspect-w-3 aspect-h-4">
                 <div className="absolute inset-0 flex">
-                  {/* // TODO fix object-position for image */}
-                  <GatsbyImage image={imageData} alt="" className="flex-1" />
+                  <GatsbyImage
+                    image={imageData}
+                    alt=""
+                    objectFit="contain"
+                    className="flex-1"
+                  />
                 </div>
               </div>
             </div>
@@ -103,9 +108,14 @@ function WhyChooseUs({ imageData }) {
 
 export const query = graphql`
   query {
-    newHomes: file(relativePath: { eq: "new-homes.jpg" }) {
+    aboutHero: file(relativePath: { eq: "about-hero.jpg" }) {
       childImageSharp {
         gatsbyImageData(layout: CONSTRAINED, width: 1920)
+      }
+    }
+    aboutUs: file(relativePath: { eq: "about-us.jpg" }) {
+      childImageSharp {
+        gatsbyImageData(layout: CONSTRAINED, width: 600, height: 400)
       }
     }
     whoAreWe: file(relativePath: { eq: "who-are-we.jpg" }) {

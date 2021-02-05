@@ -8,13 +8,13 @@ import { Layout, SEO, BGImageRight, Hero } from '../components';
 import { Input, NetlifyForm, Textarea } from '../components/form-elements';
 
 function ContactPage({ data }) {
-  const newHomes = getImage(data.newHomes);
-  const howCanWeHelp = getImage(data.howCanWeHelp);
+  const contactHero = getImage(data.contactHero);
+  const contactInfo = getImage(data.contactInfo);
   return (
     <Layout>
       <SEO title="Contact Us" />
-      <Hero imageData={newHomes} />
-      <ContactInfo imageData={howCanWeHelp} />
+      <Hero imageData={contactHero} />
+      <ContactInfo imageData={contactInfo} />
       <ContactForm />
     </Layout>
   );
@@ -196,12 +196,12 @@ function ContactForm() {
 
 export const query = graphql`
   query {
-    newHomes: file(relativePath: { eq: "new-homes.jpg" }) {
+    contactHero: file(relativePath: { eq: "contact-hero.jpg" }) {
       childImageSharp {
         gatsbyImageData(layout: CONSTRAINED, width: 1920)
       }
     }
-    howCanWeHelp: file(relativePath: { eq: "how-can-we-help.jpg" }) {
+    contactInfo: file(relativePath: { eq: "contact-info.jpg" }) {
       childImageSharp {
         gatsbyImageData(layout: CONSTRAINED, width: 400)
       }
