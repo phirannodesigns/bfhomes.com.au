@@ -48,7 +48,7 @@ function Post({ post }) {
               });
             } else if (typeof window !== 'undefined') {
               window.open(
-                `https://www.facebook.com/sharer/sharer.php?u=${origin}/posts/${post.slug.current}/`,
+                `https://www.facebook.com/sharer/sharer.php?u=${origin}/posts/${post.slug.current}/`
               );
             } else return;
           }}

@@ -39,24 +39,26 @@ function Nav() {
             </ul>
           </div>
           <ul className="hidden space-x-12 lg:flex">
-            {config.siteNavigation.map((navItem) => (navItem.submenu ? (
-              <SubMenu key={navItem.label} node={navItem} />
-            ) : (
-              <li key={navItem.slug}>
-                <Link
-                  to={navItem.slug}
-                  className={`
+            {config.siteNavigation.map((navItem) =>
+              navItem.submenu ? (
+                <SubMenu key={navItem.label} node={navItem} />
+              ) : (
+                <li key={navItem.slug}>
+                  <Link
+                    to={navItem.slug}
+                    className={`
                     ${
                       pathname === navItem.slug
                         ? 'text-brand-teal'
                         : 'text-white'
                     }
                     uppercase`}
-                >
-                  {navItem.label}
-                </Link>
-              </li>
-            )))}
+                  >
+                    {navItem.label}
+                  </Link>
+                </li>
+              )
+            )}
           </ul>
         </div>
         <button

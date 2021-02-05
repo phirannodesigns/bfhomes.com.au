@@ -52,29 +52,31 @@ function MobileMenu() {
                 </div>
                 <nav className="mt-5">
                   <ul className="px-2 space-y-1">
-                    {config.siteNavigation.map((node) => (node.submenu ? (
-                      <SubMenu
-                        key={node.label}
-                        node={node}
-                        handleClose={handleClose}
-                      />
-                    ) : (
-                      <li key={node.slug}>
-                        <Link
-                          to={node.slug}
-                          onClick={handleClose}
-                          className={`
+                    {config.siteNavigation.map((node) =>
+                      node.submenu ? (
+                        <SubMenu
+                          key={node.label}
+                          node={node}
+                          handleClose={handleClose}
+                        />
+                      ) : (
+                        <li key={node.slug}>
+                          <Link
+                            to={node.slug}
+                            onClick={handleClose}
+                            className={`
                         ${
                           pathname === node.slug
                             ? ' bg-gray-800 text-white'
                             : 'text-gray-300 hover:text-white'
                         }
                         flex items-center px-2 py-2 text-base font-medium uppercase rounded-md hover:text-white hover:bg-white hover:bg-opacity-10`}
-                        >
-                          {node.label}
-                        </Link>
-                      </li>
-                    )))}
+                          >
+                            {node.label}
+                          </Link>
+                        </li>
+                      )
+                    )}
                   </ul>
                 </nav>
               </div>

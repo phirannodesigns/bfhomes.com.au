@@ -1,8 +1,6 @@
 import * as React from 'react';
 
-function HeadingWithCopy({
-  id, heading, copy, copyArray,
-}) {
+function HeadingWithCopy({ id, heading, copy, copyArray }) {
   return (
     <article id={id} className="text-brand-blue">
       <div className="w-full max-w-screen-xl px-4 py-20 mx-auto sm:px-6 lg:px-8">

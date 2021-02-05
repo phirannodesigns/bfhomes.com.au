@@ -6,9 +6,7 @@ import { useLocation } from '@reach/router';
 import SanityBlockContent from '@sanity/block-content-to-react';
 import { HiArrowLeft, HiArrowRight } from 'react-icons/hi';
 
-import {
-  Layout, SEO, BGImageRight, ContactSection,
-} from '../components';
+import { Layout, SEO, BGImageRight, ContactSection } from '../components';
 import bgLeft from '../images/bg-left.svg';
 
 function PostTemplate({ data, pageContext }) {
@@ -56,7 +54,7 @@ function BlogPost({ post, pageContext }) {
               });
             } else if (typeof window !== 'undefined') {
               window.open(
-                `https://www.facebook.com/sharer/sharer.php?u=${origin}/posts/${post.slug.current}/`,
+                `https://www.facebook.com/sharer/sharer.php?u=${origin}/posts/${post.slug.current}/`
               );
             } else return;
           }}
@@ -122,7 +120,7 @@ function Post({ post }) {
               });
             } else if (typeof window !== 'undefined') {
               window.open(
-                `https://www.facebook.com/sharer/sharer.php?u=${origin}/posts/${post.slug.current}/`,
+                `https://www.facebook.com/sharer/sharer.php?u=${origin}/posts/${post.slug.current}/`
               );
             } else return;
           }}
@@ -136,7 +134,7 @@ function Post({ post }) {
 
 function RelatedPosts({ post, posts }) {
   const postsMinusCurrent = posts.filter(
-    (p) => p.slug.current !== post.slug.current,
+    (p) => p.slug.current !== post.slug.current
   );
 
   return (
