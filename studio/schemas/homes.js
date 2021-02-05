@@ -9,6 +9,15 @@ export default {
       type: 'string',
     },
     {
+      name: 'slug',
+      title: 'Slug',
+      type: 'slug',
+      options: {
+        source: 'title',
+        maxLength: 96,
+      },
+    },
+    {
       name: 'publishedAt',
       title: 'Published at',
       type: 'datetime',
@@ -18,6 +27,14 @@ export default {
       name: 'body',
       type: 'array',
       of: [{ type: 'block' }],
+    },
+    {
+      title: 'Hero image',
+      name: 'heroImage',
+      type: 'image',
+      options: {
+        hotspot: true,
+      },
     },
     {
       name: 'images',
