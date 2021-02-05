@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { graphql, Link } from 'gatsby';
-import { GatsbyImage, getImage } from 'gatsby-plugin-image';
+import { getImage } from 'gatsby-plugin-image';
 import { HiArrowRight } from 'react-icons/hi';
 
-import { BGImageRight, ContactSection, Layout, SEO } from '../components';
+import { BGImageRight, ContactSection, Hero, Layout, SEO } from '../components';
 
 function SuccessPage({ data }) {
   const newHomes = getImage(data.newHomes);
@@ -14,17 +14,6 @@ function SuccessPage({ data }) {
       <Success />
       <ContactSection />
     </Layout>
-  );
-}
-
-// TODO Replace hero image with video
-function Hero({ imageData }) {
-  return (
-    <div className="relative aspect-w-16 aspect-h-9">
-      <div className="absolute inset-0 flex">
-        <GatsbyImage image={imageData} alt="" className="flex-1" />
-      </div>
-    </div>
   );
 }
 

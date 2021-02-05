@@ -4,7 +4,7 @@ import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 import { useForm } from 'react-hook-form';
 
 import config from '../data/config';
-import { Layout, SEO, BGImageRight } from '../components';
+import { Layout, SEO, BGImageRight, Hero } from '../components';
 import { Input, NetlifyForm, Textarea } from '../components/form-elements';
 
 function ContactPage({ data }) {
@@ -17,17 +17,6 @@ function ContactPage({ data }) {
       <ContactInfo imageData={howCanWeHelp} />
       <ContactForm />
     </Layout>
-  );
-}
-
-// TODO replace hero image
-function Hero({ imageData }) {
-  return (
-    <div className="relative aspect-w-16 aspect-h-9">
-      <div className="absolute inset-0 flex">
-        <GatsbyImage image={imageData} alt="" className="flex-1" />
-      </div>
-    </div>
   );
 }
 

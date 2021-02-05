@@ -2,7 +2,7 @@ import * as React from 'react';
 import { graphql } from 'gatsby';
 import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 
-import { Layout, SEO, BGImageRight, ContactSection } from '../components';
+import { Layout, SEO, BGImageRight, ContactSection, Hero } from '../components';
 
 function AboutPage({ data }) {
   const newHomes = getImage(data.newHomes);
@@ -17,17 +17,6 @@ function AboutPage({ data }) {
       </BGImageRight>
       <ContactSection />
     </Layout>
-  );
-}
-
-// TODO replace hero image
-function Hero({ imageData }) {
-  return (
-    <div className="relative aspect-w-16 aspect-h-9">
-      <div className="absolute inset-0 flex">
-        <GatsbyImage image={imageData} alt="" className="flex-1" />
-      </div>
-    </div>
   );
 }
 
