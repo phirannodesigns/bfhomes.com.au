@@ -8,9 +8,9 @@ import {
   Layout,
   SEO,
   BGImageRight,
-  BGImageLeft,
+  // BGImageLeft,
   ContactSection,
-  Post,
+  // Post,
   Carousel,
 } from '../components';
 import config from '../data/config.js';
@@ -35,7 +35,7 @@ function IndexPage({ data }) {
         <WhoAreWe imageData={whoAreWe} />
       </BGImageRight>
       <Feedback />
-      <LatestNews posts={data.allSanityPost.nodes} />
+      {/* <LatestNews posts={data.allSanityPost.nodes} /> */}
       <ContactSection />
     </Layout>
   );
@@ -376,53 +376,53 @@ function Feedback() {
   );
 }
 
-function LatestNews({ posts }) {
-  return (
-    <article className="text-white bg-brand-blue">
-      <BGImageLeft>
-        <div className="relative z-10 w-full max-w-screen-xl px-4 py-20 mx-auto sm:px-6 lg:px-8">
-          <div>
-            <h2 className="border-white heading-2">
-              Check Out Our Latest News
-            </h2>
-            <ul className="grid gap-10 mt-10 lg:grid-cols-3">
-              {posts.map((post) => (
-                <Post key={post.id} post={post} />
-              ))}
-            </ul>
-          </div>
-        </div>
-      </BGImageLeft>
-    </article>
-  );
-}
+// function LatestNews({ posts }) {
+//   return (
+//     <article className="text-white bg-brand-blue">
+//       <BGImageLeft>
+//         <div className="relative z-10 w-full max-w-screen-xl px-4 py-20 mx-auto sm:px-6 lg:px-8">
+//           <div>
+//             <h2 className="border-white heading-2">
+//               Check Out Our Latest News
+//             </h2>
+//             <ul className="grid gap-10 mt-10 lg:grid-cols-3">
+//               {posts.map((post) => (
+//                 <Post key={post.id} post={post} />
+//               ))}
+//             </ul>
+//           </div>
+//         </div>
+//       </BGImageLeft>
+//     </article>
+//   );
+// }
 
 export const query = graphql`
   query {
-    allSanityPost(sort: { order: DESC, fields: publishedAt }, limit: 3) {
-      nodes {
-        _publishedAt: publishedAt
-        _rawBody
-        categories {
-          title
-          id
-        }
-        id
-        imageAltText
-        mainImage {
-          asset {
-            fluid(maxWidth: 450) {
-              ...GatsbySanityImageFluid
-            }
-          }
-        }
-        publishedAt(formatString: "MMMM DD, YYYY")
-        slug {
-          current
-        }
-        title
-      }
-    }
+    # allSanityPost(sort: { order: DESC, fields: publishedAt }, limit: 3) {
+    #   nodes {
+    #     _publishedAt: publishedAt
+    #     _rawBody
+    #     categories {
+    #       title
+    #       id
+    #     }
+    #     id
+    #     imageAltText
+    #     mainImage {
+    #       asset {
+    #         fluid(maxWidth: 450) {
+    #           ...GatsbySanityImageFluid
+    #         }
+    #       }
+    #     }
+    #     publishedAt(formatString: "MMMM DD, YYYY")
+    #     slug {
+    #       current
+    #     }
+    #     title
+    #   }
+    # }
     newHomes: file(relativePath: { eq: "new-homes.jpg" }) {
       childImageSharp {
         gatsbyImageData(layout: CONSTRAINED, width: 1920)
