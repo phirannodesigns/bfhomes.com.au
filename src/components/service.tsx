@@ -35,7 +35,7 @@ interface ServiceProps {
     title: string;
   };
   reverse: boolean;
-  imageData: IGatsbyImageData;
+  imageData?: IGatsbyImageData;
 }
 
 function Service({ service, reverse, imageData }: ServiceProps) {
