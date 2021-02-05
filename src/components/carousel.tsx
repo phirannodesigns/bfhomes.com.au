@@ -84,7 +84,7 @@ function Carousel({ children }: ICarousel): React.ReactElement {
         })}
       </ul>
       {slider && (
-        <div className="absolute inset-x-0 bottom-0 z-10 pt-6 pb-2 transform bg-gradient-to-b from-transparent via-white to-white">
+        <div className="absolute inset-x-0 bottom-0 z-10 pt-6 pb-2 transform bg-gradient-to-t via-white from-white">
           <ul className="relative flex items-center justify-center space-x-2">
             {[...Array(slider.details().size).keys()].map((index) => (
               <li key={index}>
