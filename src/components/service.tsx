@@ -1,19 +1,21 @@
-import * as React from 'react';
-import Image, { FluidObject } from 'gatsby-image';
-import { GatsbyImage, IGatsbyImageData } from 'gatsby-plugin-image';
-import SanityBlockContent from '@sanity/block-content-to-react';
-import { useKeenSlider } from 'keen-slider/react';
 import 'keen-slider/keen-slider.min.css';
 
+import SanityBlockContent from '@sanity/block-content-to-react';
+import Image, { FluidObject } from 'gatsby-image';
+import { GatsbyImage, IGatsbyImageData } from 'gatsby-plugin-image';
+import { useKeenSlider } from 'keen-slider/react';
+import * as React from 'react';
 import { HiChevronLeft, HiChevronRight } from 'react-icons/hi';
-import { BGImageRight } from './bg-image-right';
+
 import { getTailwindConfig } from '../utils/get-tailwind-config';
+import { BGImageRight } from './bg-image-right';
 
 const tailwindConfig = getTailwindConfig();
 
 interface ServiceProps {
   service: {
-    _rawBody?: Object;
+    // @ts-expect-error not sure how to type this object
+    _rawBody?: Record<string | unknown>;
     copy?: string;
     heroImage?: {
       asset: {
@@ -35,9 +37,11 @@ interface ServiceProps {
     title: string;
   };
   reverse: boolean;
+  // eslint-disable-next-line react/require-default-props
   imageData?: IGatsbyImageData;
 }
 
+// eslint-disable-next-line sonarjs/cognitive-complexity
 function Service({ service, reverse, imageData }: ServiceProps) {
   function MainImage() {
     return (
@@ -58,7 +62,9 @@ function Service({ service, reverse, imageData }: ServiceProps) {
   }
 
   function InnerContent() {
+    // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
     const md = `(min-width: ${tailwindConfig.theme.screens.md})`;
+    // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
     const lg = `(min-width: ${tailwindConfig.theme.screens.lg})`;
 
     const [currentSlide, setCurrentSlide] = React.useState(0);
@@ -82,11 +88,11 @@ function Service({ service, reverse, imageData }: ServiceProps) {
       },
     });
 
-    const images = Array(9).fill({ imageData });
+    const images = Array.from({ length: 9 }).fill({ imageData });
 
     return (
       <div
-        // @ts-ignore
+        // @ts-expect-error not sure ow to type this slug can be a strong or an object
         id={service.slug?.current || service.slug}
         className="relative z-10 grid w-full max-w-screen-xl gap-4 px-4 py-20 mx-auto sm:px-6 lg:px-8 lg:grid-cols-4"
       >
@@ -139,6 +145,7 @@ function Service({ service, reverse, imageData }: ServiceProps) {
                       <div className="relative h-0 aspect-w-4 aspect-h-3">
                         <div className="absolute inset-0 flex">
                           <GatsbyImage
+                            // @ts-expect-error need to add type for Gatsby Image data
                             image={image.imageData}
                             alt=""
                             className="flex-1"
@@ -150,12 +157,14 @@ function Service({ service, reverse, imageData }: ServiceProps) {
             </ul>
             {slider && (
               <div className="absolute inset-x-0 bottom-0 flex items-center justify-center py-2 space-x-2 transform translate-y-full">
-                <button onClick={() => slider.prev()}>
+                <button type="button" onClick={() => slider.prev()}>
                   <HiChevronLeft className="text-2xl" />
                 </button>
-                {[...Array(slider.details().size).keys()].map((index) => (
+                {[...new Array(slider.details().size).keys()].map((index) => (
                   <button
                     key={index}
+                    type="button"
+                    aria-label={`Move to slide ${index + 1}`}
                     onClick={() => {
                       slider.moveToSlideRelative(index);
                     }}
@@ -169,7 +178,7 @@ function Service({ service, reverse, imageData }: ServiceProps) {
                       `}
                   />
                 ))}
-                <button onClick={() => slider.next()}>
+                <button type="button" onClick={() => slider.next()}>
                   <HiChevronRight className="text-2xl" />
                 </button>
               </div>

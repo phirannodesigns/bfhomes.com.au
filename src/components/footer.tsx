@@ -1,6 +1,6 @@
-import * as React from 'react';
 import { Menu } from '@headlessui/react';
 import { Link } from 'gatsby';
+import * as React from 'react';
 
 import config from '../data/config';
 import { SiteLogo } from './vectors/logos';

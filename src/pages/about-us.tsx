@@ -1,8 +1,8 @@
-import * as React from 'react';
 import { graphql } from 'gatsby';
 import { GatsbyImage, getImage } from 'gatsby-plugin-image';
+import * as React from 'react';
 
-import { Layout, SEO, BGImageRight, ContactSection, Hero } from '../components';
+import { BGImageRight, ContactSection, Hero, Layout, SEO } from '../components';
 
 function AboutPage({ data }) {
   const aboutHero = getImage(data.aboutHero);
@@ -82,19 +82,19 @@ function WhyChooseUs({ imageData }) {
       <div className="relative z-10 w-full max-w-screen-xl px-4 py-40 mx-auto sm:px-6 lg:px-8">
         <h2 className="border-white heading-2">Why Choose Us?</h2>
         <div className="mt-12 prose text-white">
-          <h3>We're Reliable</h3>
+          <h3>We&rsquo;re Reliable</h3>
           <p>
             It’s simple – we turn up when we say we will and spend as much as we
             quote. We keep you in the loop with every development and are
             pro-active when it comes to solving problems.
           </p>
-          <h3>We're A Family</h3>
+          <h3>We&rsquo;re A Family</h3>
           <p>
             Our team is made up of quality carpenters, tradespeople, designers,
             and project managers all experienced in delivering projects big and
             small to satisfied clients.
           </p>
-          <h3>We're Focused</h3>
+          <h3>We&rsquo;re Focused</h3>
           <p>
             We focus all our attention on making sure your home, renovation, or
             outdoor living area is built to last. That’s the Bruen Family

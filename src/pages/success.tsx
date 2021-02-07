@@ -1,6 +1,6 @@
-import * as React from 'react';
 import { graphql, Link } from 'gatsby';
 import { getImage } from 'gatsby-plugin-image';
+import * as React from 'react';
 import { HiArrowRight } from 'react-icons/hi';
 
 import { BGImageRight, ContactSection, Hero, Layout, SEO } from '../components';

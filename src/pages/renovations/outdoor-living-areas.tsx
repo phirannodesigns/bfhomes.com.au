@@ -1,13 +1,13 @@
-import * as React from 'react';
 import { graphql } from 'gatsby';
 import { GatsbyImage, getImage } from 'gatsby-plugin-image';
+import * as React from 'react';
 
 import {
+  ContactSection,
+  HeadingWithCopy,
   Layout,
   SEO,
-  HeadingWithCopy,
   Service,
-  ContactSection,
 } from '../../components';
 
 function RenovationsPage({ data }) {

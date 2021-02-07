@@ -1,5 +1,6 @@
-import * as React from 'react';
+/* eslint-disable react/require-default-props */
 import { navigate } from 'gatsby';
+import * as React from 'react';
 
 function encode(data) {
   return Object.keys(data)

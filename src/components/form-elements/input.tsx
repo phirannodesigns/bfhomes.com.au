@@ -1,6 +1,18 @@
 import * as React from 'react';
+import { ErrorOption } from 'react-hook-form';
 
 import { Error } from './error';
+
+interface IInput {
+  className: string;
+  errors: ErrorOption;
+  label: string;
+  name: string;
+  placeholder?: string;
+  register: any;
+  required?: boolean;
+  type?: string;
+}
 
 function Input({
   className,
@@ -11,7 +23,7 @@ function Input({
   register,
   required = true,
   type = 'text',
-}) {
+}: IInput) {
   const MIN_LENGTH = type === 'tel' ? 8 : 2;
   return (
     <div>

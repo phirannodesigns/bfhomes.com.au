@@ -1,3 +1,5 @@
+/* eslint-disable eslint-comments/disable-enable-pair */
+/* eslint-disable react/require-default-props */
 /**
  * SEO component that queries for data with
  *  Gatsby's useStaticQuery React hook
@@ -5,9 +7,9 @@
  * See: https://www.gatsbyjs.org/docs/use-static-query/
  */
 
+import { useLocation } from '@reach/router';
 import * as React from 'react';
 import { Helmet } from 'react-helmet';
-import { useLocation } from '@reach/router';
 
 import config from '../data/config';
 
@@ -93,6 +95,7 @@ function SEO({
           name: 'twitter:description',
           content: metaDescription,
         },
+        // eslint-disable-next-line unicorn/prefer-spread
       ].concat(meta)}
     />
   );

@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { useForm } from 'react-hook-form';
 
-import { Input, NetlifyForm, Textarea } from './form-elements';
 import config from '../data/config';
+import { Input, NetlifyForm, Textarea } from './form-elements';
 
 function ContactSection() {
   const { handleSubmit, register, errors } = useForm({ mode: 'onBlur' });
@@ -23,7 +23,6 @@ function ContactSection() {
               <Input
                 name="full-name"
                 label="Full Name"
-                placeholder={null}
                 register={register}
                 errors={errors}
                 className="w-full focus:outline-none focus:ring-brand-teal focus:ring-2"
@@ -32,7 +31,6 @@ function ContactSection() {
                 name="email-address"
                 label="Email Address"
                 type="email"
-                placeholder={null}
                 register={register}
                 errors={errors}
                 className="w-full focus:outline-none focus:ring-brand-teal focus:ring-2"
@@ -41,7 +39,6 @@ function ContactSection() {
                 name="contact-number"
                 label="Contact Number"
                 type="tel"
-                placeholder={null}
                 register={register}
                 errors={errors}
                 className="w-full focus:outline-none focus:ring-brand-teal focus:ring-2"
@@ -49,7 +46,6 @@ function ContactSection() {
               <Textarea
                 name="message"
                 label="Message"
-                placeholder={null}
                 register={register}
                 errors={errors}
                 className="block w-full focus:ring-brand-teal"

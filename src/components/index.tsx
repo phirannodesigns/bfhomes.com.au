@@ -5,6 +5,7 @@ export * from './contact-section';
 export * from './heading-with-copy';
 export * from './hero';
 export * from './layout';
+export * from './menu-context';
 export * from './post';
 export * from './seo';
 export * from './service';

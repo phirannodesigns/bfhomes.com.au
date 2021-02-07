@@ -1,3 +1,4 @@
+/* eslint-disable sonarjs/no-duplicate-string */
 const defaultTheme = require('tailwindcss/defaultTheme');
 const aspectRatio = require('@tailwindcss/aspect-ratio');
 const forms = require('@tailwindcss/forms');

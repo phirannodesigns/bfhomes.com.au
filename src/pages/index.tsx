@@ -1,19 +1,19 @@
-import * as React from 'react';
 import { graphql, Link } from 'gatsby';
 import { GatsbyImage, getImage } from 'gatsby-plugin-image';
+import * as React from 'react';
 import { HiArrowRight } from 'react-icons/hi';
 import { IoStar, IoStarOutline } from 'react-icons/io5';
 
 import {
-  Layout,
-  SEO,
   BGImageRight,
-  // BGImageLeft,
-  ContactSection,
   // Post,
   Carousel,
+  // BGImageLeft,
+  ContactSection,
+  Layout,
+  SEO,
 } from '../components';
-import config from '../data/config.js';
+import config from '../data/config';
 
 function IndexPage({ data }) {
   const newHomes = getImage(data.newHomes);
@@ -46,6 +46,7 @@ function Hero() {
   return (
     <div className="relative aspect-w-16 aspect-h-9">
       <iframe
+        // eslint-disable-next-line no-secrets/no-secrets
         src={`https://www.youtube.com/embed/${config.youtubeVideId}?autoplay=1&controls=0&disablekb=1&iv_load_policy=3&loop=1&modestbranding=1&playlist=${config.youtubeVideId}&playsinline=1&rel=0`}
         className="absolute inset-0 pointer-events-none"
         frameBorder={0}
@@ -221,7 +222,7 @@ function WhoAreWe({ imageData }) {
 const reviews = [
   {
     name: 'Suzy Young & Kurt Peterson',
-    text: `<p>BruCorp Building Pty Ltd Made Our Dream Come True.</p>
+    text: `<p>BruCorp Building Pty Ltd Made Our Dream Come True.</p>
     <p>
       We initially sought out BruCorp whilst living in Orange NSW, as we had
       bought a block of land at Lake Cathie.
@@ -233,11 +234,11 @@ const reviews = [
     </p>
     <p>
       The thought of committing to, and planning something so big was very
-      daunting to us and especially as we did not want to settle for anything
+      daunting to us and especially as we did not want to settle for anything
       less perfection for our dream home.
     </p>
     <p>
-      Upon meeting with Darren and Corrina, I was immediately impressed by
+      Upon meeting with Darren and Corrina, I was immediately impressed by
       their friendly, understanding, professional, non-forceful and ‘can-do’
       attitude.
     </p>
@@ -312,7 +313,7 @@ const reviews = [
       You communicated openly with us at all stages of the construction and
       kept us fully informed of the progress. As a result we can truthfully
       state that we did not have one instance where we were dissatisfied. You
-      handled the project professionally and the build quality was  of an
+      handled the project professionally and the build quality was  of an
       exceptional standard.
     </p>
     <p>
@@ -354,16 +355,12 @@ function Feedback() {
                   <footer>
                     <p className="mt-5 font-bold">{review.name}</p>
                     <div className="flex items-center justify-center space-x-1 text-2xl text-brand-teal">
-                      {Array(review.rating)
-                        .fill('')
-                        .map((_, index) => (
-                          <IoStar key={index} className="w-6 h-6" />
-                        ))}
-                      {Array(5 - review.rating)
-                        .fill('')
-                        .map((_, index) => (
-                          <IoStarOutline key={index} className="w-6 h-6" />
-                        ))}
+                      {new Array(review.rating).fill('').map((_, index) => (
+                        <IoStar key={index} className="w-6 h-6" />
+                      ))}
+                      {new Array(5 - review.rating).fill('').map((_, index) => (
+                        <IoStarOutline key={index} className="w-6 h-6" />
+                      ))}
                     </div>
                   </footer>
                 </blockquote>

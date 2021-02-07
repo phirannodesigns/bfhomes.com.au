@@ -1,11 +1,30 @@
-import * as React from 'react';
-import { useKeenSlider } from 'keen-slider/react';
 import 'keen-slider/keen-slider.min.css';
+
+import { useKeenSlider } from 'keen-slider/react';
+import * as React from 'react';
+
+function preventNavigation(event: TouchEvent) {
+  // Center point of the touch area
+  const touchXPosition = event.touches[0].pageX;
+  // Size of the touch area
+  const touchXRadius = event.touches[0].radiusX || 0;
+
+  // We set a threshold (10px) on both sizes of the screen,
+  // if the touch area overlaps with the screen edges
+  // it's likely to trigger the navigation. We prevent the
+  // touchstart event in that case.
+  if (
+    touchXPosition - touchXRadius < 10 ||
+    touchXPosition + touchXRadius > window.innerWidth - 10
+  )
+    event.preventDefault();
+}
 
 interface ICarousel {
   children: React.ReactNode;
 }
 
+// eslint-disable-next-line sonarjs/cognitive-complexity
 function Carousel({ children }: ICarousel): React.ReactElement {
   const [currentSlide, setCurrentSlide] = React.useState(0);
   const [isMounted, setIsMounted] = React.useState(false);
@@ -22,29 +41,13 @@ function Carousel({ children }: ICarousel): React.ReactElement {
 
   // Stop the history navigation gesture on touch devices
   React.useEffect(() => {
-    const preventNavigation = (event: TouchEvent) => {
-      // Center point of the touch area
-      const touchXPosition = event.touches[0].pageX;
-      // Size of the touch area
-      const touchXRadius = event.touches[0].radiusX || 0;
-
-      // We set a threshold (10px) on both sizes of the screen,
-      // if the touch area overlaps with the screen edges
-      // it's likely to trigger the navigation. We prevent the
-      // touchstart event in that case.
-      if (
-        touchXPosition - touchXRadius < 10 ||
-        touchXPosition + touchXRadius > window.innerWidth - 10
-      )
-        event.preventDefault();
-    };
-
     sliderContainerRef.current?.addEventListener(
       'touchstart',
       preventNavigation
     );
 
     return () => {
+      // eslint-disable-next-line react-hooks/exhaustive-deps
       sliderContainerRef.current?.removeEventListener(
         'touchstart',
         preventNavigation
@@ -75,6 +78,7 @@ function Carousel({ children }: ICarousel): React.ReactElement {
               props: {
                 ...child.props,
                 className: `${
+                  // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
                   child.props.className ? `${child.props.className} ` : ''
                 }keen-slider__slide`,
               },
@@ -86,7 +90,7 @@ function Carousel({ children }: ICarousel): React.ReactElement {
       {slider && (
         <div className="absolute inset-x-0 bottom-0 z-10 pt-6 pb-2 transform bg-gradient-to-t via-white from-white">
           <ul className="relative flex items-center justify-center space-x-2">
-            {[...Array(slider.details().size).keys()].map((index) => (
+            {[...new Array(slider.details().size).keys()].map((index) => (
               <li key={index}>
                 <button
                   type="button"

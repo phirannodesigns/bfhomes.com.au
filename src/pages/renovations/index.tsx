@@ -1,9 +1,9 @@
-import * as React from 'react';
 import { graphql, Link } from 'gatsby';
 import { GatsbyImage, getImage } from 'gatsby-plugin-image';
-
+import * as React from 'react';
 import { HiArrowRight } from 'react-icons/hi';
-import { Layout, SEO, ContactSection, Hero } from '../../components';
+
+import { ContactSection, Hero, Layout, SEO } from '../../components';
 
 function RenovationsPage({ data }) {
   const renovationsHero = getImage(data.renovationsHero);
@@ -73,6 +73,8 @@ function Service({ title, services, imageData, copy }) {
   );
 }
 
+const image = '../images/new-homes.jpg';
+
 function HouseExtensions({ imageData, bathroom }) {
   const houseExtensions = [
     {
@@ -87,7 +89,7 @@ function HouseExtensions({ imageData, bathroom }) {
       copy:
         'Getting more from your kitchen is easy with Bruen Family Homes. We can extend your kitchen, increasing the space between appliances, benches, and sinks. We can design a new open plan living area, depending on how your home is structured. Talk to us about getting more from your kitchen with a Bruen quality extension.',
       slug: '/renovations/house-extensions/#kitchens',
-      image: '../images/new-homes.jpg',
+      image,
     },
   ];
   return (
@@ -106,14 +108,14 @@ const outdoorLivingAreas = [
     copy:
       'Always a winner no matter the time of year, a polished and roomy deck is a great compliment to any house. We can build from scratch or renovate your existing deck in a variety of materials and timber finishes. We help you design a deck that suits your lifestyle adding space for barbeques, furniture, and more.',
     slug: '/renovations/outdoor-living-areas/#decks',
-    image: '../images/new-homes.jpg',
+    image,
   },
   {
     heading: 'Flyover Roofs',
     copy:
       'Also known as patio roofs, a flyover roof is a functional and economical way to extend your living area. With higher ceilings and greater ventilation, a flyover roof is a great and easy way to make the outdoors a part of the everyday. We can design and build a free-standing or attached roof depending on your wants and needs.',
     slug: '/renovations/outdoor-living-areas/#flyover-roofs',
-    image: '../images/new-homes.jpg',
+    image,
   },
 ];
 

@@ -1,11 +1,11 @@
 import * as React from 'react';
 
-interface Context {
+interface IMenuContext {
   isOpen: boolean;
   setIsOpen(isOpen: boolean): void;
 }
 
-const MenuContext = React.createContext<Context>({
+const MenuContext = React.createContext<IMenuContext>({
   isOpen: false,
   setIsOpen: () => null,
 });

@@ -1,8 +1,8 @@
 import * as React from 'react';
 
-import { Nav } from './nav';
-import { MobileMenu } from './mobile-menu';
 import { Footer } from './footer';
+import { MobileMenu } from './mobile-menu';
+import { Nav } from './nav';
 
 interface LayoutProps {
   children: React.ReactNode;

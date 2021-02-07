@@ -1,6 +1,19 @@
+/* eslint-disable react/require-default-props */
 import * as React from 'react';
+import { ErrorOption } from 'react-hook-form';
 
 import { Error } from './error';
+
+interface ITextarea {
+  className: string;
+  errors: ErrorOption;
+  label: string;
+  name: string;
+  placeholder?: string;
+  register: any;
+  required?: boolean;
+  rows?: number;
+}
 
 function Textarea({
   className,
@@ -11,7 +24,7 @@ function Textarea({
   register,
   required = true,
   rows = 6,
-}) {
+}: ITextarea) {
   return (
     <div>
       <label htmlFor={name}>

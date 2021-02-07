@@ -1,11 +1,28 @@
-import * as React from 'react';
-import { Link } from 'gatsby';
-import GatsbyImage from 'gatsby-image';
 import { useLocation } from '@reach/router';
 import SanityBlockContent from '@sanity/block-content-to-react';
+import { Link } from 'gatsby';
+import GatsbyImage, { FluidObject } from 'gatsby-image';
+import * as React from 'react';
 import { HiArrowRight } from 'react-icons/hi';
 
-function Post({ post }) {
+interface IPost {
+  post: {
+    mainImage: {
+      asset: {
+        fluid: FluidObject;
+      };
+    };
+    slug: {
+      current: string;
+    };
+    title: string;
+    _rawBody: any;
+    _publishedAt: string;
+    publishedAt: string;
+  };
+}
+
+function Post({ post }: IPost): React.ReactElement {
   const { origin } = useLocation();
   return (
     <article>
@@ -41,8 +58,10 @@ function Post({ post }) {
         <time dateTime={post._publishedAt}>{post.publishedAt}</time>
         <span className="mx-3">|</span>
         <button
+          type="button"
           onClick={() => {
             if (navigator?.share) {
+              // eslint-disable-next-line @typescript-eslint/no-floating-promises
               navigator.share({
                 url: `${origin}/posts/${post.slug.current}/`,
               });
@@ -50,7 +69,7 @@ function Post({ post }) {
               window.open(
                 `https://www.facebook.com/sharer/sharer.php?u=${origin}/posts/${post.slug.current}/`
               );
-            } else return;
+            }
           }}
         >
           Share

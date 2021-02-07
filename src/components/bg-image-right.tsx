@@ -1,4 +1,5 @@
 import * as React from 'react';
+
 import { BGRight } from './vectors/shapes/bg-right';
 
 interface BGImageRightProps {

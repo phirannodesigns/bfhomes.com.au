@@ -1,12 +1,12 @@
-import * as React from 'react';
-import { Link } from 'gatsby';
-import { useLocation } from '@reach/router';
 import { Menu, Transition } from '@headlessui/react';
+import { useLocation } from '@reach/router';
+import { Link } from 'gatsby';
+import * as React from 'react';
 import { HiChevronDown, HiMenu } from 'react-icons/hi';
 
 import config from '../data/config';
-import { SiteLogo } from './vectors/logos';
 import { useMenuContext } from '../utils/hooks';
+import { SiteLogo } from './vectors/logos';
 
 function Nav() {
   const { pathname } = useLocation();

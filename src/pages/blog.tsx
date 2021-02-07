@@ -1,10 +1,10 @@
-import * as React from 'react';
 import { graphql } from 'gatsby';
 import { GatsbyImage, getImage, IImage } from 'gatsby-plugin-image';
 import { matchSorter } from 'match-sorter';
+import * as React from 'react';
 import { HiArrowLeft, HiArrowRight } from 'react-icons/hi';
 
-import { Layout, SEO, BGImageLeft, Post, ContactSection } from '../components';
+import { BGImageLeft, ContactSection, Layout, Post, SEO } from '../components';
 
 function LatestNewsPage({ data }) {
   const newHomes = getImage(data.newHomes);
@@ -91,6 +91,7 @@ function LatestBlogs({ nodes }: LatestBlogsProps) {
       post.categories.map((category) => cat.push(category.title))
     );
     // Filter duplicates and sort alphabetically
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-return
     setCategories([...new Set(cat)].sort((a, b) => a.localeCompare(b)));
   }, [posts]);
 
@@ -150,6 +151,7 @@ function LatestBlogs({ nodes }: LatestBlogsProps) {
           </ul>
           <div className="flex items-center justify-center mt-20 space-x-2">
             <button
+              type="button"
               onClick={() =>
                 index <= 0 ? null : setIndex((prevIndex) => prevIndex - 1)
               }
@@ -159,11 +161,12 @@ function LatestBlogs({ nodes }: LatestBlogsProps) {
               <HiArrowLeft />
             </button>
             <ul className="flex space-x-2">
-              {Array(Math.ceil(filteredPosts.length / INCREMENTOR))
+              {new Array(Math.ceil(filteredPosts.length / INCREMENTOR))
                 .fill('')
                 .map((_, i) => (
                   <li key={i}>
                     <button
+                      type="button"
                       onClick={() => setIndex(i)}
                       className={`
                       ${index === i && 'font-bold underline'}
@@ -176,6 +179,7 @@ function LatestBlogs({ nodes }: LatestBlogsProps) {
                 ))}
             </ul>
             <button
+              type="button"
               onClick={() =>
                 index >= Math.ceil(filteredPosts.length / INCREMENTOR)
                   ? null

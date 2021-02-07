@@ -1,11 +1,11 @@
-import * as React from 'react';
 import { graphql } from 'gatsby';
 import { GatsbyImage, getImage } from 'gatsby-plugin-image';
+import * as React from 'react';
 import { useForm } from 'react-hook-form';
 
-import config from '../data/config';
-import { Layout, SEO, BGImageRight, Hero } from '../components';
+import { BGImageRight, Hero, Layout, SEO } from '../components';
 import { Input, NetlifyForm, Textarea } from '../components/form-elements';
+import config from '../data/config';
 
 function ContactPage({ data }) {
   const contactHero = getImage(data.contactHero);
@@ -119,7 +119,6 @@ function ContactForm() {
           <Input
             name="full-name"
             label="Full Name"
-            placeholder={null}
             register={register}
             errors={errors}
             className="w-full focus:outline-none focus:ring-brand-teal focus:ring-2"
@@ -128,7 +127,6 @@ function ContactForm() {
             name="email-address"
             label="Email Address"
             type="email"
-            placeholder={null}
             register={register}
             errors={errors}
             className="w-full focus:outline-none focus:ring-brand-teal focus:ring-2"
@@ -137,7 +135,6 @@ function ContactForm() {
             name="contact-number"
             label="Contact Number"
             type="tel"
-            placeholder={null}
             register={register}
             errors={errors}
             className="w-full focus:outline-none focus:ring-brand-teal focus:ring-2"
@@ -145,7 +142,6 @@ function ContactForm() {
           <Textarea
             name="message"
             label="Message"
-            placeholder={null}
             register={register}
             errors={errors}
             className="block w-full"

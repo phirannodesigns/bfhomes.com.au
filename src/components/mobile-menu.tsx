@@ -1,13 +1,13 @@
-import * as React from 'react';
-import { useLocation } from '@reach/router';
-import { Link } from 'gatsby';
 import { Menu } from '@headlessui/react';
+import { useLocation } from '@reach/router';
 import { AnimatePresence, motion } from 'framer-motion';
+import { Link } from 'gatsby';
+import * as React from 'react';
 import { HiPhone, HiX } from 'react-icons/hi';
 
 import config from '../data/config';
-import { SiteLogo } from './vectors/logos';
 import { useMenuContext, useOnClickOutside } from '../utils/hooks';
+import { SiteLogo } from './vectors/logos';
 
 function MobileMenu() {
   const { pathname } = useLocation();
@@ -39,6 +39,7 @@ function MobileMenu() {
             >
               <div className="absolute top-0 left-0 pt-2 -ml-12">
                 <button
+                  type="button"
                   onClick={handleClose}
                   className="flex items-center justify-center w-10 h-10 ml-1 rounded-full focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
                 >
