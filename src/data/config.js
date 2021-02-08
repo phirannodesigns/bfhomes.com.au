@@ -80,10 +80,10 @@ module.exports = {
         },
       ],
     },
-    {
-      label: 'Blog',
-      slug: '/blog/',
-    },
+    // {
+    //   label: 'Blog',
+    //   slug: '/blog/',
+    // },
     {
       label: 'About Us',
       slug: '/about-us/',
