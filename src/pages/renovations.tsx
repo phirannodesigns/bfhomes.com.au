@@ -5,7 +5,7 @@ import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 import * as React from 'react';
 import { HiArrowRight } from 'react-icons/hi';
 
-import { ContactSection, Hero, Layout, SEO } from '../../components';
+import { ContactSection, Hero, Layout, SEO } from '../components';
 
 function RenovationsPage({ data }) {
   const whoAreWe = getImage(data.whoAreWe);
@@ -23,6 +23,7 @@ function RenovationsPage({ data }) {
         <Service
           key={reno._key}
           copy={reno._rawBody}
+          slug={`/renovations/${reno.slug.current as string}`}
           title={reno.title}
           services={reno.renovations}
           imageData={reno.heroImage.asset.fluid}
@@ -34,13 +35,15 @@ function RenovationsPage({ data }) {
   );
 }
 
-function Service({ title, services, imageData, copy }) {
+function Service({ title, services, imageData, copy, slug }) {
   return (
     <article>
       <div className="text-white bg-brand-blue">
         <div className="relative z-10 grid w-full max-w-screen-xl gap-4 px-4 pt-20 mx-auto pb-44 sm:px-6 lg:px-8 lg:grid-cols-2">
           <div>
-            <h2 className="border-white heading-2">{title}</h2>
+            <h2 className="border-white heading-2">
+              <Link to={slug}>{title}</Link>
+            </h2>
             <div className="mt-5 prose text-white">
               <SanityBlockContent
                 blocks={copy}
@@ -67,7 +70,7 @@ function Service({ title, services, imageData, copy }) {
               <Link
                 aria-hidden
                 tabIndex={-1}
-                to={service.slug.current}
+                to={`${slug as string}#${service.slug.current as string}`}
                 className="block"
               >
                 <div className="relative h-0 aspect-w-4 aspect-h-3">
@@ -80,7 +83,10 @@ function Service({ title, services, imageData, copy }) {
                   </div>
                 </div>
               </Link>
-              <Link to={service.slug.current} className="inline-block mt-5">
+              <Link
+                to={`${slug as string}#${service.slug.current as string}`}
+                className="inline-block mt-5"
+              >
                 <h2 className="flex items-center space-x-2 text-2xl font-bold uppercase text-brand-blue">
                   <span>{service.title} </span>
                   <HiArrowRight aria-hidden className="text-lg" />
@@ -166,6 +172,7 @@ export const query = graphql`
               }
             }
             images {
+              _key
               asset {
                 fluid(maxWidth: 1920) {
                   ...GatsbySanityImageFluid
@@ -176,6 +183,9 @@ export const query = graphql`
               current
             }
             title
+          }
+          slug {
+            current
           }
           title
         }

@@ -36,14 +36,14 @@ module.exports = {
           label: 'Marchment',
           slug: '/homes#marchment',
         },
-        {
-          label: 'Black Caviar',
-          slug: '/homes#black-caviar',
-        },
-        {
-          label: 'Duplex',
-          slug: '/homes#duplex',
-        },
+        // {
+        //   label: 'Black Caviar',
+        //   slug: '/homes#black-caviar',
+        // },
+        // {
+        //   label: 'Duplex',
+        //   slug: '/homes#duplex',
+        // },
       ],
     },
     {

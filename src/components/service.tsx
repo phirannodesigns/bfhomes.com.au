@@ -2,7 +2,6 @@ import 'keen-slider/keen-slider.min.css';
 
 import SanityBlockContent from '@sanity/block-content-to-react';
 import Image, { FluidObject } from 'gatsby-image';
-import { GatsbyImage, IGatsbyImageData } from 'gatsby-plugin-image';
 import { useKeenSlider } from 'keen-slider/react';
 import * as React from 'react';
 import { HiChevronLeft, HiChevronRight } from 'react-icons/hi';
@@ -14,8 +13,7 @@ const tailwindConfig = getTailwindConfig();
 
 interface ServiceProps {
   service: {
-    // @ts-expect-error not sure how to type this object
-    _rawBody?: Record<string | unknown>;
+    _rawBody?: [];
     copy?: string;
     heroImage?: {
       asset: {
@@ -37,24 +35,20 @@ interface ServiceProps {
     title: string;
   };
   reverse: boolean;
-  // eslint-disable-next-line react/require-default-props
-  imageData?: IGatsbyImageData;
 }
 
 // eslint-disable-next-line sonarjs/cognitive-complexity
-function Service({ service, reverse, imageData }: ServiceProps) {
+function Service({ service, reverse }: ServiceProps) {
   function MainImage() {
     return (
       <div className="relative lg:row-span-2">
         <div className="absolute inset-0 flex">
-          {service.heroImage ? (
+          {service.heroImage && (
             <Image
               fluid={service.heroImage.asset.fluid}
               alt=""
               className="flex-1"
             />
-          ) : (
-            <GatsbyImage image={imageData} alt="" className="flex-1" />
           )}
         </div>
       </div>
@@ -87,8 +81,6 @@ function Service({ service, reverse, imageData }: ServiceProps) {
         setCurrentSlide(s.details().relativeSlide);
       },
     });
-
-    const images = Array.from({ length: 9 }).fill({ imageData });
 
     return (
       <div
@@ -126,34 +118,16 @@ function Service({ service, reverse, imageData }: ServiceProps) {
         <div className="relative lg:col-span-3">
           <div>
             <ul ref={sliderRef} className="keen-slider">
-              {service.images
-                ? service.images.map(({ _key, asset }) => (
-                    <li key={_key} className="keen-slider__slide">
-                      <div className="relative h-0 aspect-w-4 aspect-h-3">
-                        <div className="absolute inset-0 flex">
-                          <Image
-                            fluid={asset.fluid}
-                            alt=""
-                            className="flex-1"
-                          />
-                        </div>
+              {service.images &&
+                service.images.map(({ _key, asset }) => (
+                  <li key={_key} className="keen-slider__slide">
+                    <div className="relative h-0 aspect-w-4 aspect-h-3">
+                      <div className="absolute inset-0 flex">
+                        <Image fluid={asset.fluid} alt="" className="flex-1" />
                       </div>
-                    </li>
-                  ))
-                : images.map((image) => (
-                    <li className="keen-slider__slide">
-                      <div className="relative h-0 aspect-w-4 aspect-h-3">
-                        <div className="absolute inset-0 flex">
-                          <GatsbyImage
-                            // @ts-expect-error need to add type for Gatsby Image data
-                            image={image.imageData}
-                            alt=""
-                            className="flex-1"
-                          />
-                        </div>
-                      </div>
-                    </li>
-                  ))}
+                    </div>
+                  </li>
+                ))}
             </ul>
             {slider && (
               <div className="absolute inset-x-0 bottom-0 flex items-center justify-center py-2 space-x-2 transform translate-y-full">
