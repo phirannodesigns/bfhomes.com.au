@@ -1,3 +1,5 @@
+/* eslint-disable no-alert */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable react/require-default-props */
 import { navigate } from 'gatsby';
 import * as React from 'react';

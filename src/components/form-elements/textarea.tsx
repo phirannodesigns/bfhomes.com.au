@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable react/require-default-props */
 import * as React from 'react';
 import { ErrorOption } from 'react-hook-form';

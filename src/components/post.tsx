@@ -16,7 +16,7 @@ interface IPost {
       current: string;
     };
     title: string;
-    _rawBody: any;
+    _rawBody: [];
     _publishedAt: string;
     publishedAt: string;
   };
@@ -66,6 +66,7 @@ function Post({ post }: IPost): React.ReactElement {
                 url: `${origin}/posts/${post.slug.current}/`,
               });
             } else if (typeof window !== 'undefined') {
+              // eslint-disable-next-line security/detect-non-literal-fs-filename
               window.open(
                 `https://www.facebook.com/sharer/sharer.php?u=${origin}/posts/${post.slug.current}/`
               );

@@ -1,3 +1,4 @@
+/* eslint-disable react/no-array-index-key */
 import { graphql, Link } from 'gatsby';
 import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 import * as React from 'react';

@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/no-noninteractive-tabindex */
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import 'keen-slider/keen-slider.min.css';
 
 import { useKeenSlider } from 'keen-slider/react';

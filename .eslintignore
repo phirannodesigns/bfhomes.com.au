@@ -1,3 +1,5 @@
 .cache/
 node_modules/
 public/
+studio/dist/
+studio/node_modules/

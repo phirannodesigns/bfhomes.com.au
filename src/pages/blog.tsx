@@ -1,3 +1,4 @@
+/* eslint-disable react/no-array-index-key */
 import { graphql } from 'gatsby';
 import { GatsbyImage, getImage, IImage } from 'gatsby-plugin-image';
 import { matchSorter } from 'match-sorter';
