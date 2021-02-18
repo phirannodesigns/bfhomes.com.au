@@ -87,10 +87,9 @@ function ContactInfo({ imageData }) {
                 </div>
               </div>
             </div>
-            <div className="relative w-full max-w-xs mx-auto">
+            <div className="relative hidden w-full max-w-xs mx-auto sm:block">
               <div className="relative h-0 aspect-w-3 aspect-h-4">
                 <div className="absolute inset-0 flex">
-                  {/* // TODO replace image */}
                   <GatsbyImage image={imageData} alt="" className="flex-1" />
                 </div>
               </div>
