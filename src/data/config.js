@@ -54,10 +54,10 @@ module.exports = {
           label: 'All Renovations',
           slug: '/renovations/',
         },
-        {
-          label: 'House Extensions',
-          slug: '/renovations/house-extensions',
-        },
+        // {
+        //   label: 'House Extensions',
+        //   slug: '/renovations/house-extensions',
+        // },
         {
           label: 'Bathrooms',
           slug: '/renovations/house-extensions#bathrooms',

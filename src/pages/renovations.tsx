@@ -41,7 +41,7 @@ function Service({ title, services, imageData, copy, slug }) {
       <div className="text-white bg-brand-blue">
         <div className="relative z-10 grid w-full max-w-screen-xl gap-4 px-4 pt-20 mx-auto pb-44 sm:px-6 lg:px-8 lg:grid-cols-2">
           <div>
-            <h2 className="border-white heading-2">
+            <h2 className="inline-block text-3xl font-bold underline uppercase">
               <Link to={slug}>{title}</Link>
             </h2>
             <div className="mt-5 prose text-white">
@@ -113,7 +113,7 @@ function CuriousToSeeOurHomes({ imageData }) {
         <GatsbyImage image={imageData} alt="" className="flex-1" />
       </div>
       <div className="relative z-10 w-full max-w-screen-xl px-4 py-40 mx-auto bg-black bg-opacity-50 sm:px-6 lg:px-8">
-        <h2 className="text-5xl border-white heading-2">
+        <h2 className="inline-block text-5xl font-bold underline uppercase">
           Curious To See Our Homes?
         </h2>
         <p className="mt-5">
