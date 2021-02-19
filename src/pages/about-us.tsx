@@ -115,7 +115,7 @@ export const query = graphql`
     }
     aboutUs: file(relativePath: { eq: "about-us.jpg" }) {
       childImageSharp {
-        gatsbyImageData(layout: CONSTRAINED, width: 600, height: 400)
+        gatsbyImageData(layout: CONSTRAINED, width: 600, height: 800)
       }
     }
     whoAreWe: file(relativePath: { eq: "who-are-we.jpg" }) {
