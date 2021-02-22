@@ -23,10 +23,11 @@ function IndexPage({ data }) {
   const outdoors = getImage(data.outdoors);
   const howCanWeHelp = getImage(data.howCanWeHelp);
   const whoAreWe = getImage(data.whoAreWe);
+  const mobileHero = getImage(data.mobileHero);
   return (
     <Layout>
       <SEO title="Port Macquarie Home Builders - Renovations - Outdoor Living" />
-      <Hero imageData={whoAreWe} />
+      <Hero imageData={mobileHero} />
       <Services
         newHomes={newHomes}
         renovations={renovations}
@@ -64,12 +65,8 @@ function Hero({ imageData }) {
           </Link>
         </div>
       </div>
-      <div className="relative block md:hidden aspect-w-16 aspect-h-9">
-        <GatsbyImage
-          image={imageData}
-          alt=""
-          className="flex-1 block shadow-lg"
-        />
+      <div className="relative block md:hidden">
+        <GatsbyImage image={imageData} alt="" className="flex-1 -mb-12 h-96" />
         <div className="absolute inset-0 flex items-center justify-center px-4 bg-black bg-opacity-50 sm:px-6 lg:px-8">
           <Link to="/" className="block w-full max-w-xs -mt-12 lg:max-w-md">
             <span className="sr-only">{config.title}</span>
@@ -461,6 +458,11 @@ export const query = graphql`
     howCanWeHelp: file(relativePath: { eq: "how-can-we-help.jpg" }) {
       childImageSharp {
         gatsbyImageData(layout: CONSTRAINED, width: 400)
+      }
+    }
+    mobileHero: file(relativePath: { eq: "landing-hero-mobile.jpg" }) {
+      childImageSharp {
+        gatsbyImageData(layout: CONSTRAINED, width: 1920)
       }
     }
     whoAreWe: file(relativePath: { eq: "who-are-we.jpg" }) {
