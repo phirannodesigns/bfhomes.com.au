@@ -33,17 +33,18 @@ module.exports = {
           slug: '/homes#homes',
         },
         {
+          label: 'Multi Dwellings',
+          slug: '/homes#multi-dwellings',
+        },
+        {
           label: 'Marchment',
           slug: '/homes#marchment',
         },
-        // {
-        //   label: 'Black Caviar',
-        //   slug: '/homes#black-caviar',
-        // },
-        // {
-        //   label: 'Duplex',
-        //   slug: '/homes#duplex',
-        // },
+
+        {
+          label: 'Black Caviar Parade',
+          slug: '/homes#black-caviar-parade',
+        },
       ],
     },
     {
