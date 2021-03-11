@@ -5,6 +5,7 @@ import * as React from 'react';
 import {
   ContactSection,
   HeadingWithCopy,
+  Hero,
   Layout,
   SEO,
   Service,
@@ -16,16 +17,18 @@ function HomesPage({ data }) {
   return (
     <Layout>
       <SEO title="Homes" />
-      <Hero imageData={homesHero} />
+      <Hero>
+        <GatsbyImage
+          image={homesHero}
+          className="w-full"
+          alt="Bruen Family Homes"
+        />
+      </Hero>
       <OurHomes />
       <Homes homes={homes} />
       <ContactSection />
     </Layout>
   );
-}
-
-function Hero({ imageData }) {
-  return <GatsbyImage image={imageData} alt="" />;
 }
 
 function OurHomes() {
