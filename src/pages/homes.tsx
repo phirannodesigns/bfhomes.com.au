@@ -25,7 +25,15 @@ function HomesPage({ data }) {
 }
 
 function Hero({ imageData }) {
-  return <GatsbyImage image={imageData} alt="" />;
+  return (
+    <article className="relative w-full mx-auto max-w-screen-12xl">
+      <GatsbyImage
+        image={imageData}
+        className="w-full"
+        alt="Bruen Family Homes"
+      />
+    </article>
+  );
 }
 
 function OurHomes() {
