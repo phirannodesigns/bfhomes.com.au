@@ -44,18 +44,6 @@ module.exports = {
           },
         },
       }),
-      maxWidth: {
-        'screen-2xl': '48rem',
-        'screen-3xl': '56rem',
-        'screen-4xl': '64rem',
-        'screen-5xl': '72rem',
-        'screen-7xl': '80rem',
-        'screen-8xl': '88rem',
-        'screen-9xl': '96rem',
-        'screen-10xl': '104rem',
-        'screen-11xl': '112rem',
-        'screen-12xl': '120rem',
-      },
     },
   },
   variants: {
