@@ -33,7 +33,7 @@ function AboutUs({ imageData }) {
                 <p>
                   Bruen Family Homes have been designing, building, and
                   renovating family homes in Port Macquarie for over 30 years.
-                  Beginning as BruCorp, along with our other arm, Bruen
+                  Beginning as BruCorp Building, along with our other arm, Bruen
                   Constructions we have earned a reputation for excellence and
                   quality on the NSW North Coast when it comes to realising the
                   vision of our valued clients
@@ -93,8 +93,8 @@ function WhyChooseUs({ imageData }) {
             Our team is made up of quality carpenters, tradespeople, designers,
             and project managers all experienced in delivering projects big and
             small to satisfied clients. When you work with us, there will always
-            be one of the Bruen family member on the job site, being either a
-            builder or carpenter to deliver the your project.
+            be a Bruen family member on the job site, either as a builder or
+            carpenter to oversee and deliver your project.
           </p>
           <h3>We&rsquo;re Focused</h3>
           <p>
