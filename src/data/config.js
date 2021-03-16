@@ -19,7 +19,7 @@ module.exports = {
     },
     {
       label: 'Instagram',
-      url: 'https://www.instagram.com',
+      url: 'https://www.instagram.com/bruenfamilyhomes/',
       icon: FaInstagram,
     },
   ],
