@@ -11,7 +11,7 @@ function HeroVideo({ YTVideoID, imageData }) {
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           frameBorder={0}
           title="YouTube video player"
-          src={`https://www.youtube.com/embed/${YTVideoID}?autoplay=1&controls=0&disablekb=1&iv_load_policy=3&loop=1&modestbranding=1&playlist=${YTVideoID}&playsinline=1&rel=0`}
+          src={`https://www.youtube.com/embed/${YTVideoID}?autoplay=1&mute=1&controls=0&disablekb=1&iv_load_policy=3&loop=1&modestbranding=1&playlist=${YTVideoID}&playsinline=1&rel=0`}
           className="absolute inset-0 pointer-events-none"
         />
       </div>
