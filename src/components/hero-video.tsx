@@ -1,12 +1,7 @@
-import { GatsbyImage, IGatsbyImageData } from 'gatsby-plugin-image';
+import Image from 'gatsby-image';
 import * as React from 'react';
 
-interface IHeroVideo {
-  YTVideoID?: string;
-  imageData?: IGatsbyImageData;
-}
-
-function HeroVideo({ YTVideoID, imageData }: IHeroVideo) {
+function HeroVideo({ YTVideoID, imageData }) {
   return (
     <article>
       <div className="relative hidden md:block aspect-w-16 aspect-h-9">
@@ -21,7 +16,7 @@ function HeroVideo({ YTVideoID, imageData }: IHeroVideo) {
         />
       </div>
       <div className="relative block md:hidden">
-        <GatsbyImage image={imageData} alt="" className="flex-1 -mb-12 h-96" />
+        <Image fluid={imageData} className="flex-1 -mb-12 h-96" alt="" />
       </div>
     </article>
   );
