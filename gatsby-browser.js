@@ -1,5 +1,4 @@
-/* eslint-disable import/extensions */
-/* eslint-disable import/no-unresolved */
+/* eslint-disable import/extensions, import/no-unresolved, import/no-extraneous-dependencies */
 /**
  * Implement Gatsby's Browser APIs in this file.
  *
