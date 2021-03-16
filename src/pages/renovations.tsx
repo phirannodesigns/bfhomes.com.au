@@ -17,6 +17,7 @@ function RenovationsPage({ data }) {
         <Image
           fluid={sanityRenovations.heroImage.asset.fluid}
           className="flex-1"
+          alt=""
         />
       </Hero>
       {sanityRenovations.renovation.map((reno) => (
