@@ -16,7 +16,6 @@ module.exports = {
   flags: {
     DEV_SSR: true,
     FAST_DEV: true,
-    FAST_REFRESH: true,
   },
   plugins: [
     'gatsby-plugin-netlify',
