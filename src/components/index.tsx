@@ -4,6 +4,7 @@ export * from './carousel';
 export * from './contact-section';
 export * from './heading-with-copy';
 export * from './hero';
+export * from './hero-video';
 export * from './layout';
 export * from './menu-context';
 export * from './post';

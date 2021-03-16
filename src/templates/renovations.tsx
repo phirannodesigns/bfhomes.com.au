@@ -6,6 +6,7 @@ import {
   ContactSection,
   HeadingWithCopy,
   Hero,
+  HeroVideo,
   Layout,
   SEO,
   Service,
@@ -20,12 +21,20 @@ function RenovationsPageTemplate({ data, pageContext }) {
   return (
     <Layout>
       <SEO title={renovationArea.title} />
-      <Hero>
-        <Image
-          fluid={renovationArea.heroImage.asset.fluid}
-          className="flex-1"
+      {renovationArea.heroVideoID ? (
+        <HeroVideo
+          YTVideoID={renovationArea.heroVideoID}
+          imageData={renovationArea.heroImage.asset.fluid}
         />
-      </Hero>
+      ) : (
+        <Hero>
+          <Image
+            fluid={renovationArea.heroImage.asset.fluid}
+            className="flex-1"
+          />
+        </Hero>
+      )}
+
       <Services renovationArea={renovationArea} />
       <ContactSection />
     </Layout>
@@ -63,6 +72,7 @@ export const query = graphql`
         renovation {
           _rawBody
           title
+          heroVideoID
           heroImage {
             asset {
               fluid {
