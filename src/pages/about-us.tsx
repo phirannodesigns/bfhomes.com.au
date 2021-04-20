@@ -84,7 +84,7 @@ function WhyChooseUs({ imageData }) {
         <div className="mt-12 prose text-white">
           <h3>We&rsquo;re Reliable</h3>
           <p>
-            It’s simple — we turn up when we say we will and and work to a fixed
+            It’s simple — we turn up when we say we will and work to a fixed
             price contract. We keep you in the loop with every development and
             are pro-active when it comes to solving problems.
           </p>
