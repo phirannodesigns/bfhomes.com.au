@@ -1,4 +1,5 @@
 {
+  "root": true,
   "extends": ["auto"],
   "rules": {
     "@typescript-eslint/explicit-function-return-type": 0,

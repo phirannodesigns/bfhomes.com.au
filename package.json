@@ -6,13 +6,16 @@
   "author": "Luke Bennett <l.bennett@phirannodesigns.com.au>",
   "scripts": {
     "build": "GATSBY_EXPERIMENTAL_PAGE_BUILD_ON_DATA_CHANGES=true gatsby build --log-pages",
-    "build:serve": "yarn build && yarn serve",
+    "build:serve": "npm run build && npm run serve",
     "clean": "gatsby clean",
-    "develop": "gatsby develop --host=0.0.0.0 --open",
-    "lint": "eslint --color --ext .html,.js,.json,.jsx,.md,.ts,.tsx *.* src",
-    "lint:fix": "npm run lint -- --fix",
-    "start": "yarn develop",
-    "serve": "gatsby serve --host=0.0.0.0 --open"
+    "develop": "gatsby develop --host=0.0.0.0",
+    "dev": "npm run develop",
+    "format": "prettier . --write --ignore-unknown",
+    "eslint:fix": "npm run eslint -- --fix",
+    "eslint": "eslint --color --ext .js,.json,.jsx,.ts,.tsx src",
+    "serve": "gatsby serve",
+    "start": "npm run develop",
+    "prepare": "husky install"
   },
   "license": "0BSD",
   "dependencies": {
@@ -23,7 +26,6 @@
     "framer-motion": "^3.10.5",
     "gatsby": "^3.0.4",
     "gatsby-image": "^3.0.0",
-    "gatsby-plugin-google-analytics": "^3.0.0",
     "gatsby-plugin-image": "^1.0.1",
     "keen-slider": "^5.4.0",
     "match-sorter": "^6.3.0",
@@ -69,6 +71,7 @@
     "eslint-plugin-switch-case": "^1.1.2",
     "eslint-plugin-unicorn": "^28.0.2",
     "gatsby-plugin-canonical-urls": "^3.0.0",
+    "gatsby-plugin-google-gtag": "^3.3.0",
     "gatsby-plugin-manifest": "^3.0.0",
     "gatsby-plugin-netlify": "^3.0.1",
     "gatsby-plugin-postcss": "^4.0.0",
@@ -79,6 +82,8 @@
     "gatsby-source-filesystem": "^3.0.0",
     "gatsby-source-sanity": "^6.0.5",
     "gatsby-transformer-sharp": "^3.0.0",
+    "husky": ">=6",
+    "lint-staged": "^10.5.4",
     "prettier": "^2.2.1",
     "tailwindcss": "^2.0.3",
     "tailwindcss-line-clamp": "^1.0.5",
@@ -86,9 +91,15 @@
     "typescript": "^4.2.3"
   },
   "prettier": {
-    "trailingComma": "es5",
-    "tabWidth": 2,
+    "endOfLine": "lf",
+    "printWidth": 80,
     "semi": true,
-    "singleQuote": true
+    "singleQuote": true,
+    "tabWidth": 2,
+    "trailingComma": "es5",
+    "useTabs": false
+  },
+  "lint-staged": {
+    "*.--ignore-unknown": "prettier --write"
   }
 }
