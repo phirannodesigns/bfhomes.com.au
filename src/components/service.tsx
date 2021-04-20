@@ -1,7 +1,7 @@
 import 'keen-slider/keen-slider.min.css';
 
 import SanityBlockContent from '@sanity/block-content-to-react';
-import Image, { FluidObject } from 'gatsby-image';
+import { GatsbyImage, IGatsbyImageData } from 'gatsby-plugin-image';
 import { useKeenSlider } from 'keen-slider/react';
 import * as React from 'react';
 import { HiChevronLeft, HiChevronRight } from 'react-icons/hi';
@@ -17,14 +17,14 @@ interface ServiceProps {
     copy?: string;
     heroImage?: {
       asset: {
-        fluid: FluidObject;
+        gatsbyImageData: IGatsbyImageData;
       };
     };
     id: string;
     images?: Array<{
       _key: string;
       asset: {
-        fluid: FluidObject;
+        gatsbyImageData: IGatsbyImageData;
       };
     }>;
     slug:
@@ -44,8 +44,8 @@ function Service({ service, reverse }: ServiceProps) {
       <div className="relative lg:row-span-2">
         <div className="absolute inset-0 flex">
           {service.heroImage && (
-            <Image
-              fluid={service.heroImage.asset.fluid}
+            <GatsbyImage
+              image={service.heroImage.asset.gatsbyImageData}
               alt=""
               className="flex-1"
             />
@@ -123,7 +123,11 @@ function Service({ service, reverse }: ServiceProps) {
                   <li key={_key} className="keen-slider__slide">
                     <div className="relative h-0 aspect-w-4 aspect-h-3">
                       <div className="absolute inset-0 flex">
-                        <Image fluid={asset.fluid} alt="" className="flex-1" />
+                        <GatsbyImage
+                          image={asset.gatsbyImageData}
+                          alt=""
+                          className="flex-1"
+                        />
                       </div>
                     </div>
                   </li>

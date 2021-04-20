@@ -1,6 +1,5 @@
 import SanityBlockContent from '@sanity/block-content-to-react';
 import { graphql, Link } from 'gatsby';
-import Image from 'gatsby-image';
 import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 import * as React from 'react';
 import { HiArrowRight } from 'react-icons/hi';
@@ -14,8 +13,8 @@ function RenovationsPage({ data }) {
     <Layout>
       <SEO title="Renovations" />
       <Hero>
-        <Image
-          fluid={sanityRenovations.heroImage.asset.fluid}
+        <GatsbyImage
+          image={sanityRenovations.heroImage.asset.gatsbyImageData}
           className="flex-1"
           alt=""
         />
@@ -27,7 +26,7 @@ function RenovationsPage({ data }) {
           slug={`/renovations/${reno.slug.current as string}`}
           title={reno.title}
           services={reno.renovations}
-          imageData={reno.heroImage.asset.fluid}
+          imageData={reno.heroImage.asset.gatsbyImageData}
         />
       ))}
       <CuriousToSeeOurHomes imageData={whoAreWe} />
@@ -55,8 +54,8 @@ function Service({ title, services, imageData, copy, slug }) {
           </div>
           <div className="relative">
             <div className="absolute inset-0 flex">
-              <Image
-                fluid={imageData}
+              <GatsbyImage
+                image={imageData}
                 alt=""
                 className="flex-1 w-full h-full max-w-sm mx-auto"
               />
@@ -76,8 +75,8 @@ function Service({ title, services, imageData, copy, slug }) {
               >
                 <div className="relative h-0 aspect-w-4 aspect-h-3">
                   <div className="absolute inset-0 flex">
-                    <Image
-                      fluid={service.heroImage.asset.fluid}
+                    <GatsbyImage
+                      image={service.heroImage.asset.gatsbyImageData}
                       alt=""
                       className="flex-1 block shadow-lg"
                     />
@@ -144,9 +143,7 @@ export const query = graphql`
         title
         heroImage {
           asset {
-            fluid(maxWidth: 1920) {
-              ...GatsbySanityImageFluid
-            }
+            gatsbyImageData(width: 1920)
           }
         }
         slug {
@@ -157,9 +154,7 @@ export const query = graphql`
           _rawBody
           heroImage {
             asset {
-              fluid(maxWidth: 1920) {
-                ...GatsbySanityImageFluid
-              }
+              gatsbyImageData(width: 1920)
             }
           }
           renovations {
@@ -167,17 +162,13 @@ export const query = graphql`
             _rawBody
             heroImage {
               asset {
-                fluid(maxWidth: 450) {
-                  ...GatsbySanityImageFluid
-                }
+                gatsbyImageData(width: 450)
               }
             }
             images {
               _key
               asset {
-                fluid(maxWidth: 1920) {
-                  ...GatsbySanityImageFluid
-                }
+                gatsbyImageData(width: 1920)
               }
             }
             slug {

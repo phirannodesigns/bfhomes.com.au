@@ -1,5 +1,5 @@
 import { graphql } from 'gatsby';
-import { GatsbyImage, getImage } from 'gatsby-plugin-image';
+import { GatsbyImage } from 'gatsby-plugin-image';
 import * as React from 'react';
 
 import {
@@ -12,14 +12,13 @@ import {
 } from '../components';
 
 function HomesPage({ data }) {
-  const homesHero = getImage(data.homesHero);
   const homes = data.allSanityHomes.nodes;
   return (
     <Layout>
       <SEO title="Homes" />
       <Hero>
         <GatsbyImage
-          image={homesHero}
+          image={data.homesHero.childImageSharp.gatsbyImageData}
           className="w-full"
           alt="Bruen Family Homes"
         />
@@ -64,7 +63,7 @@ export const query = graphql`
   query {
     homesHero: file(relativePath: { eq: "homes-hero.jpg" }) {
       childImageSharp {
-        gatsbyImageData(layout: CONSTRAINED, width: 1920, height: 1080)
+        gatsbyImageData(width: 1920)
       }
     }
     allSanityHomes {
@@ -75,17 +74,13 @@ export const query = graphql`
         title
         heroImage {
           asset {
-            fluid(maxWidth: 1920) {
-              ...GatsbySanityImageFluid
-            }
+            gatsbyImageData(width: 1920)
           }
         }
         images {
           _key
           asset {
-            fluid(maxWidth: 450) {
-              ...GatsbySanityImageFluid
-            }
+            gatsbyImageData(width: 450)
           }
         }
         slug {

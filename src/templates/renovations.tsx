@@ -1,5 +1,5 @@
 import { graphql } from 'gatsby';
-import Image from 'gatsby-image';
+import { GatsbyImage } from 'gatsby-plugin-image';
 import * as React from 'react';
 
 import {
@@ -24,13 +24,14 @@ function RenovationsPageTemplate({ data, pageContext }) {
       {renovationArea.heroVideoID ? (
         <HeroVideo
           YTVideoID={renovationArea.heroVideoID}
-          imageData={renovationArea.heroImage.asset.fluid}
+          imageData={renovationArea.heroImage.asset.gatsbyImageData}
         />
       ) : (
         <Hero>
-          <Image
-            fluid={renovationArea.heroImage.asset.fluid}
+          <GatsbyImage
+            image={renovationArea.heroImage.asset.gatsbyImageData}
             className="flex-1"
+            alt=""
           />
         </Hero>
       )}
@@ -75,9 +76,7 @@ export const query = graphql`
           heroVideoID
           heroImage {
             asset {
-              fluid {
-                ...GatsbySanityImageFluid
-              }
+              gatsbyImageData
             }
           }
           renovations {
@@ -85,17 +84,13 @@ export const query = graphql`
             _rawBody
             heroImage {
               asset {
-                fluid {
-                  ...GatsbySanityImageFluid
-                }
+                gatsbyImageData
               }
             }
             images {
               _key
               asset {
-                fluid {
-                  ...GatsbySanityImageFluid
-                }
+                gatsbyImageData
               }
             }
             slug {

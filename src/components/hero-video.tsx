@@ -1,4 +1,4 @@
-import Image from 'gatsby-image';
+import { GatsbyImage } from 'gatsby-plugin-image';
 import * as React from 'react';
 
 function HeroVideo({ YTVideoID, imageData }) {
@@ -20,7 +20,7 @@ function HeroVideo({ YTVideoID, imageData }) {
         />
       </div>
       <div className="relative block md:hidden">
-        <Image fluid={imageData} className="flex-1 -mb-12 h-96" alt="" />
+        <GatsbyImage image={imageData} className="flex-1 -mb-12 h-96" alt="" />
       </div>
     </article>
   );
