@@ -19,6 +19,7 @@ module.exports = {
   },
   plugins: [
     'gatsby-plugin-netlify',
+    'gatsby-plugin-polyfill-io',
     'gatsby-plugin-image',
     'gatsby-plugin-postcss',
     'gatsby-plugin-react-helmet',
