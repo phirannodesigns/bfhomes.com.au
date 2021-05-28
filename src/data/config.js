@@ -10,7 +10,7 @@ module.exports = {
   officeHours: 'Monday to Friday 9am–5pm',
   siteUrl: 'https://www.bfhomes.com.au',
   ogImage: '../../static/og-image.jpg',
-  youtubeVideId: 'RkEFDy_1mDA',
+  youtubeVideId: '77Cfxg0XCBc',
   socialLinks: [
     {
       label: 'Facebook',
