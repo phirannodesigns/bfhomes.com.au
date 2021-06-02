@@ -56,14 +56,14 @@ function Hero({ imageData }) {
           title="YouTube video player"
           // eslint-disable-next-line no-secrets/no-secrets
           src={`https://www.youtube.com/embed/${config.youtubeVideId}?autoplay=1&controls=0&disablekb=1&iv_load_policy=3&loop=1&modestbranding=1&playlist=${config.youtubeVideId}&playsinline=1&rel=0`}
-          className="absolute inset-0 pointer-events-none"
+          className="absolute inset-0"
         />
-        <div className="absolute inset-0 flex items-center justify-center px-4 bg-black bg-opacity-50 sm:px-6 lg:px-8">
+        {/* <div className="absolute inset-0 flex items-center justify-center px-4 bg-black bg-opacity-50 sm:px-6 lg:px-8">
           <Link to="/" className="block w-full max-w-xs -mt-12 lg:max-w-md">
             <span className="sr-only">{config.title}</span>
             <SiteLogo className="" />
           </Link>
-        </div>
+        </div> */}
       </div>
       <div className="relative block md:hidden">
         <GatsbyImage image={imageData} alt="" className="flex-1 -mb-12 h-96" />
