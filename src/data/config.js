@@ -32,6 +32,11 @@ module.exports = {
           label: 'All Homes',
           slug: '/homes#homes',
         },
+
+        {
+          label: 'McIntyre Close',
+          slug: '/homes#mcintyre',
+        },
         {
           label: 'Multi Dwellings',
           slug: '/homes#multi-dwellings',
