@@ -95,6 +95,10 @@ module.exports = {
       slug: '/about-us/',
     },
     {
+      label: 'Testimonials',
+      slug: '/testimonials/',
+    },
+    {
       label: 'Contact Us',
       slug: '/contact-us/',
     },
