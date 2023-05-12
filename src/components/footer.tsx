@@ -67,10 +67,10 @@ function Footer() {
         <div className="grid gap-12 py-4 border-b border-white lg:grid-cols-2 lg:col-start-2 lg:col-span-2">
           <div className="lg:col-start-2">
             <a
-              href="https://www.phirannodesigns.com.au"
+              href="https://pd.design"
               className="font-normal uppercase hover:underline"
             >
-              Website by Phiranno Designs
+              Designed and developed by PD
             </a>
           </div>
         </div>
