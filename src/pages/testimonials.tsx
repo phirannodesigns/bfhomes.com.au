@@ -8,6 +8,7 @@ function TestimonialsPage({ data }) {
   const aboutHero = getImage(data.aboutHero);
   const aboutUs = getImage(data.aboutUs);
   const whoAreWe = getImage(data.whoAreWe);
+  const thrumster = getImage(data.thrumster);
   return (
     <Layout>
       <SEO title="Testimonials" />
@@ -15,6 +16,10 @@ function TestimonialsPage({ data }) {
       <h2 className="mt-24 text-3xl font-bold text-center underline uppercase text-brand-blue">
         Feedback from our clients
       </h2>
+      <Thrumster imageData={thrumster} />
+      <div className="relative w-full max-w-screen-xl px-4 py-6 mx-auto -mt-0 lg:px-8">
+        <div className="border-t-2 border-brand-blue" />
+      </div>
       <AboutUs imageData={aboutUs} />
       <div className="relative w-full max-w-screen-xl px-4 py-6 mx-auto -mt-12 lg:px-8">
         <div className="border-t-2 border-brand-blue" />
@@ -34,6 +39,54 @@ function TestimonialsPage({ data }) {
       {/* <WhyChooseUs imageData={whoAreWe} /> */}
       <ContactSection />
     </Layout>
+  );
+}
+function Thrumster({ imageData }) {
+  return (
+    <article className="bg-white text-brand-blue">
+      <div className="relative z-10 w-full max-w-screen-xl px-4 py-20 mx-auto sm:px-6 lg:px-8">
+        <div className="grid items-center gap-12 lg:grid-cols-5">
+          <div className="lg:col-span-3">
+            {/* <h1 className="border-white heading-2">About Us</h1> */}
+            <div className="prose ">
+              <h4>Sovereign Drive - Thrumster</h4>
+              <br />
+              <p>
+                Our journey with Darren and Core started a few years ago when we
+                were patiently waiting for our land to register to start
+                building our dream home.
+                <br />
+                <br /> The whole time Core and Darren were so flexible and
+                understanding. They spent the time getting our design and
+                inclusions just right so that we could hit the ground running
+                the first chance we got. And wow did they succeed, from the
+                minute our build started up until completion we were blown away.
+                <br />
+                <br />
+                The positive communication and level of dedication Bruen Family
+                Homes displayed was absolutely outstanding. The process was
+                seamless with everything falling into place with ease. The final
+                touches that Core ensured were carried out, turned our newly
+                built house into our forever home. We strongly recommend Bruen
+                Family Homes, you won’t be disappointed.
+              </p>
+            </div>
+          </div>
+          <div className="relative w-full mx-auto lg:col-span-2">
+            <div className="relative h-0 aspect-w-3 aspect-h-4">
+              <div className="absolute inset-0 flex">
+                <GatsbyImage
+                  image={imageData}
+                  alt=""
+                  objectFit="contain"
+                  className="flex-1"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
   );
 }
 function SecondSection({ imageData }) {
@@ -263,7 +316,7 @@ function WhyChooseUs({ imageData }) {
 
 export const query = graphql`
   query {
-    aboutHero: file(relativePath: { eq: "testimonials-hero.jpg" }) {
+    aboutHero: file(relativePath: { eq: "testimonials-hero2.jpg" }) {
       childImageSharp {
         gatsbyImageData(layout: CONSTRAINED, width: 1920)
       }
@@ -276,6 +329,11 @@ export const query = graphql`
     whoAreWe: file(relativePath: { eq: "who-are-we.jpg" }) {
       childImageSharp {
         gatsbyImageData(layout: CONSTRAINED, width: 1920)
+      }
+    }
+    thrumster: file(relativePath: { eq: "thrumster.jpg" }) {
+      childImageSharp {
+        gatsbyImageData(layout: CONSTRAINED, width: 600, height: 800)
       }
     }
   }
