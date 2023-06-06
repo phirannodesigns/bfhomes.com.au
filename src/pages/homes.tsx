@@ -66,7 +66,7 @@ export const query = graphql`
         gatsbyImageData(width: 1920)
       }
     }
-    allSanityHomes {
+    allSanityHomes(sort: { order: DESC, fields: publishedAt }) {
       nodes {
         _rawBody
         id

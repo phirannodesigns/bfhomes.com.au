@@ -34,6 +34,11 @@ module.exports = {
         },
 
         {
+          label: 'Sovereign Drive',
+          slug: '/homes#sovereign',
+        },
+
+        {
           label: 'McIntyre Close',
           slug: '/homes#mcintyre',
         },
