@@ -9,6 +9,7 @@ function TestimonialsPage({ data }) {
   const aboutUs = getImage(data.aboutUs);
   const whoAreWe = getImage(data.whoAreWe);
   const thrumster = getImage(data.thrumster);
+  const daisy = getImage(data.daisy);
   return (
     <Layout>
       <SEO title="Testimonials" />
@@ -16,6 +17,10 @@ function TestimonialsPage({ data }) {
       <h2 className="mt-24 text-3xl font-bold text-center underline uppercase text-brand-blue">
         Feedback from our clients
       </h2>
+      <DaisyTyrone imageData={daisy} />
+      <div className="relative w-full max-w-screen-xl px-4 py-6 mx-auto -mt-0 lg:px-8">
+        <div className="border-t-2 border-brand-blue" />
+      </div>
       <Thrumster imageData={thrumster} />
       <div className="relative w-full max-w-screen-xl px-4 py-6 mx-auto -mt-0 lg:px-8">
         <div className="border-t-2 border-brand-blue" />
@@ -39,6 +44,46 @@ function TestimonialsPage({ data }) {
       {/* <WhyChooseUs imageData={whoAreWe} /> */}
       <ContactSection />
     </Layout>
+  );
+}
+function DaisyTyrone({ imageData }) {
+  return (
+    <article className="bg-white text-brand-blue">
+      <div className="relative z-10 w-full max-w-screen-xl px-4 py-20 mx-auto sm:px-6 lg:px-8">
+        <div className="grid items-center gap-12 lg:grid-cols-5">
+          <div className="lg:col-span-3">
+            {/* <h1 className="border-white heading-2">About Us</h1> */}
+            <div className="prose ">
+              <h4>Daisy and Tyrone</h4>
+              <br />
+              <p>
+                We just had our dream home built by Darren and Core of Bruen
+                Family Homes and we couldn’t be happier with the outcome.
+                <br />
+                <br />
+                Bruen Family Homes (Darren and Core) went above and beyond to
+                achieve what we wanted, nothing was a hassle for them. The way
+                they build is like clock work , it runs so smoothly. We couldn’t
+                recommend them enough. Thanks again guys for making our dreams
+                come true.
+              </p>
+            </div>
+          </div>
+          <div className="relative w-full mx-auto lg:col-span-2">
+            <div className="relative h-0 aspect-w-3 aspect-h-4">
+              <div className="absolute inset-0 flex">
+                <GatsbyImage
+                  image={imageData}
+                  alt=""
+                  objectFit="contain"
+                  className="flex-1"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
   );
 }
 function Thrumster({ imageData }) {
@@ -332,6 +377,11 @@ export const query = graphql`
       }
     }
     thrumster: file(relativePath: { eq: "thrumster.jpg" }) {
+      childImageSharp {
+        gatsbyImageData(layout: CONSTRAINED, width: 600, height: 800)
+      }
+    }
+    daisy: file(relativePath: { eq: "newest-testimonial.jpg" }) {
       childImageSharp {
         gatsbyImageData(layout: CONSTRAINED, width: 600, height: 800)
       }

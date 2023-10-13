@@ -34,6 +34,11 @@ module.exports = {
         },
 
         {
+          label: 'Farmstead Ave',
+          slug: '/homes#farmstead-ave',
+        },
+
+        {
           label: 'Sovereign Drive',
           slug: '/homes#sovereign',
         },
