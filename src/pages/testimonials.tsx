@@ -54,7 +54,7 @@ function DaisyTyrone({ imageData }) {
           <div className="lg:col-span-3">
             {/* <h1 className="border-white heading-2">About Us</h1> */}
             <div className="prose ">
-              <h4>Daisy and Tyrone</h4>
+              <h4>Farmstead Ave Thrumster</h4>
               <br />
               <p>
                 We just had our dream home built by Darren and Core of Bruen
@@ -67,6 +67,7 @@ function DaisyTyrone({ imageData }) {
                 recommend them enough. Thanks again guys for making our dreams
                 come true.
               </p>
+              <h4>Regards, Daisy & Tyrone</h4>
             </div>
           </div>
           <div className="relative w-full mx-auto lg:col-span-2">
@@ -115,6 +116,7 @@ function Thrumster({ imageData }) {
                 built house into our forever home. We strongly recommend Bruen
                 Family Homes, you won’t be disappointed.
               </p>
+              <h4>Travis and Tara</h4>
             </div>
           </div>
           <div className="relative w-full mx-auto lg:col-span-2">
